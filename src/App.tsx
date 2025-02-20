@@ -9,6 +9,8 @@ import { Navbar } from './components/ui/navbar';
 import LandingPage from './components/LandingPage'
 import { WhyBioSoc } from './components/WhyBioSoc';
 import Footer from './components/Footer'
+import { InfiniteMovingSponsors } from './components/InfiniteMovingSponsors'
+
 
 
 function App() {
@@ -37,6 +39,8 @@ function App() {
         <LampContainer children={undefined} />
         <BentoGridDemo />
         <LayoutGridDemo />
+        <InfiniteMovingSponsors />
+       
         <Footer />
       </div>
     </div>
