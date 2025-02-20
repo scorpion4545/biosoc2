@@ -23,3 +23,30 @@ body {
     rgba(255, 255, 255, 0.03)
   );
 }
+
+/* Webkit browsers (Chrome, Safari, newer Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B1121;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #06b6d4;
+  border-radius: 8px;
+  border: 2px solid #0B1121;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0891b2;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #06b6d4 #0B1121;
+}

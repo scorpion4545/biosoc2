@@ -5,6 +5,8 @@ import { LampContainer } from './components/ui/lamp'
 import { ImageGallery } from './components/ImageGallery'
 import { useState, useEffect } from 'react';
 import { DNALoader } from './components/ui/dna-loader';
+import { Navbar } from './components/ui/navbar';
+import LandingPage from './components/LandingPage'
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -22,12 +24,18 @@ function App() {
     return <DNALoader />;
   }
 
-  return <div>
-    <ImageGallery />
-    < LampContainer children={undefined} />
-    < BentoGridDemo />
-    < LayoutGridDemo />
-  </div>
+  return (
+    <div>
+      <LandingPage />
+      <Navbar />
+      <div className="pt-24"> {/* Increased padding for floating navbar */}
+        <ImageGallery />
+        <LampContainer children={undefined} />
+        <BentoGridDemo />
+        <LayoutGridDemo />
+      </div>
+    </div>
+  );
 }
 
 export default App
