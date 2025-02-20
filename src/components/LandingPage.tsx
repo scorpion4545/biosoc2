@@ -13,7 +13,7 @@ const LandingPage = () => {
         </h1>
         
         <h2 className="text-3xl font-light text-gray-300 mb-8 tracking-wider font-['Space_Grotesk']">
-          Official Society of Biotech DTU
+         Official Society of Biotech DTU
         </h2>
         
         <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-['Inter']">

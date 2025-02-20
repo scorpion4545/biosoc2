@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { LayoutGrid } from "../components/ui/layout-grid";
+import { motion } from "framer-motion";
 
 export function LayoutGridDemo() {
   return (
@@ -13,13 +14,11 @@ export function LayoutGridDemo() {
 const SkeletonOne = () => {
   return (
     <div>
-      <p className="font-bold md:text-4xl text-xl text-white">
-        House in the woods
+      <p className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl">
+        About Us
       </p>
-      <p className="font-normal text-base text-white"></p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        A serene and tranquil retreat, this house in the woods offers a peaceful
-        escape from the hustle and bustle of city life.
+        A community of biology enthusiasts at IIIT Delhi, fostering innovation and research in biosciences.
       </p>
     </div>
   );
@@ -99,3 +98,25 @@ const cards = [
       "https://images.unsplash.com/photo-1475070929565-c985b496cb9f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
+
+const SelectedCard = ({ selected }: { selected: Card | null }) => {
+  return (
+    <div className="bg-[#0B1121] h-full w-full rounded-lg shadow-2xl relative z-[60]">
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 0.6,
+        }}
+        className="absolute inset-0 h-full w-full bg-[#0B1121] opacity-60 z-10"
+      />
+      <motion.div
+        layoutId={`content-${selected?.id}`}
+        className="relative px-8 pb-4 z-[70]"
+      >
+        {selected?.content}
+      </motion.div>
+    </div>
+  );
+};

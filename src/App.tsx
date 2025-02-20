@@ -7,6 +7,9 @@ import { useState, useEffect } from 'react';
 import { DNALoader } from './components/ui/dna-loader';
 import { Navbar } from './components/ui/navbar';
 import LandingPage from './components/LandingPage'
+import { WhyBioSoc } from './components/WhyBioSoc';
+import Footer from './components/Footer'
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -30,9 +33,11 @@ function App() {
       <Navbar />
       <div className="pt-24"> {/* Increased padding for floating navbar */}
         <ImageGallery />
+        <WhyBioSoc />
         <LampContainer children={undefined} />
         <BentoGridDemo />
         <LayoutGridDemo />
+        <Footer />
       </div>
     </div>
   );
