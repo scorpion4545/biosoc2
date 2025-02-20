@@ -1,23 +1,24 @@
 import React from 'react';
-import { Instagram, Linkedin, Youtube } from 'lucide-react';
+import { Instagram, Linkedin } from 'lucide-react';
+import { IconBrandGmail } from '@tabler/icons-react';
 
 const Footer = () => {
   const socialLinks = [
     {
       icon: <Instagram className="w-6 h-6" />,
-      href: "#instagram",
+      href: "https://www.instagram.com/biosocdtu/",
       bgClass: "from-purple-500 to-pink-500",
       shadowClass: "shadow-purple-500/25"
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
-      href: "#linkedin",
+      href: "https://www.linkedin.com/company/biosoc-dtu/",
       bgClass: "from-blue-500 to-blue-600",
       shadowClass: "shadow-blue-500/25"
     },
     {
-      icon: <Youtube className="w-6 h-6" />,
-      href: "#youtube",
+      icon: <IconBrandGmail  className="w-6 h-6" />,
+      href: "mailto:biosoc@dtu.ac.in",
       bgClass: "from-red-500 to-red-600",
       shadowClass: "shadow-red-500/25"
     }
@@ -51,7 +52,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="text-center text-gray-400">
-            <p className="mb-2">Contact us at: contact@biosocdtu.com</p>
+            <p className="mb-2">Contact us at: biosoc@dtu.ac.in</p>
             <p>Delhi Technological University, Delhi - 110042</p>
           </div>
 

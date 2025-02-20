@@ -36,6 +36,7 @@ const items = [
     description: "Explore the birth of groundbreaking ideas and inventions.",
     header: <Skeleton />,
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+    img: "/team/dog.jpg"
   },
   {
     title: "The Digital Revolution",
