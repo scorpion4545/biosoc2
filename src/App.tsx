@@ -1,10 +1,14 @@
 import './App.css'
 import { BentoGridDemo } from './components/Bento-grid'
+import { LampContainer } from './components/ui/lamp'
+
 
 function App() {
 
   return <div>
-   < BentoGridDemo />
+   
+    < LampContainer children={undefined} />
+    < BentoGridDemo />
   </div>
 }
 
