@@ -16,6 +16,7 @@ export const InfiniteMovingSponsors = ({
     {
       name: "Nestle",
       image: "./sponsors/nestle.png",
+      
     },
     {
       name: "GeeksforGeeks",
@@ -29,6 +30,7 @@ export const InfiniteMovingSponsors = ({
       name: "Interview Buddy",
       image: "./sponsors/interview-buddy.png",
     },
+    
   ];
 
   // Duplicate sponsors to create seamless loop
@@ -42,7 +44,7 @@ export const InfiniteMovingSponsors = ({
       <motion.div
         className="flex min-w-full gap-8"
         animate={{
-          x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
+          x: direction === "left" ? ["0%", "-70%"] : ["-70%", "0%"],
         }}
         transition={{
           duration: speed,

@@ -5,11 +5,12 @@ import { LampContainer } from './components/ui/lamp'
 import { ImageGallery } from './components/ImageGallery'
 import { useState, useEffect } from 'react';
 import { DNALoader } from './components/ui/dna-loader';
-import { Navbar } from './components/ui/navbar';
+import { Navbar } from './components/navbar';
 import LandingPage from './components/LandingPage'
 import { WhyBioSoc } from './components/WhyBioSoc';
 import Footer from './components/Footer'
 import { InfiniteMovingSponsors } from './components/InfiniteMovingSponsors'
+import CouncilMembers from './components/CouncilMembers'
 
 
 
@@ -39,6 +40,7 @@ function App() {
         <LampContainer children={undefined} />
         <BentoGridDemo />
         <LayoutGridDemo />
+        <CouncilMembers />
         <InfiniteMovingSponsors />
        
         <Footer />
