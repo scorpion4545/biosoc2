@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import { InfiniteMovingSponsors } from './components/InfiniteMovingSponsors'
 import CouncilMembers from './components/CouncilMembers'
 import SpeakerCarousel from './components/SpeakerCarousel'
+import UpcomingEventsSection from './components/UpcomingEventsSection'
 
 
 
@@ -39,7 +40,7 @@ function App() {
         <ImageGallery />
         <WhyBioSoc />
         <LampContainer children={undefined} />
-        <BentoGridDemo />
+        <UpcomingEventsSection />
         <LayoutGridDemo />
         <SpeakerCarousel />
         <CouncilMembers />
