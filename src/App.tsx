@@ -11,6 +11,7 @@ import { WhyBioSoc } from './components/WhyBioSoc';
 import Footer from './components/Footer'
 import { InfiniteMovingSponsors } from './components/InfiniteMovingSponsors'
 import CouncilMembers from './components/CouncilMembers'
+import SpeakerCarousel from './components/SpeakerCarousel'
 
 
 
@@ -40,6 +41,7 @@ function App() {
         <LampContainer children={undefined} />
         <BentoGridDemo />
         <LayoutGridDemo />
+        <SpeakerCarousel />
         <CouncilMembers />
         <InfiniteMovingSponsors />
        
