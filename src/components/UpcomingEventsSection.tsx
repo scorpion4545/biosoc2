@@ -297,7 +297,7 @@ const AdvancedEventsSection = () => {
       location: "Executive Center, 15th Floor",
       category: "Business",
       description: "An exclusive gathering for forward-thinking leaders to exchange ideas, share insights, and explore innovative approaches to today's most pressing business challenges. Connect with visionary executives and thought leaders who are redefining success in the modern business landscape.",
-      image: "./team/cat.jpg",
+      image: "./team/dog.jpg",
       speakers: [
         { name: "Richard Hayes", role: "CEO" },
         { name: "Lisa Chang", role: "Innovation Director" }
@@ -355,10 +355,9 @@ const AdvancedEventsSection = () => {
   return (
     <div className="p-8 bg-gray-950 rounded-xl">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold text-white relative">
-          Upcoming Events
-          <div className="absolute -bottom-2 left-0 w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500"></div>
-        </h2>
+      <h2 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text   . justify-center text-center  text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-16">
+                Upcoming Events
+            </h2>
         
         <div className="flex items-center gap-2">
           <span className="text-gray-400 text-sm">{visibleEvents.length} events found</span>
@@ -366,12 +365,7 @@ const AdvancedEventsSection = () => {
         </div>
       </div>
       
-      {/* Search and filters */}
-      <EventFilters 
-        onSearch={setSearchTerm} 
-        onFilter={setActiveFilter} 
-        categories={categories} 
-      />
+      
       
       {/* Loading state */}
       {isLoading && (
@@ -383,16 +377,7 @@ const AdvancedEventsSection = () => {
         </div>
       )}
       
-      {/* Empty state */}
-      {!isLoading && visibleEvents.length === 0 && (
-        <div className="flex flex-col items-center justify-center h-64 text-center">
-          <svg className="w-16 h-16 text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <h3 className="text-xl font-semibold text-white mb-2">No events found</h3>
-          <p className="text-gray-400">Try adjusting your search or filter criteria</p>
-        </div>
-      )}
+      
       
       {/* Events grid */}
       {!isLoading && visibleEvents.length > 0 && (
@@ -428,17 +413,10 @@ const AdvancedEventsSection = () => {
             Our team is busy organizing exciting new events. Subscribe to our newsletter to be the first to know when new events are announced.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <input 
-              type="email" 
-              placeholder="Your email address"
-              className="px-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all">
-              Subscribe
-            </button>
+          
+            
           </div>
-        </div>
+        
       )}
       
       {/* View all button */}
