@@ -353,19 +353,16 @@ const AdvancedEventsSection = () => {
   };
   
   return (
-    <div className="p-8 bg-gray-950 rounded-xl">
-      <div className="flex justify-between items-center mb-8">
-      <h2 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text   . justify-center text-center  text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-16">
-                Upcoming Events
-            </h2>
-        
+    <div className="p-8 bg-transparent">
+      <div className="flex flex-col items-center justify-center mb-8">
+        <h2 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-16">
+          Upcoming Events
+        </h2>
         <div className="flex items-center gap-2">
           <span className="text-gray-400 text-sm">{visibleEvents.length} events found</span>
           <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
         </div>
       </div>
-      
-      
       
       {/* Loading state */}
       {isLoading && (
@@ -376,8 +373,6 @@ const AdvancedEventsSection = () => {
           </div>
         </div>
       )}
-      
-      
       
       {/* Events grid */}
       {!isLoading && visibleEvents.length > 0 && (
@@ -412,11 +407,7 @@ const AdvancedEventsSection = () => {
           <p className="text-gray-300 max-w-2xl mx-auto mb-6">
             Our team is busy organizing exciting new events. Subscribe to our newsletter to be the first to know when new events are announced.
           </p>
-          
-          
-            
-          </div>
-        
+        </div>
       )}
       
       {/* View all button */}

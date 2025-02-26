@@ -51,10 +51,12 @@ export function ImageGallery() {
                         opacity: aboutOpacity,
                         scale: aboutScale,
                     }}
-                    className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/95"
+                    className="absolute inset-0 flex flex-col items-center justify-center bg-transparent"
                 >
                     <motion.div className="max-w-4xl px-6 py-12 text-center">
-                        <h1 className="text-6xl font-bold bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-16 bg-transparent ] ">ABOUT US</h1>
+                        <h1 className="text-6xl font-bold bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-16">
+                            ABOUT US
+                        </h1>
                         <p className="text-xl text-gray-300 leading-relaxed">
                             BioSoc-DTU, is the official biotechnological society of Delhi Technological University.
                             BioSoc is not just another society but an agile collective run by a team of passionate members, dedicated to nurturing a supportive environment for researchers, students and professionals, and bridging the gap between industry and academia.

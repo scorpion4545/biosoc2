@@ -1,7 +1,7 @@
 import './App.css'
-import { BentoGridDemo } from './components/Bento-grid'
+
 import { LayoutGridDemo } from './components/LayoutGridDemo'
-import { LampContainer } from './components/ui/lamp'
+
 import { ImageGallery } from './components/ImageGallery'
 import { useState, useEffect } from 'react';
 import { DNALoader } from './components/ui/dna-loader';
@@ -13,6 +13,8 @@ import { InfiniteMovingSponsors } from './components/InfiniteMovingSponsors'
 import CouncilMembers from './components/CouncilMembers'
 import SpeakerCarousel from './components/SpeakerCarousel'
 import UpcomingEventsSection from './components/UpcomingEventsSection'
+import PastEvents from './components/PastEvents'
+import { FacultySection } from './components/FacultySection';
 
 
 
@@ -39,9 +41,12 @@ function App() {
       <div className="pt-24"> {/* Increased padding for floating navbar */}
         <ImageGallery />
         <WhyBioSoc />
-        <LampContainer children={undefined} />
+       
+        
         <UpcomingEventsSection />
+        <PastEvents />
         <LayoutGridDemo />
+        <FacultySection />
         <SpeakerCarousel />
         <CouncilMembers />
         <InfiniteMovingSponsors />
