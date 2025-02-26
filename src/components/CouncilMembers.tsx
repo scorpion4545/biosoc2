@@ -1,18 +1,17 @@
-import React from 'react';
 import { Users, Linkedin, Twitter, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const juniorMembers = [
-  { name: "Alex Smith", position: "Technical Lead", image: "./team/member1.jpg" },
-  { name: "Emma Wilson", position: "Event Coordinator", image: "./team/member2.jpg" },
-  { name: "John Davis", position: "Content Writer", image: "./team/member3.jpg" },
-  { name: "Sarah Brown", position: "Design Lead", image: "./team/member4.jpg" },
-  { name: "Michael Lee", position: "Research Associate", image: "./team/member5.jpg" },
-  { name: "Lisa Chen", position: "Marketing Lead", image: "./team/member6.jpg" },
-  { name: "David Kim", position: "Technical Associate", image: "./team/member7.jpg" },
-  { name: "Rachel Green", position: "Event Manager", image: "./team/member8.jpg" },
-  { name: "James Wilson", position: "Content Creator", image: "./team/member9.jpg" },
-  { name: "Emily Davis", position: "Research Lead", image: "./team/member10.jpg" },
+  { name: "Azhar", position: "Technical Lead", image: "./team/member1.jpg" },
+  { name: "Azhar", position: "Event Coordinator", image: "./team/member2.jpg" },
+  { name: "Azhar", position: "Content Writer", image: "./team/member3.jpg" },
+  { name: "Azhar", position: "Design Lead", image: "./team/member4.jpg" },
+  { name: "Azhar", position: "Research Associate", image: "./team/member5.jpg" },
+  { name: "Azhar", position: "Marketing Lead", image: "./team/member6.jpg" },
+  { name: "Azhar", position: "Technical Associate", image: "./team/member7.jpg" },
+  { name: "Azhar", position: "Event Manager", image: "./team/member8.jpg" },
+  { name: "Azhar", position: "Content Creator", image: "./team/member9.jpg" },
+  { name: "Azhar", position: "Research Lead", image: "./team/member10.jpg" },
   { name: "Thomas Wang", position: "Design Associate", image: "./team/member11.jpg" },
   { name: "Jessica Liu", position: "Marketing Associate", image: "./team/member12.jpg" },
   { name: "Ryan Park", position: "Technical Support", image: "./team/member13.jpg" },
@@ -45,7 +44,7 @@ const CouncilMembers = () => {
       }
     },
     {
-      name: "Bhavya",
+      name: "Bhavya Choudhary",
       role: "Vice President",
       expertise: "Bioethics",
       description: "Distinguished professor specializing in bioethical implications of emerging technologies.",
@@ -58,7 +57,7 @@ const CouncilMembers = () => {
     },
     {
       name: "Mohit Daber",
-      role: "Kuch toh hai",
+      role: "General Secretary",
       expertise: "Clinical Research",
       description: "Pioneer in translational medicine and clinical trial design methodology.",
       image: "./team/Mohit.JPG",
@@ -69,7 +68,7 @@ const CouncilMembers = () => {
       }
     },
     {
-      name: "Unnati",
+      name: "Unnati Nath",
       role: "Treasurer",
       expertise: "Bioinformatics",
       description: "Expert in computational biology and AI applications in healthcare.",
@@ -81,8 +80,8 @@ const CouncilMembers = () => {
       }
     },
     {
-      name: "Hutansh",
-      role: "Kuch toh hai",
+      name: "Hutashan Solanki",
+      role: "Operations head",
       expertise: "Immunology",
       description: "Renowned immunologist with breakthrough research in autoimmune diseases.",
       image: "./team/Hutansh.png",
@@ -93,8 +92,8 @@ const CouncilMembers = () => {
       }
     },
     {
-        name: "Shivam",
-        role: "Ex-Prezz",
+        name: "Shivam Raju",
+        role: "Student Advisor",
         expertise: "Immunology",
         description: "Renowned immunologist with breakthrough research in autoimmune diseases.",
         image: "./team/Shivam.jpg",
@@ -105,8 +104,8 @@ const CouncilMembers = () => {
         }
       },
       {
-        name: "Katyayani",
-        role: "Ex-",
+        name: "Katyayani Agarwal",
+        role: "Student Advisor",
         expertise: "Immunology",
         description: "Renowned immunologist with breakthrough research in autoimmune diseases.",
         image: "./team/cat.jpg",

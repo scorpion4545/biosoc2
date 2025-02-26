@@ -56,3 +56,6 @@ export function ImageGallery() {
         </motion.div>
       </div>
     </div>
+  );
+}
+    
