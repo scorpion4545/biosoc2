@@ -52,6 +52,7 @@ export function ImageGallery() {
                         scale: aboutScale,
                     }}
                     className="absolute inset-0 flex flex-col items-center justify-center bg-transparent"
+                    id="about"
                 >
                     <motion.div className="max-w-4xl px-6 py-12 text-center">
                         <h1 className="text-6xl font-bold bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-16">

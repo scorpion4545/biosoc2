@@ -353,7 +353,7 @@ const AdvancedEventsSection = () => {
   };
   
   return (
-    <div className="p-8 bg-transparent">
+    <div className="p-8 bg-transparent" id="upcoming-events">
       <div className="flex flex-col items-center justify-center mb-8">
         <h2 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-16">
           Upcoming Events

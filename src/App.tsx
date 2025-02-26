@@ -15,6 +15,7 @@ import SpeakerCarousel from './components/SpeakerCarousel'
 import UpcomingEventsSection from './components/UpcomingEventsSection'
 import PastEvents from './components/PastEvents'
 import { FacultySection } from './components/FacultySection';
+import { Newsletter } from './components/Newsletter';
 
 
 
@@ -50,7 +51,7 @@ function App() {
         <SpeakerCarousel />
         <CouncilMembers />
         <InfiniteMovingSponsors />
-       
+        <Newsletter />
         <Footer />
       </div>
     </div>

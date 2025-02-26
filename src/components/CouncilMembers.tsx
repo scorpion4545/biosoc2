@@ -120,7 +120,7 @@ const CouncilMembers = () => {
   ];
 
   return (
-    <div className="py-20">
+    <div className="py-20" id="council">
       <div className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}

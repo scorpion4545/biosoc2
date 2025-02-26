@@ -8,7 +8,7 @@ export function FacultySection() {
   const isInView = useInView(ref, { once: true, threshold: 0.2 });
 
   return (
-    <div className="relative py-32 bg-transparent">
+    <div className="relative py-32 bg-transparent" id="faculty">
       <div ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

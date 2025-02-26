@@ -1,125 +1,224 @@
-import { motion } from "framer-motion";
+"use client";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export const Navbar = () => {
-  const [activeTab, setActiveTab] = useState("home");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState("Home");
 
-  // Check window width on mount and resize
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768);
-      // Close menu when switching to desktop
-      if (window.innerWidth >= 768) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    // Set initial value
-    checkScreenSize();
-    
-    // Add event listener
-    window.addEventListener("resize", checkScreenSize);
-    
-    // Cleanup
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
-
-  const navItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About Us" },
-    { id: "sponsors", label: "Past Sponsors" },
-    { id: "newsletter", label: "Newsletter" },
+  const menuItems = [
+    { title: "Home", href: "#biosoc" },
+    { title: "About Us", href: "#about" },
+    {
+      title: "Team",
+      items: [
+        { title: "Faculty", href: "#faculty" },
+        { title: "Council Members", href: "#council" },
+      ]
+    },
+    {
+      title: "More",
+      items: [
+        { title: "Why BioSoc", href: "#why-biosoc" },
+        { title: "Past Events", href: "#past-events" },
+        { title: "Upcoming Events", href: "#upcoming-events" },
+        { title: "Newsletter", href: "#newsletter" },
+      ]
+    },
   ];
 
-  const handleNavClick = (itemId) => {
-    setActiveTab(itemId);
-    setIsMenuOpen(false);
-    
-    // Handle PDF download if newsletter is clicked
-    if (itemId === "newsletter") {
-      const link = document.createElement("a");
-      link.href = "./team/News.pdf";
-      link.download = "Newsletter.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+  const scrollToSection = (id: string, title: string) => {
+    setIsOpen(false);
+    setActiveDropdown(null);
+    setActiveSection(title);
+    if (id === "#biosoc") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    } else {
+      const element = document.querySelector(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
+  // Update active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section[id], div[id]');
+      const scrollPosition = window.scrollY + 100; // Offset for better trigger point
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          const sectionId = section.getAttribute('id');
+          // Find the corresponding menu item
+          menuItems.forEach(item => {
+            if ('items' in item) {
+              item.items.forEach(subItem => {
+                if (subItem.href === `#${sectionId}`) {
+                  setActiveSection(subItem.title);
+                }
+              });
+            } else if (item.href === `#${sectionId}`) {
+              setActiveSection(item.title);
+            }
+          });
+        }
+      });
+
+      // Check if we're at the top of the page
+      if (scrollPosition < 100) {
+        setActiveSection("Home");
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-2xl px-4">
-      <nav className="w-full bg-[#0B1121]/80 backdrop-blur-sm border border-white/10 rounded-full">
-        <div className="px-4 py-3 relative">
-          {/* Mobile menu button */}
-          {isMobile && (
-            <div className="flex justify-between items-center">
-              <span className="text-gray-200 font-medium">Menu</span>
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-300 hover:text-white"
-              >
-                {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-            </div>
-          )}
-
-          {/* Desktop navigation */}
-          {!isMobile && (
-            <div className="flex items-center justify-center space-x-4 md:space-x-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className="relative px-2 md:px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors"
-                >
-                  {item.label}
-                  {activeTab === item.id && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-500"
-                      initial={false}
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                </button>
-              ))}
-            </div>
-          )}
-
-          {/* Mobile dropdown menu */}
-          {isMobile && isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 mt-2 w-full bg-[#0B1121] border border-white/10 rounded-xl overflow-hidden shadow-xl"
-            >
-              <div className="py-2">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => handleNavClick(item.id)}
-                    className="w-full text-left px-6 py-3 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-colors flex items-center justify-between"
+    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-auto">
+      <nav className="bg-black/20 backdrop-blur-lg border border-white/10 rounded-full px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-16">
+            {menuItems.map((item) => (
+              <div key={item.title} className="relative">
+                {('items' in item) ? (
+                  // Dropdown Menu
+                  <div 
+                    className="relative"
+                    onMouseEnter={() => setActiveDropdown(item.title)}
+                    onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    <span>{item.label}</span>
-                    {activeTab === item.id && (
-                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
+                    <button 
+                      className={`flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-300 text-lg relative`}
+                    >
+                      <span>{item.title}</span>
+                      <ChevronDown size={18} />
+                      {activeSection === item.title && (
+                        <motion.div
+                          layoutId="activeSection"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500"
+                          initial={false}
+                          transition={{
+                            type: "spring",
+                            stiffness: 380,
+                            damping: 30
+                          }}
+                        />
+                      )}
+                    </button>
+                    
+                    <AnimatePresence>
+                      {activeDropdown === item.title && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 py-2 w-52 bg-black/90 backdrop-blur-lg border border-white/10 rounded-xl shadow-xl"
+                        >
+                          {item.items.map((subItem) => (
+                            <button
+                              key={subItem.title}
+                              onClick={() => scrollToSection(subItem.href, subItem.title)}
+                              className={`block w-full text-left px-4 py-3 text-base ${
+                                activeSection === subItem.title ? 'text-white bg-white/10' : 'text-gray-300 hover:text-white hover:bg-white/10'
+                              } transition-colors duration-300`}
+                            >
+                              {subItem.title}
+                            </button>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  // Regular Menu Item
+                  <button
+                    onClick={() => scrollToSection(item.href, item.title)}
+                    className="text-gray-300 hover:text-white transition-colors duration-300 text-lg relative"
+                  >
+                    {item.title}
+                    {activeSection === item.title && (
+                      <motion.div
+                        layoutId="activeSection"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500"
+                        initial={false}
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30
+                        }}
+                      />
                     )}
                   </button>
-                ))}
+                )}
               </div>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-300 hover:text-white"
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="md:hidden absolute top-full left-0 right-0 mt-2 bg-black/90 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden"
+            >
+              {menuItems.map((item) => (
+                'items' in item ? (
+                  <div key={item.title}>
+                    <div className="px-4 py-3 text-gray-300 bg-white/5 text-lg">
+                      {item.title}
+                    </div>
+                    {item.items.map((subItem) => (
+                      <button
+                        key={subItem.title}
+                        onClick={() => scrollToSection(subItem.href, subItem.title)}
+                        className={`block w-full text-left px-6 py-3 text-base ${
+                          activeSection === subItem.title ? 'text-white bg-white/10' : 'text-gray-300 hover:text-white hover:bg-white/10'
+                        }`}
+                      >
+                        {subItem.title}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <button
+                    key={item.title}
+                    onClick={() => scrollToSection(item.href, item.title)}
+                    className={`block w-full text-left px-4 py-3 text-base ${
+                      activeSection === item.title ? 'text-white bg-white/10' : 'text-gray-300 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    {item.title}
+                  </button>
+                )
+              ))}
             </motion.div>
           )}
-        </div>
+        </AnimatePresence>
       </nav>
     </div>
   );
-};
+}

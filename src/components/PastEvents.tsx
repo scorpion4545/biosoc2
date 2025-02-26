@@ -31,12 +31,10 @@ const PastEvents = () => {
   ];
 
   return (
-    <div className="py-16 bg-transparent text-gray-100">
+    <div className="py-16 bg-transparent text-gray-100" id="past-events">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-        <h2 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text   . justify-center text-center  text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-16">
-                Past Events
-            </h2>
+          <h2 className="text-4xl font-bold text-purple-400 mb-4">Past Events</h2>
           <div className="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
           <p className="text-xl text-gray-300">
             Relive our most memorable moments

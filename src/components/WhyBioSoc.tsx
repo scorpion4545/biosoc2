@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export const WhyBioSoc = () => {
   return (
-    <section className="py-20 px-4">
+    <section className="py-20 px-4" id="why-biosoc">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export const WhyBioSoc = () => {
           >
             <h3 className="text-xl font-semibold text-cyan-400 mb-4">Vibrant Community</h3>
             <p className="text-gray-300">
-            BioSoc can provide an incredible platform for any organisation to tap into not just DTU’s student body, but also those from other premier colleges, especially those situated in Delhi and the National Capital Region, like Delhi University, NSUT, and many more.rchers, and industry professionals.
+            BioSoc can provide an incredible platform for any organisation to tap into not just DTU's student body, but also those from other premier colleges, especially those situated in Delhi and the National Capital Region, like Delhi University, NSUT, and many more.rchers, and industry professionals.
             </p>
           </motion.div>
 
@@ -43,7 +43,7 @@ export const WhyBioSoc = () => {
           >
             <h3 className="text-xl font-semibold text-cyan-400 mb-4">Proven Marketing Excellence</h3>
             <p className="text-gray-300">
-            With its extensive social media following, BioSoc is a great resource for enabling any brand or organisation, especially those centred around biotechnology, to vitalise or kick start its marketing campaign. This is proven by BioSoc’s many collaborations with renowned brands like - Nescafe, Geeks4Geeks, Hurricane Energy Drink, Interview Buddy, Jamboree Education and more!
+            With its extensive social media following, BioSoc is a great resource for enabling any brand or organisation, especially those centred around biotechnology, to vitalise or kick start its marketing campaign. This is proven by BioSoc's many collaborations with renowned brands like - Nescafe, Geeks4Geeks, Hurricane Energy Drink, Interview Buddy, Jamboree Education and more!
             </p>
           </motion.div>
         </div>
