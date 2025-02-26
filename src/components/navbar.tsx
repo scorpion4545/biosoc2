@@ -51,9 +51,8 @@ export function Navbar() {
     const handleScroll = () => {
       const sections = document.querySelectorAll('section[id], div[id]');
       const scrollPosition = window.scrollY + 100; // Offset for better trigger point
-
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
+        const sectionTop = (section as HTMLElement).offsetTop;
         const sectionHeight = section.clientHeight;
         
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
