@@ -30,17 +30,17 @@ export function ImageGallery() {
                                 console.error('Image failed to load:', e.currentTarget.src);
                             }}
                         />
-                        <img src="/team/dog.jpg" className="w-56 h-72 object-cover rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300" alt="Team 2" />
+                        <img src="/team/3.jpg" className="w-56 h-72 object-cover rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300" alt="Team 2" />
                     </div>
 
                     {/* Center column - main image */}
                     <div className="flex items-center">
-                        <img src="/team/cat.jpg" className="w-[500px] h-[600px] object-cover rounded-xl shadow-xl transform hover:scale-105 transition-transform duration-300" alt="Main Team" />
+                        <img src="/team/1.jpg" className="w-[300px] h-[400px] object-cover rounded-xl shadow-xl transform hover:scale-105 transition-transform duration-300" alt="Main Team" />
                     </div>
 
                     {/* Right column */}
                     <div className="grid gap-6">
-                        <img src="/team/WhatsApp Image 2025-01-14 at 09.53.30_936c20a2.jpg" className="w-56 h-72 object-cover rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300" alt="Team 4" />
+                        <img src="/team/4.jpg" className="w-56 h-72 object-cover rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300" alt="Team 4" />
                         <img src="/team/WhatsApp Image 2025-02-03 at 20.05.06_1c062496.jpg" className="w-72 h-56 object-cover rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300" alt="Team 5" />
                     </div>
                 </motion.div>

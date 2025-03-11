@@ -18,7 +18,6 @@ import { FacultySection } from './components/FacultySection';
 import { Newsletter } from './components/Newsletter';
 
 
-
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -45,6 +44,7 @@ function App() {
        
         
         <UpcomingEventsSection />
+   
         <PastEvents />
         <LayoutGridDemo />
         <FacultySection />

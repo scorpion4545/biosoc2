@@ -29,19 +29,19 @@ export function FacultySection() {
             className="relative group"
           >
             <div className="relative">
-              <div className="p-1 rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
+              <div className="p-1 rounded-full bg-gradient-to-r from-purple-400 to-pink-400">
                 <div className="bg-black rounded-full p-1">
                   <img
-                    src="./team/dog.jpg"
+                    src="./team/Yasha.jpg"
                     alt="Faculty 1"
                     className="w-64 h-64 md:w-72 md:h-72 rounded-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               </div>
               <div className="mt-8 text-center">
-                <h3 className="text-2xl font-semibold text-white">Dr. John Doe</h3>
-                <p className="mt-3 text-purple-300">Professor, Biotechnology</p>
-                <p className="mt-2 text-gray-400 text-sm">Ph.D. in Molecular Biology</p>
+                <h3 className="text-2xl font-semibold text-white">Prof. Yasha Hasija</h3>
+                <p className="mt-3 text-purple-300">Head of Department, Biotechnology</p>
+                <p className="mt-2 text-gray-400 text-sm">Biotechnology, Bioinformatics</p>
               </div>
             </div>
           </motion.div>
@@ -56,16 +56,16 @@ export function FacultySection() {
               <div className="p-1 rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
                 <div className="bg-black rounded-full p-1">
                   <img
-                    src="./team/cat.jpg"
+                    src="./team/Navneeta.jpg"
                     alt="Faculty 2"
                     className="w-64 h-64 md:w-72 md:h-72 rounded-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               </div>
               <div className="mt-8 text-center">
-                <h3 className="text-2xl font-semibold text-white">Dr. Jane Smith</h3>
+                <h3 className="text-2xl font-semibold text-white">Dr. Navneeta Bharadwaj</h3>
                 <p className="mt-3 text-purple-300">Associate Professor, Biotechnology</p>
-                <p className="mt-2 text-gray-400 text-sm">Ph.D. in Biochemistry</p>
+                <p className="mt-2 text-gray-400 text-sm">Ph.D.</p>
               </div>
             </div>
           </motion.div>
