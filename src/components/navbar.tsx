@@ -86,6 +86,15 @@ export function Navbar() {
     <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-auto">
       <nav className="bg-black/20 backdrop-blur-lg border border-white/10 rounded-full px-8">
         <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center mr-8">
+            <img 
+              src="./team/Logo.svg" 
+              alt="BioSoc Logo" 
+              className="h-18 w-18 mr-4 transition-transform hover:scale-110"
+            />
+          </div>
+
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-16">
             {menuItems.map((item) => (
