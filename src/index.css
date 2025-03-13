@@ -3,11 +3,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "San Francisco", system-ui, sans-serif;
+    font-size: 17px;
+  }
+}
+
 body {
   background-color: #0B1121;
   background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 50px 50px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "San Francisco", system-ui, sans-serif;
+  font-size: 1.05rem;
 }
 
 .bento-grid {

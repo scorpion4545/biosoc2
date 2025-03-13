@@ -7,22 +7,46 @@ const SpeakerCarousel = () => {
 
     const speakers = [
         {
-            name: "Sarah Chen",
-            title: "Product Manager at TechFlow",
+            name: "Ms. Preeti Yadav",
+            title: "Omics Instructor, OmicsLogic Inc",
             quote: "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
-            image: "./team/cat.jpg"
+            image: "./team/Ms. Preeti Yadav.jpeg"
         },
         {
-            name: "Michael Chang",
-            title: "VP Engineering at CloudScale",
+            name: "Dr Amjad Hussain",
+            title: "Co-Founder Canfinis Therapeutics",
+            quote: "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
+            image: "./team/Amjad .jpeg"
+        },
+        {
+            name: "Dr. Manish Kumar",
+            title: "HoD Dept of Biophysics, DU",
+            quote: "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
+            image: "./team/Dr. Manish Kumar.jpeg"
+        },
+        {
+            name: "Dr Janendra K Batra",
+            title: " Senior Scientist, INSA",
+            quote: "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
+            image: "./team/Dr Janendra K Batra  .jpg"
+        },
+        {
+            name: "Francisco Coroado Santos",
+            title: "Bioinformatician at Oxford University Hospitals",
             quote: "An incredible platform for sharing cutting-edge developments in cloud architecture and distributed systems.",
-            image: "./team/cat.jpg"
+            image: "./team/Francisco .jpeg"
         },
         {
-            name: "Dr. Lisa Johnson",
-            title: "Principal Researcher at DataCorp",
+            name: "Anurag Saxena",
+            title: " Co-Founder, Milkyway Spawn Mushrooms",
+            quote: "An incredible platform for sharing cutting-edge developments in cloud architecture and distributed systems.",
+            image: "./team/Anurag Saxena .jpeg"
+        },
+        {
+            name: "Alok Anand",
+            title: "Founder TechMedBuddy",
             quote: "The discussions on ethical AI development were particularly enlightening and necessary for our field.",
-            image: "./team/cat.jpg"
+            image: "./team/Alok Anand.jpeg"
         }
     ];
 

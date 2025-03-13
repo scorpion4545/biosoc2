@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef } from "react";
 
 export function ImageGallery() {
@@ -13,39 +13,86 @@ export function ImageGallery() {
     const aboutOpacity = useTransform(scrollYProgress, [0.5, 0.6], [0, 1]);
     const aboutScale = useTransform(scrollYProgress, [0.5, 0.7], [0.8, 1]);
 
+    const imageVariants = {
+        initial: { scale: 0.9, opacity: 0 },
+        animate: { 
+            scale: 1, 
+            opacity: 1,
+            transition: { duration: 0.5 }
+        },
+        hover: { 
+            scale: 1.05,
+            boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.4)",
+            transition: { duration: 0.2 }
+        }
+    };
+
     return (
         <div ref={containerRef} className="relative h-[300vh]">
             <div className="sticky top-0 h-screen overflow-hidden">
                 <motion.div
                     style={{ scale, opacity }}
-                    className="grid grid-cols-3 gap-6 p-8 h-screen place-items-center"
+                    className="grid grid-cols-3 gap-8 p-12 h-screen place-items-center"
                 >
                     {/* Left column */}
-                    <div className="grid gap-6">
-                        <img
-                            src="./team/cat.jpg"
-                            className="w-72 h-56 object-cover rounded-xl"
+                    <div className="grid gap-8 h-full">
+                        <motion.img
+                            variants={imageVariants}
+                            initial="initial"
+                            whileInView="animate"
+                            whileHover="hover"
+                            src="./team/2b.jpg"
+                            className="w-96 h-72 object-cover rounded-xl shadow-lg"
                             alt="Test"
-                            onError={(e) => {
-                                console.error('Image failed to load:', e.currentTarget.src);
-                            }}
                         />
-                        <img src="/team/3.jpg" className="w-56 h-72 object-cover rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300" alt="Team 2" />
+                        <motion.img 
+                            variants={imageVariants}
+                            initial="initial"
+                            whileInView="animate"
+                            whileHover="hover"
+                            src="./team/3.jpg" 
+                            className="w-96 h-72 object-cover rounded-xl shadow-lg"
+                            alt="Team 2" 
+                        />
                     </div>
 
                     {/* Center column - main image */}
-                    <div className="flex items-center">
-                        <img src="/team/1.jpg" className="w-[300px] h-[400px] object-cover rounded-xl shadow-xl transform hover:scale-105 transition-transform duration-300" alt="Main Team" />
+                    <div className="flex items-center justify-center h-full">
+                        <motion.img 
+                            variants={imageVariants}
+                            initial="initial"
+                            whileInView="animate"
+                            whileHover="hover"
+                            src="./team/1a.jpg" 
+                            className="w-96 h-[600px] object-cover rounded-xl shadow-xl"
+                            alt="Main Team" 
+                        />
                     </div>
 
                     {/* Right column */}
-                    <div className="grid gap-6">
-                        <img src="/team/4.jpg" className="w-56 h-72 object-cover rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300" alt="Team 4" />
-                        <img src="/team/WhatsApp Image 2025-02-03 at 20.05.06_1c062496.jpg" className="w-72 h-56 object-cover rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300" alt="Team 5" />
+                    <div className="grid gap-8 h-full">
+                        <motion.img 
+                            variants={imageVariants}
+                            initial="initial"
+                            whileInView="animate"
+                            whileHover="hover"
+                            src="./team/3c.jpg" 
+                            className="w-96 h-72 object-cover rounded-xl shadow-lg"
+                            alt="Team 4" 
+                        />
+                        <motion.img 
+                            variants={imageVariants}
+                            initial="initial"
+                            whileInView="animate"
+                            whileHover="hover"
+                            src="./team/WhatsApp Image 2025-02-03 at 20.05.06_1c062496.jpg" 
+                            className="w-96 h-72 object-cover rounded-xl shadow-lg"
+                            alt="Team 5" 
+                        />
                     </div>
                 </motion.div>
 
-                {/* About Section */}
+                {/* About Section with enhanced animation */}
                 <motion.div
                     style={{
                         opacity: aboutOpacity,
@@ -54,7 +101,12 @@ export function ImageGallery() {
                     className="absolute inset-0 flex flex-col items-center justify-center bg-transparent"
                     id="about"
                 >
-                    <motion.div className="max-w-4xl px-6 py-12 text-center">
+                    <motion.div 
+                        className="max-w-4xl px-6 py-12 text-center"
+                        initial={{ y: 50, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                    >
                         <h1 className="text-6xl font-bold bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-16">
                             ABOUT US
                         </h1>

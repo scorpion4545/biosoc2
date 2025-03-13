@@ -1,7 +1,22 @@
 "use client";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { DNALoader } from './ui/dna-loader';
 
 const PastEvents = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time or actual data fetching
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500); // 1.5 seconds loading time
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <DNALoader />;
+  }
   // Sample past events data
   const pastEvents = [
     {
@@ -9,7 +24,7 @@ const PastEvents = () => {
       title: "Biotech Synergy",
       date: "Feburary 15, 2025",
       description: "Our flagship technology conference featuring industry leaders and innovative workshops.",
-      image: "./team/dog.jpg",
+      image: "./team/BS.jpeg",
       attendees: 1200
     },
     {
@@ -17,7 +32,7 @@ const PastEvents = () => {
       title: "Biothon",
       date: "Feburary 18, 2025",
       description: "A 4-hour hackathon where teams collaborated to solve real-world problems with creative solutions.",
-      image: "./team/dog.jpg",
+      image: "./team/BT.jpg",
       attendees: 350
     },
     {
@@ -25,7 +40,7 @@ const PastEvents = () => {
       title: "Lab Rats",
       date: "Feburary 16, 2025",
       description: "Three days of hands-on design workshops focused on UX/UI principles and implementation.",
-      image: "./team/cat.jpg",
+      image: "./team/LR.jpg",
       attendees: 180
     }
   ];
@@ -34,8 +49,9 @@ const PastEvents = () => {
     <div className="py-16 bg-transparent text-gray-100" id="past-events">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-purple-400 mb-4">Past Events</h2>
-          <div className="w-24 h-1 bg-purple-500 mx-auto mb-8"></div>
+          <h2 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-8">
+            Past Events
+          </h2>
           <p className="text-xl text-gray-300">
             Relive our most memorable moments
           </p>

@@ -8,14 +8,14 @@ export function Newsletter() {
   const pdfs = [
     {
       id: 1,
-      title: "BioSoc Annual Report 2023",
-      file: "./team/News.pdf", // Add your PDF file path here
+      title: "The Petridish Edition:2",
+      file: "./team/Ed2.pdf", // Add your PDF file path here
       thumbnail: "/pdfs/thumbnail1.jpg" // Add your thumbnail image path here
     },
     {
       id: 2,
-      title: "Research Highlights 2023",
-      file: "/pdfs/research2023.pdf", // Add your PDF file path here
+      title: "The Petridish Edition:1",
+      file: "./team/Edi1.pdf", // Add your PDF file path here
       thumbnail: "/pdfs/thumbnail2.jpg" // Add your thumbnail image path here
     }
   ];

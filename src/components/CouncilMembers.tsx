@@ -3,30 +3,24 @@ import { motion } from 'framer-motion';
 
 const juniorMembers = [
   { name: "Azhar", position: "Web Master", image: "./team/Azhar.jpg" },
-  { name: "Akash Rana", position: "Event Coordinator", image: "./team/Akash.jpg" },
-  { name: "Apurva", position: "Content Writer", image: "./team/Apurva.jpg" },
-  { name: "Mahim", position: "Design Lead", image: "./team/Mahim.jpg" },
-  { name: "Mayank", position: "Research Associate", image: "./team/Mayank.jpg" },
-  { name: "Mayank Silani", position: "Marketing Lead", image: "./team/Mayank Silani.jpg" },
-  { name: "Rishabh", position: "Technical Associate", image: "./team/Rishabh.jpg" },
-  { name: "Saksham", position: "Event Manager", image: "./team/saksham.jpg" },
-  { name: "Samihan", position: "Content Creator", image: "./team/Samihan.jpg" },
-  { name: "Vansh", position: "Research Lead", image: "./team/Vansh.JPG" },
-  { name: "Rudraksh", position: "Design Associate", image: "./team/Rudraksh.jpg" },
-  { name: "Jessica Liu", position: "Marketing Associate", image: "./team/abc.jpg" },
-  { name: "Ashutoush", position: "Technical Support", image: "./team/Ashu.jpg" },
-  { name: "Hunar", position: "Event Planner", image: "./team/Hunar.jpg" },
-  { name: "Krishna", position: "Content Editor", image: "./team/Krishna.jpg" },
-  { name: "Aaron", position: "Research Assistant", image: "./team/aaron.jpg" },
-  { name: "Kevin Zhang", position: "Design Assistant", image: "./team/member17.jpg" },
-  { name: "Amanda White", position: "Marketing Coordinator", image: "./team/member18.jpg" },
-  { name: "Chris Taylor", position: "Technical Analyst", image: "./team/member19.jpg" },
-  { name: "Michelle Park", position: "Event Assistant", image: "./team/member20.jpg" },
-  { name: "Brian Chen", position: "Content Manager", image: "./team/member21.jpg" },
-  { name: "Laura Kim", position: "Research Coordinator", image: "./team/member22.jpg" },
-  { name: "Steven Liu", position: "Design Coordinator", image: "./team/member23.jpg" },
-  { name: "Grace Wang", position: "Marketing Assistant", image: "./team/member24.jpg" },
-  { name: "Andrew Davis", position: "Technical Coordinator", image: "./team/member25.jpg" }
+  { name: "Rishabh", position: "PR Co-Head", image: "./team/Rishabh.jpg" },
+  { name: "Akash Rana", position: "Content Co-Head", image: "./team/Akash.jpg" },
+  { name: "Apurva", position: "Content Co-Head", image: "./team/Apurva.jpg" },
+  { name: "Mahim", position: "Corporate Co-Head", image: "./team/Mahim.jpg" },
+  { name: "Mayank", position: "Design Co-Head", image: "./team/Mayank.jpg" },
+  { name: "Mayank Silani", position: "Design Co-Head", image: "./team/Mayank Silani.jpg" },
+  
+  { name: "Saksham", position: "Design Co-Head", image: "./team/saksham.jpg" },
+  { name: "Samihan", position: "Research Co-Head", image: "./team/Samihan.jpg" },
+  { name: "Vansh", position: "PR Co-Head", image: "./team/Vansh.JPG" },
+  { name: "Rudraksh", position: "PR Co-Head", image: "./team/Rudraksh.jpg" },
+  { name: "Ridham", position: "Corporate Co-Head", image: "./team/abc.jpg" },
+  { name: "Ashutoush", position: "PR Co-Head", image: "./team/Ashu.jpg" },
+  { name: "Hunar", position: "Content Co-Head", image: "./team/Hunar.jpg" },
+  { name: "Krishna", position: "PR Co-Head", image: "./team/Krishna.jpg" },
+  { name: "Aaron", position: "Corporate Co-Head", image: "./team/aaron.jpg" },
+  { name: "Swayam Deewan", position: "Corporate Co-Head", image: "./team/swayam.jpg" },
+  { name: "Krisha", position: "Design Co-Head", image: "./team/Kri.jpg" },
 ];
 
 const CouncilMembers = () => {
@@ -137,7 +131,7 @@ const CouncilMembers = () => {
           </div>
 
           {/* Senior Council Section */}
-          <div className="mb-32">
+          <div className="mb-16"> {/* Changed from mb-32 to mb-16 */}
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -146,7 +140,6 @@ const CouncilMembers = () => {
             >
               Senior Council
             </motion.h3>
-
             {/* Members Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 [&>*:last-child:nth-child(3n-1)]:lg:col-start-2 [&>*:last-child:nth-child(3n-2)]:lg:col-start-2">
               {members.map((member, index) => (
@@ -198,7 +191,7 @@ const CouncilMembers = () => {
       </div>
 
       {/* Junior Council Section */}
-      <div className="mt-32 max-w-7xl mx-auto px-4">
+      <div className="mt-16 max-w-7xl mx-auto px-4"> {/* Changed from mt-32 to mt-16 */}
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
