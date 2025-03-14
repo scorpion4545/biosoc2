@@ -10,14 +10,7 @@ export const WhyBioSoc = () => {
         duration: 0.8,
         delay: index * 0.2,
       },
-    }),
-    hover: {
-      y: -10,
-      scale: 1.02,
-      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.2)",
-      background: "linear-gradient(145deg, rgba(11, 17, 33, 0.6), rgba(11, 17, 33, 0.8))",
-      transition: { duration: 0.2 }
-    }
+    })
   };
 
   const cards = [
@@ -58,18 +51,36 @@ export const WhyBioSoc = () => {
               variants={cardVariants}
               initial="initial"
               whileInView="animate"
-              whileHover="hover"
               viewport={{ once: true }}
-              className="p-8 rounded-2xl bg-[#0B1121]/40 border border-white/10 backdrop-blur-sm relative group"
+              className="p-8 rounded-2xl bg-[#0B1121]/40 border border-white/10 backdrop-blur-sm relative"
             >
-              <div className="text-4xl mb-6">{card.icon}</div>
-              <h3 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-4">
-                {card.title}
-              </h3>
-              <p className="text-gray-300 leading-relaxed relative z-10">
-                {card.description}
-              </p>
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Background Logo */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-[0.08]">
+                <img 
+                  src="./team/Logo.svg" 
+                  alt="BioSoc Logo" 
+                  className="w-4/5 h-4/5 object-contain"
+                />
+              </div>
+
+              {/* Top Right Logo */}
+              <div className="absolute top-4 right-4 w-12 h-12 opacity-30">
+                <img 
+                  src="./team/Logo.svg" 
+                  alt="BioSoc Logo" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              
+              <div className="relative z-10">
+                <div className="text-4xl mb-6">{card.icon}</div>
+                <h3 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-4">
+                  {card.title}
+                </h3>
+                <p className="text-gray-300 leading-relaxed">
+                  {card.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>

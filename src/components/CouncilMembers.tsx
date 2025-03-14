@@ -2,7 +2,8 @@ import { Users, Linkedin, Twitter, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const juniorMembers = [
-  { name: "Azhar", position: "Web Master", image: "./team/Azhar.jpg" },
+  { name: "Azhar", position: "Web Master", image: "./team/Azhar.jpg", linkedin: "https://www.linkedin.com/in/azhar-khan-97b612250" },
+  // Add linkedin URLs for other members similarly
   { name: "Rishabh", position: "PR Co-Head", image: "./team/Rishabh.jpg" },
   { name: "Akash Rana", position: "Content Co-Head", image: "./team/Akash.jpg" },
   { name: "Apurva", position: "Content Co-Head", image: "./team/Apurva.jpg" },
@@ -226,12 +227,23 @@ const CouncilMembers = () => {
               }}
             >
               <div className="relative w-24 h-24 md:w-32 md:h-32 mb-3">
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full opacity-0 group-hover:opacity-75 transition-opacity duration-300 blur-sm" />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full opacity-0 group-hover:opacity-40 transition-opacity duration-300 blur-sm" />
                 <img
                   src={member.image}
                   alt={member.name}
                   className="w-full h-full rounded-full object-cover border-2 border-purple-500/30 group-hover:border-purple-500 transition-colors duration-300"
                 />
+                {/* LinkedIn Icon */}
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <div className="bg-black/50 p-2 rounded-full">
+                    <Linkedin className="w-6 h-6 text-white hover:text-blue-400 transition-colors duration-300" />
+                  </div>
+                </a>
               </div>
               <div className="text-center">
                 <h4 className="text-sm md:text-base font-medium text-gray-200 group-hover:text-purple-400 transition-colors duration-300">

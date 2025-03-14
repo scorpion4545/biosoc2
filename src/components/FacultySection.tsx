@@ -21,7 +21,7 @@ export function FacultySection() {
           </h2>
         </motion.div>
 
-        <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-64">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -29,12 +29,12 @@ export function FacultySection() {
             className="relative group"
           >
             <div className="relative">
-              <div className="p-1 rounded-full bg-gradient-to-r from-purple-400 to-pink-400">
-                <div className="bg-black rounded-full p-1">
+              <div className="p-0.5 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 shadow-[0_0_15px] shadow-purple-500/50">
+                <div className="bg-black rounded-full p-0.5">
                   <img
                     src="./team/Yasha.jpg"
                     alt="Faculty 1"
-                    className="w-64 h-64 md:w-72 md:h-72 rounded-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                    className="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               </div>
@@ -53,12 +53,12 @@ export function FacultySection() {
             className="relative group"
           >
             <div className="relative">
-              <div className="p-1 rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-                <div className="bg-black rounded-full p-1">
+              <div className="p-0.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-[0_0_15px] shadow-purple-500/50">
+                <div className="bg-black rounded-full p-0.5">
                   <img
                     src="./team/Navneeta.jpg"
                     alt="Faculty 2"
-                    className="w-64 h-64 md:w-72 md:h-72 rounded-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                    className="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               </div>
@@ -73,4 +73,4 @@ export function FacultySection() {
       </div>
     </div>
   );
-} 
+}

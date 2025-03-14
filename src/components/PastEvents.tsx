@@ -4,6 +4,7 @@ import { DNALoader } from './ui/dna-loader';
 
 const PastEvents = () => {
   const [loading, setLoading] = useState(true);
+  const [showAllEvents, setShowAllEvents] = useState(false);
 
   useEffect(() => {
     // Simulate loading time or actual data fetching
@@ -42,8 +43,34 @@ const PastEvents = () => {
       description: "Three days of hands-on design workshops focused on UX/UI principles and implementation.",
       image: "./team/LR.jpg",
       attendees: 180
+    }, // Added missing comma here
+    {
+      id: 4,
+      title: "BioTech Workshop",
+      date: "January 25, 2025",
+      description: "Intensive workshop on advanced biotechnology techniques and laboratory practices.",
+      image: "./team/BS.jpeg",
+      attendees: 150
+    },
+    {
+      id: 5,
+      title: "Research Symposium",
+      date: "January 10, 2025",
+      description: "Student research presentations and networking with industry professionals.",
+      image: "./team/BT.jpg",
+      attendees: 200
+    },
+    {
+      id: 6,
+      title: "Innovation Summit",
+      date: "December 15, 2024",
+      description: "Showcasing breakthrough research and innovations in biotechnology.",
+      image: "./team/LR.jpg",
+      attendees: 280
     }
   ];
+
+  const displayedEvents = showAllEvents ? pastEvents : pastEvents.slice(0, 3);
 
   return (
     <div className="py-16 bg-transparent text-gray-100" id="past-events">
@@ -58,16 +85,16 @@ const PastEvents = () => {
         </div>
 
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-          {pastEvents.map((event) => (
+          {displayedEvents.map((event) => (
             <div 
               key={event.id} 
-              className="bg-gray-800 rounded-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20"
+              className="bg-gray-800 rounded-xl overflow-hidden"
             >
               <div className="relative h-56 w-full overflow-hidden">
                 <img 
                   src={event.image} 
                   alt={event.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute top-4 left-4 bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium">
                   {event.date}
@@ -82,7 +109,7 @@ const PastEvents = () => {
                   </svg>
                   <span>{event.attendees} Attendees</span>
                 </div>
-                <button className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg text-white font-medium transition-all duration-300 hover:from-purple-700 hover:to-indigo-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800">
+                <button className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg text-white font-medium">
                   View Event Gallery
                 </button>
               </div>
@@ -91,8 +118,13 @@ const PastEvents = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <button className="group relative inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-gray-800 border border-purple-500 rounded-full overflow-hidden transition-all duration-300 hover:bg-gray-700">
-            <span className="relative z-10">Explore All Past Events</span>
+          <button 
+            onClick={() => setShowAllEvents(!showAllEvents)}
+            className="group relative inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-gray-800 border border-purple-500 rounded-full overflow-hidden transition-all duration-300 hover:bg-gray-700"
+          >
+            <span className="relative z-10">
+              {showAllEvents ? 'Show Less Events' : 'Explore All Past Events'}
+            </span>
             <span className="absolute inset-0 w-full bg-purple-600 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></span>
             <svg className="ml-2 w-5 h-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
