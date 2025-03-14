@@ -102,7 +102,7 @@ const CouncilMembers = () => {
         role: "Student Advisor",
         expertise: "Immunology",
         description: "Renowned immunologist with breakthrough research in autoimmune diseases.",
-        image: "./team/cat.jpg",
+        image: "./team/KA.jpg",
         social: {
           linkedin: "#",
           twitter: "#",

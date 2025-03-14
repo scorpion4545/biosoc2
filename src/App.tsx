@@ -1,7 +1,5 @@
 import './App.css'
-
 import { LayoutGridDemo } from './components/LayoutGridDemo'
-
 import { ImageGallery } from './components/ImageGallery'
 import { useState, useEffect } from 'react';
 import { DNALoader } from './components/ui/dna-loader';
