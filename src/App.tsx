@@ -14,6 +14,7 @@ import UpcomingEventsSection from './components/UpcomingEventsSection'
 import PastEvents from './components/PastEvents'
 import { FacultySection } from './components/FacultySection';
 import { Newsletter } from './components/Newsletter';
+import { Analytics } from '@vercel/analytics/react';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <InfiniteMovingSponsors />
         <Newsletter />
         <Footer />
+        <Analytics />
       </div>
     </div>
   );
