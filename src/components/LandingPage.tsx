@@ -2,20 +2,19 @@ import React from 'react';
 
 const LandingPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden flex items-center justify-center">
-      {/* Main Content */}
+    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden flex items-center justify-center px-4">
       <div className="relative z-10 text-center">
-        <h1 className="text-8xl font-extrabold mb-4 relative">
+        <h1 className="text-4xl md:text-8xl font-extrabold mb-4 relative">
           <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
             BIOSOC-DTU
           </span>
         </h1>
         
-        <h2 className="text-3xl font-light text-gray-300 mb-8 tracking-wider font-['Space_Grotesk']">
+        <h2 className="text-xl md:text-3xl font-light text-gray-300 mb-6 md:mb-8 tracking-wider font-['Space_Grotesk']">
           Official Society of Biotech DTU
         </h2>
         
-        <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-['Inter']">
+        <p className="text-base md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-['Inter'] px-4">
           Bringing together the brightest minds in biotechnology to innovate, collaborate, and shape the future of biological sciences.
         </p>
       </div>
