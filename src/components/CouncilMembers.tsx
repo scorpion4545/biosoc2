@@ -24,26 +24,25 @@ interface JuniorMember {
 }
 
 const juniorMembers: JuniorMember[] = [
-  { name: "Azhar", position: "Web Master", image: "./team/Azhar.jpg", linkedin: "https://www.linkedin.com/in/azhar-khan-97b612250" },
+  { name: "Azhar", position: "Web Master", image: "./team/Azhar.jpg", linkedin: "https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BRKX1zrP5SrOMGZktkeD%2FCw%3D%3D" },
   // Add linkedin URLs for other members similarly
-  { name: "Rishabh", position: "PR Co-Head", image: "./team/Rishabh.jpg" },
-  { name: "Akash Rana", position: "Content Co-Head", image: "./team/Akash.jpg" },
-  { name: "Apurva", position: "Content Co-Head", image: "./team/Apurva.jpg" },
-  { name: "Mahim", position: "Corporate Co-Head", image: "./team/Mahim.jpg" },
-  { name: "Mayank", position: "Design Co-Head", image: "./team/Mayank.jpg" },
-  { name: "Mayank Silani", position: "Design Co-Head", image: "./team/Mayank Silani.jpg" },
-  
-  { name: "Saksham", position: "Design Co-Head", image: "./team/saksham.jpg" },
-  { name: "Samihan", position: "Research Co-Head", image: "./team/Samihan.jpg" },
-  { name: "Vansh", position: "PR Co-Head", image: "./team/Vansh.JPG" },
-  { name: "Rudraksh", position: "PR Co-Head", image: "./team/Rudraksh.jpg" },
-  { name: "Ridham", position: "Corporate Co-Head", image: "./team/abc.jpg" },
-  { name: "Ashutoush", position: "PR Co-Head", image: "./team/Ashu.jpg" },
-  { name: "Hunar", position: "Content Co-Head", image: "./team/Hunar.jpg" },
-  { name: "Krishna", position: "PR Co-Head", image: "./team/Krishna.jpg" },
-  { name: "Aaron", position: "Corporate Co-Head", image: "./team/aaron.jpg" },
-  { name: "Swayam Deewan", position: "Corporate Co-Head", image: "./team/swayam.jpg" },
-  { name: "Krisha", position: "Design Co-Head", image: "./team/Kri.jpg" },
+  { name: "Rishabh", position: "PR Co-Head", image: "./team/Rishabh.jpg", linkedin: "https://in.linkedin.com/in/rishabh-mohan-sinha" },
+  { name: "Akash Rana", position: "Content Co-Head", image: "./team/Akash.jpg", linkedin: "https://www.linkedin.com/in/aakakash-rana-995666290" },
+  { name: "Apurva", position: "Content Co-Head", image: "./team/Apurva.jpg", linkedin: "https://www.linkedin.com/in/apurva-lakra-696388220?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { name: "Mahim", position: "Corporate Co-Head", image: "./team/Mahim.jpg", linkedin: "https://www.linkedin.com/in/mahim-kamble-497706252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { name: "Mayank", position: "Design Co-Head", image: "./team/Mayank.jpg", linkedin: "https://www.linkedin.com/in/mayankgupta05?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { name: "Mayank Silani", position: "Design Co-Head", image: "./team/Mayank Silani.jpg", linkedin: "https://www.linkedin.com/in/mayank-silani-524043216?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" }, 
+  { name: "Saksham", position: "Design Co-Head", image: "./team/saksham.jpg", linkedin: "https://www.linkedin.com/in/saksham-gupta-a6405b272?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { name: "Samihan", position: "Research Co-Head", image: "./team/Samihan.jpg", linkedin: "http://www.linkedin.com/in/samihan-sharma-a0a02a286" },
+  { name: "Vansh", position: "PR Co-Head", image: "./team/Vansh.JPG", linkedin: "https://www.linkedin.com/in/vannshjain/" },
+  { name: "Rudraksh", position: "PR Co-Head", image: "./team/Rudraksh.jpg", linkedin: "https://www.linkedin.com/in/rudraksh-agarwal-70397b250?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" },
+  { name: "Ridham", position: "Corporate Co-Head", image: "./team/abc.jpg", linkedin: "https://www.linkedin.com/in/ridham-garg-575563289/" },
+  { name: "Ashutoush", position: "PR Co-Head", image: "./team/Ashu.jpg", linkedin: "https://www.linkedin.com/in/ashutoshyadavvv?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+  { name: "Hunar", position: "Content Co-Head", image: "./team/Hunar.jpg", linkedin: "https://www.linkedin.com/in/hunar-aggarwal-ab820427a/" },
+  { name: "Krishna", position: "PR Co-Head", image: "./team/Krishna.jpg", linkedin: "https://www.linkedin.com/in/azhar-khan-97b612250" },
+  { name: "Aaron", position: "Corporate Co-Head", image: "./team/aaron.jpg", linkedin: "https://www.linkedin.com/in/aaron-philip-b97880286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" },
+  { name: "Swayam Deewan", position: "Corporate Co-Head", image: "./team/swayam.jpg", linkedin: "http://linkedin.com/in/swayam-dewan-30878a29a" },
+  { name: "Krisha", position: "Design Co-Head", image: "./team/Kri.jpg", linkedin: "https://www.linkedin.com/in/krisha-singhal-39739a287" },
 ];
 
 // Add proper type for members array
