@@ -1,7 +1,17 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import React, { useRef } from "react";
 
-export function ImageGallery() {
+interface MotionStyle {
+  scale: MotionValue<number>;
+  opacity: MotionValue<number>;
+}
+
+interface AboutMotionStyle {
+  opacity: MotionValue<number>;
+  scale: MotionValue<number>;
+}
+
+export const ImageGallery: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -13,11 +23,14 @@ export function ImageGallery() {
   const aboutOpacity = useTransform(scrollYProgress, [0.5, 0.6], [0, 1]);
   const aboutScale = useTransform(scrollYProgress, [0.5, 0.7], [0.8, 1]);
 
+  const motionStyle: MotionStyle = { scale, opacity };
+  const aboutMotionStyle: AboutMotionStyle = { opacity: aboutOpacity, scale: aboutScale };
+
   return (
     <div ref={containerRef} className="relative h-[300vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div 
-          style={{ scale, opacity }}
+          style={motionStyle}
           className="grid grid-cols-3 gap-6 p-8 h-screen place-items-center"
         >
           {/* Left column */}
@@ -39,10 +52,7 @@ export function ImageGallery() {
         </motion.div>
 
         <motion.div 
-          style={{ 
-            opacity: aboutOpacity,
-            scale: aboutScale,
-          }}
+          style={aboutMotionStyle}
           className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/95"
         >
           <motion.div className="max-w-4xl px-6 py-12 text-center">
@@ -57,5 +67,5 @@ export function ImageGallery() {
       </div>
     </div>
   );
-}
+};
     

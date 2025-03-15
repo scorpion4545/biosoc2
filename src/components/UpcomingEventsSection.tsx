@@ -1,7 +1,34 @@
 import React, { useState, useEffect } from 'react';
 
-// Event Card Component
-const EventCard = ({ event, isSelected, onSelect }) => {
+interface Speaker {
+  name: string;
+  role: string;
+}
+
+interface ScheduleItem {
+  time: string;
+  activity: string;
+}
+
+interface Event {
+  id: number;
+  title: string;
+  date: string;
+  location: string;
+  category: string;
+  description: string;
+  image: string;
+  speakers: Speaker[];
+  schedule: ScheduleItem[];
+}
+
+interface EventCardProps {
+  event: Event;
+  isSelected: boolean;
+  onSelect: (id: number | null) => void;
+}
+
+const EventCard: React.FC<EventCardProps> = ({ event, isSelected, onSelect }) => {
   return (
     <div 
       className={`relative bg-gradient-to-br transition-all duration-300 ${
@@ -128,11 +155,11 @@ const EventCard = ({ event, isSelected, onSelect }) => {
 };
 
 // Update the main component to handle the selected state
-const UpcomingEventsSection = () => {
-  const [selectedEventId, setSelectedEventId] = useState(null);
-  const [visibleEvents, setVisibleEvents] = useState([]);
+const UpcomingEventsSection: React.FC = () => {
+  const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
+  const [visibleEvents, setVisibleEvents] = useState<Event[]>([]);
   
-  const events = [
+  const events: Event[] = [
     {
       id: 1,
       title: "Tech Innovation Summit 2025",
@@ -193,7 +220,7 @@ const UpcomingEventsSection = () => {
     setVisibleEvents(events);
   }, []);
   
-  const handleEventSelect = (id) => {
+  const handleEventSelect = (id: number | null): void => {
     setSelectedEventId(id === selectedEventId ? null : id);
   };
   
@@ -207,7 +234,7 @@ const UpcomingEventsSection = () => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {visibleEvents.map((event, index) => (
+        {visibleEvents.map((event) => (
           <div 
             key={event.id} 
             className={`transition-all duration-300 ${

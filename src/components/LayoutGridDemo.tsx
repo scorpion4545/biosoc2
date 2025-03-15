@@ -1,29 +1,25 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import { LayoutGrid } from "../components/ui/layout-grid";
 import { motion } from "framer-motion";
 
-export function LayoutGridDemo() {
-  return (
-    <div className="h-screen py-20 w-full">
-      <h1 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-2">
-        Our Department
-      </h1>
-      <p className="text-center text-xl text-gray-300 mb-8">
-        Click to Know More
-      </p>
-      <LayoutGrid cards={cards} />
-    </div>
-  );
+interface Card {
+  id: number;
+  content: React.ReactNode;
+  className: string;
+  thumbnail: string;
 }
 
-const SkeletonOne = () => {
+interface SelectedCardProps {
+  selected: Card | null;
+}
+
+const SkeletonOne: React.FC = () => {
   return (
     <div>
       <p className="font-bold md:text-4xl text-xl text-white">
         Technical And Design
       </p>
-      
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
       The design department is the driving force behind the execution of the society’s many technically-demanding and intricate endeavors such as, designing the social media posts, designing attractive posters and executing other technical tasks with precision and speed. 
       </p>
@@ -71,11 +67,11 @@ const SkeletonFour = () => {
   );
 };
 
-const cards = [
+const cards: Card[] = [
   {
     id: 1,
     content: <SkeletonOne />,
-    className: "md:col-span-2", // Reverted back to original span
+    className: "md:col-span-2",
     thumbnail: "./team/Design.jpg",
   },
   {
@@ -98,8 +94,8 @@ const cards = [
   },
 ];
 
-// Remove the additional grid container div that was added
-const SelectedCard = ({ selected }: { selected: Card | null }) => {
+// Either remove SelectedCard if unused or use it in the component
+export const SelectedCard: React.FC<SelectedCardProps> = ({ selected }) => {
   return (
     <div className="bg-[#0B1121] h-full w-full rounded-lg shadow-2xl relative z-[60]">
       <motion.div
@@ -113,6 +109,20 @@ const SelectedCard = ({ selected }: { selected: Card | null }) => {
       >
         {selected?.content}
       </motion.div>
+    </div>
+  );
+};
+
+export const LayoutGridDemo: React.FC = () => {
+  return (
+    <div className="h-screen py-20 w-full">
+      <h1 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-2">
+        Our Department
+      </h1>
+      <p className="text-center text-xl text-gray-300 mb-8">
+        Click to Know More
+      </p>
+      <LayoutGrid cards={cards} />
     </div>
   );
 };

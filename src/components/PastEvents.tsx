@@ -2,15 +2,23 @@
 import React, { useState, useEffect } from 'react';
 import { DNALoader } from './ui/dna-loader';
 
-const PastEvents = () => {
-  const [loading, setLoading] = useState(true);
-  const [showAllEvents, setShowAllEvents] = useState(false);
+interface Event {
+  id: number;
+  title: string;
+  date: string;
+  description: string;
+  image: string;
+  attendees: number;
+}
+
+const PastEvents: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [showAllEvents, setShowAllEvents] = useState<boolean>(false);
 
   useEffect(() => {
-    // Simulate loading time or actual data fetching
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1500); // 1.5 seconds loading time
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -18,8 +26,8 @@ const PastEvents = () => {
   if (loading) {
     return <DNALoader />;
   }
-  // Sample past events data
-  const pastEvents = [
+
+  const pastEvents: Event[] = [
     {
       id: 1,
       title: "Biotech Synergy",
@@ -70,7 +78,7 @@ const PastEvents = () => {
     }
   ];
 
-  const displayedEvents = showAllEvents ? pastEvents : pastEvents.slice(0, 3);
+  const displayedEvents: Event[] = showAllEvents ? pastEvents : pastEvents.slice(0, 3);
 
   return (
     <div className="py-16 bg-transparent text-gray-100" id="past-events">

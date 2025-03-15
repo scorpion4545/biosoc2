@@ -1,7 +1,25 @@
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion, Variants } from "framer-motion";
 
-export const WhyBioSoc = () => {
-  const cardVariants = {
+interface Card {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface CardVariants extends Variants {
+  animate: (index: number) => {
+    opacity: number;
+    y: number;
+    transition: {
+      duration: number;
+      delay: number;
+    };
+  };
+}
+
+export const WhyBioSoc: React.FC = () => {
+  const cardVariants: CardVariants = {
     initial: { opacity: 0, y: 50 },
     animate: (index: number) => ({
       opacity: 1,
@@ -13,7 +31,7 @@ export const WhyBioSoc = () => {
     })
   };
 
-  const cards = [
+  const cards: Card[] = [
     {
       title: "Unparalleled Network & Engagement",
       description: "BioSoc-DTU is easily set apart from other student-led initiatives because of the various channels and means it has to connect with not just the niche and dedicated biotech professionals, researchers and students but also the audience it can address at large, through its many interactive events and sessions, all of which have received hearty receptions.",

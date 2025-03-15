@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+
 
 export const InfiniteMovingSponsors = ({
   direction = "left",

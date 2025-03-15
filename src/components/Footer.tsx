@@ -2,8 +2,15 @@ import React from 'react';
 import { Instagram, Linkedin } from 'lucide-react';
 import { IconBrandGmail } from '@tabler/icons-react';
 
-const Footer = () => {
-  const socialLinks = [
+interface SocialLink {
+  icon: React.ReactNode;
+  href: string;
+  bgClass: string;
+  shadowClass: string;
+}
+
+const Footer: React.FC = () => {
+  const socialLinks: SocialLink[] = [
     {
       icon: <Instagram className="w-6 h-6" />,
       href: "https://www.instagram.com/biosocdtu/",
@@ -17,7 +24,7 @@ const Footer = () => {
       shadowClass: "shadow-blue-500/25"
     },
     {
-      icon: <IconBrandGmail  className="w-6 h-6" />,
+      icon: <IconBrandGmail className="w-6 h-6" />,
       href: "mailto:biosoc@dtu.ac.in",
       bgClass: "from-red-500 to-red-600",
       shadowClass: "shadow-red-500/25"
@@ -41,9 +48,11 @@ const Footer = () => {
               <a 
                 key={index}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="transform transition-all duration-300 hover:scale-125 hover:-translate-y-2"
               >
-                <div className={`p-3 rounded-full bg-gradient-to-br ${social.bgClass} hover:shadow-lg hover:${social.shadowClass}`}>
+                <div className={`p-3 rounded-full bg-gradient-to-br ${social.bgClass} hover:shadow-lg ${social.shadowClass}`}>
                   {social.icon}
                 </div>
               </a>

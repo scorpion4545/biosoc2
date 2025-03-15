@@ -1,17 +1,34 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [activeSection, setActiveSection] = useState("Home");
 
-  const menuItems = [
+interface MenuItem {
+  title: string;
+  href: string;
+  items?: SubMenuItem[];
+}
+
+interface SubMenuItem {
+  title: string;
+  href: string;
+}
+
+// Remove unused TransitionProps interface
+// Remove duplicate motion import since it's already imported above
+
+export const Navbar = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string>("Home");
+
+  const menuItems: MenuItem[] = [
     { title: "Home", href: "#biosoc" },
     { title: "About Us", href: "#about" },
     {
       title: "Team",
+      href: "#team", // Added missing href for dropdown menu
       items: [
         { title: "Faculty", href: "#faculty" },
         { title: "Council Members", href: "#council" },
@@ -19,6 +36,7 @@ export function Navbar() {
     },
     {
       title: "More",
+      href: "#more", // Added missing href for dropdown menu
       items: [
         { title: "Why BioSoc", href: "#why-biosoc" },
         { title: "Past Events", href: "#past-events" },
@@ -28,7 +46,7 @@ export function Navbar() {
     },
   ];
 
-  const scrollToSection = (id: string, title: string) => {
+  const scrollToSection = (id: string, title: string): void => {
     setIsOpen(false);
     setActiveDropdown(null);
     setActiveSection(title);
@@ -45,11 +63,12 @@ export function Navbar() {
     }
   };
 
-  // Update active section based on scroll position
+  // Remove unused transition constant
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll('section[id], div[id]');
-      const scrollPosition = window.scrollY + 100; // Offset for better trigger point
+    const handleScroll = (): void => {
+      const sections = document.querySelectorAll<HTMLElement>('section[id], div[id]');
+      const scrollPosition = window.scrollY + 100;
+      
       sections.forEach((section) => {
         const sectionTop = (section as HTMLElement).offsetTop;
         const sectionHeight = section.clientHeight;
@@ -58,7 +77,7 @@ export function Navbar() {
           const sectionId = section.getAttribute('id');
           // Find the corresponding menu item
           menuItems.forEach(item => {
-            if ('items' in item) {
+            if ('items' in item && item.items) {
               item.items.forEach(subItem => {
                 if (subItem.href === `#${sectionId}`) {
                   setActiveSection(subItem.title);
@@ -132,7 +151,7 @@ export function Navbar() {
                           exit={{ opacity: 0, y: -10 }}
                           className="absolute top-full left-1/2 -translate-x-1/2 mt-2 py-2 w-52 bg-black/90 backdrop-blur-lg border border-white/10 rounded-xl shadow-xl"
                         >
-                          {item.items.map((subItem) => (
+                          {item.items?.map((subItem) => (
                             <button
                               key={subItem.title}
                               onClick={() => scrollToSection(subItem.href, subItem.title)}
@@ -198,7 +217,7 @@ export function Navbar() {
                     <div className="px-4 py-3 text-gray-300 bg-white/5 text-lg">
                       {item.title}
                     </div>
-                    {item.items.map((subItem) => (
+                    {item.items?.map((subItem) => (
                       <button
                         key={subItem.title}
                         onClick={() => scrollToSection(subItem.href, subItem.title)}

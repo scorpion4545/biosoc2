@@ -1,8 +1,10 @@
-import React from 'react';
+import type { FC } from 'react';
+import { Linkedin } from 'lucide-react';
 
 interface Organizer {
   name: string;
   imageUrl: string;
+  linkedin?: string; // Add optional LinkedIn field
 }
 
 interface Event {
@@ -29,7 +31,8 @@ const events: Event[] = [
     imageUrl: "./team/cat.jpg",
     organizer: {
       name: "Research Committee",
-      imageUrl: "/team/organizer1.jpg"
+      imageUrl: "/team/organizer1.jpg",
+      linkedin: "https://www.linkedin.com/in/research-committee"
     }
   },
   {
@@ -62,7 +65,7 @@ const events: Event[] = [
   }
 ];
 
-export function EventsSection() {
+export const EventsSection: FC = () => {
   return (
     <div className="bg-slate-950 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -102,13 +105,26 @@ export function EventsSection() {
                   </div>
                 </div>
                 <div className="mt-6 flex items-center">
-                  <div className="flex-shrink-0">
+                  <div className="flex-shrink-0 relative group">
                     <span className="sr-only">{event.organizer.name}</span>
                     <img
                       className="h-10 w-10 rounded-full"
                       src={event.organizer.imageUrl}
                       alt=""
                     />
+                    {/* LinkedIn Icon */}
+                    {event.organizer.linkedin && (
+                      <a
+                        href={event.organizer.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      >
+                        <div className="bg-black/50 p-1 rounded-full">
+                          <Linkedin className="w-4 h-4 text-white hover:text-blue-400 transition-colors duration-300" />
+                        </div>
+                      </a>
+                    )}
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-slate-200">

@@ -1,7 +1,25 @@
 import { motion } from "framer-motion";
+import React from "react";
 
-export const DNALoader = () => {
-  const dots = Array.from({ length: 12 });
+interface AnimationProps {
+  y: number[];
+  x: number[];
+}
+
+export const DNALoader: React.FC = () => {
+  const dots: undefined[] = Array.from({ length: 12 });
+
+  const getAnimationProps = (index: number, isRed: boolean): AnimationProps => ({
+    y: isRed ? [0, 20, 0] : [20, 0, 20],
+    x: [index * 20, index * 20, index * 20],
+  });
+
+  const transitionProps = (index: number) => ({
+    duration: 2,
+    repeat: Infinity,
+    ease: "easeInOut",
+    delay: index * 0.15,
+  });
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -11,16 +29,8 @@ export const DNALoader = () => {
           <motion.div
             key={`red-${i}`}
             className="absolute w-3 h-3 rounded-full bg-rose-500"
-            animate={{
-              y: [0, 20, 0],
-              x: [i * 20, (i * 20), i * 20],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.15,
-            }}
+            animate={{ x: getAnimationProps(i, true).x, y: getAnimationProps(i, true).y }}
+            transition={transitionProps(i)}
           />
         ))}
 
@@ -29,19 +39,11 @@ export const DNALoader = () => {
           <motion.div
             key={`blue-${i}`}
             className="absolute w-3 h-3 rounded-full bg-cyan-400"
-            animate={{
-              y: [20, 0, 20],
-              x: [i * 20, (i * 20), i * 20],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.15,
-            }}
+            animate={{ x: getAnimationProps(i, false).x, y: getAnimationProps(i, false).y }}
+            transition={transitionProps(i)}
           />
         ))}
       </div>
     </div>
   );
-}; 
+};

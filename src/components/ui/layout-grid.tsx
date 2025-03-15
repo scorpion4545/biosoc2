@@ -1,26 +1,47 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, TargetAndTransition } from "framer-motion";
 import { cn } from "../../lib/utils";
-import Image from "next/image";
 
-type Card = {
+interface Card {
   id: number;
   content: JSX.Element | React.ReactNode | string;
   className: string;
   thumbnail: string;
-};
+}
 
-export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
+interface LayoutGridProps {
+  cards: Card[];
+}
+
+interface ImageComponentProps {
+  card: Card;
+}
+
+interface SelectedCardProps {
+  selected: Card | null;
+}
+
+interface MotionAnimationProps {
+  opacity: number;
+  y?: number;
+}
+
+interface TransitionProps {
+  duration: number;
+  ease: string;
+}
+
+export const LayoutGrid: React.FC<LayoutGridProps> = ({ cards }) => {
   const [selected, setSelected] = useState<Card | null>(null);
   const [lastSelected, setLastSelected] = useState<Card | null>(null);
 
-  const handleClick = (card: Card) => {
+  const handleClick = (card: Card): void => {
     setLastSelected(selected);
     setSelected(card);
   };
 
-  const handleOutsideClick = () => {
+  const handleOutsideClick = (): void => {
     setLastSelected(selected);
     setSelected(null);
   };
@@ -59,13 +80,13 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   );
 };
 
-const ImageComponent = ({ card }: { card: Card }) => {
+const ImageComponent: React.FC<ImageComponentProps> = ({ card }) => {
   return (
     <motion.img
       layoutId={`image-${card.id}-image`}
       src={card.thumbnail}
-      height="500"
-      width="500"
+      height={500}
+      width={500}
       className={cn(
         "object-cover object-top absolute inset-0 h-full w-full transition duration-200"
       )}
@@ -74,36 +95,30 @@ const ImageComponent = ({ card }: { card: Card }) => {
   );
 };
 
-const SelectedCard = ({ selected }: { selected: Card | null }) => {
+const SelectedCard: React.FC<SelectedCardProps> = ({ selected }) => {
+  const initialAnimation: MotionAnimationProps = { opacity: 0 };
+  const overlayAnimation: MotionAnimationProps = { opacity: 0.6 };
+  const contentInitial: MotionAnimationProps = { opacity: 0, y: 100 };
+  const contentAnimate: MotionAnimationProps = { opacity: 1, y: 0 };
+  const contentExit: MotionAnimationProps = { opacity: 0, y: 100 };
+  const transitionProps: TransitionProps = {
+    duration: 0.3,
+    ease: "easeInOut"
+  };
+
   return (
     <div className="bg-transparent h-full w-full flex flex-col justify-end rounded-lg shadow-2xl relative z-[60]">
       <motion.div
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 0.6,
-        }}
+        initial={initialAnimation as TargetAndTransition}
+        animate={overlayAnimation as TargetAndTransition}
         className="absolute inset-0 h-full w-full bg-black opacity-60 z-10"
       />
       <motion.div
         layoutId={`content-${selected?.id}`}
-        initial={{
-          opacity: 0,
-          y: 100,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        exit={{
-          opacity: 0,
-          y: 100,
-        }}
-        transition={{
-          duration: 0.3,
-          ease: "easeInOut",
-        }}
+        initial={contentInitial as TargetAndTransition}
+        animate={contentAnimate as TargetAndTransition}
+        exit={contentExit as TargetAndTransition}
+        transition={transitionProps}
         className="relative px-8 pb-4 z-[70]"
       >
         {selected?.content}

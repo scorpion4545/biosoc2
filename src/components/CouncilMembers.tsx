@@ -1,7 +1,29 @@
 import { Users, Linkedin, Twitter, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const juniorMembers = [
+interface SocialLinks {
+  linkedin: string;
+  twitter: string;
+  email: string;
+}
+
+interface Member {
+  name: string;
+  role: string;
+  expertise: string;
+  description: string;
+  image: string;
+  social: SocialLinks;
+}
+
+interface JuniorMember {
+  name: string;
+  position: string;
+  image: string;
+  linkedin?: string;
+}
+
+const juniorMembers: JuniorMember[] = [
   { name: "Azhar", position: "Web Master", image: "./team/Azhar.jpg", linkedin: "https://www.linkedin.com/in/azhar-khan-97b612250" },
   // Add linkedin URLs for other members similarly
   { name: "Rishabh", position: "PR Co-Head", image: "./team/Rishabh.jpg" },
@@ -24,8 +46,9 @@ const juniorMembers = [
   { name: "Krisha", position: "Design Co-Head", image: "./team/Kri.jpg" },
 ];
 
+// Add proper type for members array
 const CouncilMembers = () => {
-  const members = [
+  const members: Member[] = [
     {
       name: "Aman Yadav",
       role: "President",
@@ -143,11 +166,12 @@ const CouncilMembers = () => {
             </motion.h3>
             {/* Members Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 [&>*:last-child:nth-child(3n-1)]:lg:col-start-2 [&>*:last-child:nth-child(3n-2)]:lg:col-start-2">
-              {members.map((member, index) => (
+              {members.map((member) => (
                 <div 
                   key={member.name}
                   className="relative group"
                 >
+                  {/* Rest of the member card content */}
                   <div className="flex flex-col items-center">
                     {/* Image Container with Border Animation */}
                     <div className="relative mb-6">
@@ -233,17 +257,19 @@ const CouncilMembers = () => {
                   alt={member.name}
                   className="w-full h-full rounded-full object-cover border-2 border-purple-500/30 group-hover:border-purple-500 transition-colors duration-300"
                 />
-                {/* LinkedIn Icon */}
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                  <div className="bg-black/50 p-2 rounded-full">
-                    <Linkedin className="w-6 h-6 text-white hover:text-blue-400 transition-colors duration-300" />
-                  </div>
-                </a>
+                {/* LinkedIn Icon with conditional rendering */}
+                {member.linkedin && (
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  >
+                    <div className="bg-black/50 p-2 rounded-full">
+                      <Linkedin className="w-6 h-6 text-white hover:text-blue-400 transition-colors duration-300" />
+                    </div>
+                  </a>
+                )}
               </div>
               <div className="text-center">
                 <h4 className="text-sm md:text-base font-medium text-gray-200 group-hover:text-purple-400 transition-colors duration-300">
@@ -258,14 +284,10 @@ const CouncilMembers = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
         .animate-spin-slow {
           animation: spin-slow 10s linear infinite;

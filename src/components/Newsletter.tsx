@@ -2,25 +2,32 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-export function Newsletter() {
-  const [selectedPdf, setSelectedPdf] = useState(null);
+interface PdfItem {
+  id: number;
+  title: string;
+  file: string;
+  thumbnail: string;
+}
 
-  const pdfs = [
+export const Newsletter: React.FC = () => {
+  const [selectedPdf, setSelectedPdf] = useState<PdfItem | null>(null);
+
+  const pdfs: PdfItem[] = [
     {
       id: 1,
       title: "The Petridish Edition:2",
-      file: "./team/Ed2.pdf", // Add your PDF file path here
-      thumbnail: "/pdfs/thumbnail1.jpg" // Add your thumbnail image path here
+      file: "./team/Ed2.pdf",
+      thumbnail: "/pdfs/thumbnail1.jpg"
     },
     {
       id: 2,
       title: "The Petridish Edition:1",
-      file: "./team/Edi1.pdf", // Add your PDF file path here
-      thumbnail: "/pdfs/thumbnail2.jpg" // Add your thumbnail image path here
+      file: "./team/Edi1.pdf",
+      thumbnail: "/pdfs/thumbnail2.jpg"
     }
   ];
 
-  const handlePdfClick = (pdf) => {
+  const handlePdfClick = (pdf: PdfItem): void => {
     setSelectedPdf(pdf);
   };
 
