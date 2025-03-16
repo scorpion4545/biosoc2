@@ -17,13 +17,13 @@ export const Newsletter: React.FC = () => {
       id: 1,
       title: "The Petridish Edition:2",
       file: "./team/Ed2.pdf",
-      thumbnail: "/pdfs/thumbnail1.jpg"
+      thumbnail: "./team/Edition1.jpg"
     },
     {
       id: 2,
       title: "The Petridish Edition:1",
       file: "./team/Edi1.pdf",
-      thumbnail: "/pdfs/thumbnail2.jpg"
+      thumbnail: "./team/Edition2.jpg"
     }
   ];
 
@@ -33,43 +33,38 @@ export const Newsletter: React.FC = () => {
 
   return (
     <section className="py-20 px-4" id="newsletter">
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-8">
+          <h2 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-16">
             Newsletter
           </h2>
-          <p className="text-gray-300 mb-12">
-            Access our latest publications and research materials.
-          </p>
 
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {pdfs.map((pdf) => (
-              <div
+              <motion.div
                 key={pdf.id}
                 onClick={() => handlePdfClick(pdf)}
-                className="bg-white/5 border border-white/10 rounded-lg p-6 cursor-pointer hover:bg-white/10 transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                className="relative group cursor-pointer w-full max-w-sm mx-auto"
               >
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 flex-shrink-0">
-                    <svg className="w-full h-full text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
-                      <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
-                    </svg>
-                  </div>
-                  <div className="flex-grow text-left">
-                    <h3 className="text-white text-lg font-medium">{pdf.title}</h3>
-                    <p className="text-gray-400 text-sm">Click to open</p>
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <img
+                  src={pdf.thumbnail}
+                  alt={pdf.title}
+                  className="w-full aspect-[4/5] object-cover rounded-2xl shadow-xl"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <h3 className="text-lg font-bold mb-1">{pdf.title}</h3>
+                  <p className="text-xs text-gray-200">Click to read more</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          {/* PDF Viewer Modal */}
           {selectedPdf && (
             <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
               <div className="relative w-full h-full max-w-6xl mx-auto p-4">

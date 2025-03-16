@@ -27,7 +27,7 @@ const juniorMembers: JuniorMember[] = [
   { name: "Azhar", position: "Web Master", image: "./team/Azhar.jpg", linkedin: "https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BRKX1zrP5SrOMGZktkeD%2FCw%3D%3D" },
   // Add linkedin URLs for other members similarly
   { name: "Rishabh", position: "PR Co-Head", image: "./team/Rishabh.jpg", linkedin: "https://in.linkedin.com/in/rishabh-mohan-sinha" },
-  { name: "Akash Rana", position: "Content Co-Head", image: "./team/Akash.jpg", linkedin: "https://www.linkedin.com/in/aakakash-rana-995666290" },
+  { name: "Akash Rana", position: "Content Co-Head", image: "./team/Akash.jpg", linkedin: "https://www.linkedin.com/in/akakash-rana-995666290" },
   { name: "Apurva", position: "Content Co-Head", image: "./team/Apurva.jpg", linkedin: "https://www.linkedin.com/in/apurva-lakra-696388220?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
   { name: "Mahim", position: "Corporate Co-Head", image: "./team/Mahim.jpg", linkedin: "https://www.linkedin.com/in/mahim-kamble-497706252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
   { name: "Mayank", position: "Design Co-Head", image: "./team/Mayank.jpg", linkedin: "https://www.linkedin.com/in/mayankgupta05?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },

@@ -40,6 +40,7 @@ function App() {
       <div className="pt-24"> {/* Increased padding for floating navbar */}
         <ImageGallery />
         <WhyBioSoc />    
+        <Newsletter />
         <UpcomingEventsSection />
         <PastEvents />
         <LayoutGridDemo />
@@ -47,7 +48,6 @@ function App() {
         <SpeakerCarousel />
         <CouncilMembers />
         <InfiniteMovingSponsors />
-        <Newsletter />
         <Footer />
         <Analytics />
       </div>
