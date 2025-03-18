@@ -4,31 +4,18 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface MenuItem {
-  title: string;
-  href: string;
-  items?: SubMenuItem[];
-}
-
-interface SubMenuItem {
-  title: string;
-  href: string;
-}
-
-// Remove unused TransitionProps interface
-// Remove duplicate motion import since it's already imported above
-
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [activeSection, setActiveSection] = useState<string>("Home");
+  const [activeSection, setActiveSection] = useState("Home");
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const menuItems: MenuItem[] = [
+  const menuItems = [
     { title: "Home", href: "#biosoc" },
     { title: "About Us", href: "#about" },
     {
       title: "Team",
-      href: "#team", // Added missing href for dropdown menu
+      href: "#team",
       items: [
         { title: "Faculty", href: "#faculty" },
         { title: "Council Members", href: "#council" },
@@ -36,7 +23,7 @@ export const Navbar = () => {
     },
     {
       title: "More",
-      href: "#more", // Added missing href for dropdown menu
+      href: "#more",
       items: [
         { title: "Why BioSoc", href: "#why-biosoc" },
         { title: "Past Events", href: "#past-events" },
@@ -46,7 +33,7 @@ export const Navbar = () => {
     },
   ];
 
-  const scrollToSection = (id: string, title: string): void => {
+  const scrollToSection = (id: string, title: string) => {
     setIsOpen(false);
     setActiveDropdown(null);
     setActiveSection(title);
@@ -63,9 +50,16 @@ export const Navbar = () => {
     }
   };
 
-  // Remove unused transition constant
   useEffect(() => {
-    const handleScroll = (): void => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
       const sections = document.querySelectorAll<HTMLElement>('section[id], div[id]');
       const scrollPosition = window.scrollY + 100;
       
@@ -75,9 +69,8 @@ export const Navbar = () => {
         
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
           const sectionId = section.getAttribute('id');
-          // Find the corresponding menu item
           menuItems.forEach(item => {
-            if ('items' in item && item.items) {
+            if (item.items) {
               item.items.forEach(subItem => {
                 if (subItem.href === `#${sectionId}`) {
                   setActiveSection(subItem.title);
@@ -90,7 +83,6 @@ export const Navbar = () => {
         }
       });
 
-      // Check if we're at the top of the page
       if (scrollPosition < 100) {
         setActiveSection("Home");
       }
@@ -101,20 +93,37 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-auto">
-      <nav className="bg-black/20 backdrop-blur-lg border border-white/10 rounded-full px-8">
-        <div className="flex items-center justify-between h-16">
+    <div className={`fixed transition-all duration-300 z-50 ${
+      isScrolled 
+      ? 'top-4 left-4 right-4 w-auto flex justify-between items-center' 
+      : 'top-6 left-1/2 -translate-x-1/2 w-auto'
+    }`}>
+      <nav className={`transition-all duration-300 ${
+        isScrolled 
+        ? 'bg-transparent flex w-full justify-between items-center px-0' 
+        : 'bg-black/20 backdrop-blur-lg border border-white/10 rounded-full px-8'
+      }`}>
+        <div className={`flex items-center justify-between ${isScrolled ? 'w-full' : 'h-16'}`}>
           {/* Logo */}
-          <div className="flex items-center mr-8">
-            <img 
-              src="./team/Logo.svg" 
-              alt="BioSoc Logo" 
-              className="h-18 w-18 mr-4 transition-transform hover:scale-110"
-            />
+          <div className={`flex items-center transition-all duration-300`}>
+            <button 
+              onClick={() => scrollToSection("#biosoc", "Home")}
+              className="cursor-pointer"
+            >
+              <img 
+                src="./team/Logo.svg" 
+                alt="BioSoc Logo" 
+                className={`transition-all duration-300 hover:scale-110 ${
+                  isScrolled ? 'h-12 w-12' : 'h-18 w-18'
+                } mr-8`}
+              />
+            </button>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-16">
+          <div className={`hidden md:flex items-center transition-all duration-300 ${
+            isScrolled ? 'md:hidden' : 'space-x-16 ml-8'
+          }`}>
             {menuItems.map((item) => (
               <div key={item.title} className="relative">
                 {('items' in item) ? (
@@ -129,18 +138,6 @@ export const Navbar = () => {
                     >
                       <span>{item.title}</span>
                       <ChevronDown size={18} />
-                      {activeSection === item.title && (
-                        <motion.div
-                          layoutId="activeSection"
-                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500"
-                          initial={false}
-                          transition={{
-                            type: "spring",
-                            stiffness: 380,
-                            damping: 30
-                          }}
-                        />
-                      )}
                     </button>
                     
                     <AnimatePresence>
@@ -173,29 +170,17 @@ export const Navbar = () => {
                     className="text-gray-300 hover:text-white transition-colors duration-300 text-lg relative"
                   >
                     {item.title}
-                    {activeSection === item.title && (
-                      <motion.div
-                        layoutId="activeSection"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500"
-                        initial={false}
-                        transition={{
-                          type: "spring",
-                          stiffness: 380,
-                          damping: 30
-                        }}
-                      />
-                    )}
                   </button>
                 )}
               </div>
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Menu Button - Always visible when scrolled */}
+          <div className={`${isScrolled ? 'block' : 'md:hidden'}`}>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white"
+              className="text-gray-300 hover:text-white bg-black/40 backdrop-blur-lg p-3 rounded-full"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -209,7 +194,7 @@ export const Navbar = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="md:hidden absolute top-full left-0 right-0 mt-2 bg-black/90 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden"
+              className="absolute top-full right-0 mt-2 w-64 bg-black/90 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden"
             >
               {menuItems.map((item) => (
                 'items' in item ? (
