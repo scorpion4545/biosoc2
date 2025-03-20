@@ -158,73 +158,30 @@ const EventCard: React.FC<EventCardProps> = ({ event, isSelected, onSelect }) =>
 const UpcomingEventsSection: React.FC = () => {
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
   const [visibleEvents, setVisibleEvents] = useState<Event[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   
-  const events: Event[] = [
-    {
-      id: 1,
-      title: "Tech Innovation Summit 2025",
-      date: "Mar 15, 2025",
-      location: "Innovation Center, Building B",
-      category: "Technology",
-      description: "Join industry leaders for an immersive day exploring cutting-edge technologies and digital transformation strategies.",
-      image: "/team/UE1.jpg", // Updated path
-      speakers: [
-        { name: "Dr. Eliza Chen", role: "AI Researcher" },
-        { name: "Marcus Johnson", role: "Blockchain Expert" }
-      ],
-      schedule: [
-        { time: "09:00 AM", activity: "Registration & Breakfast" },
-        { time: "10:00 AM", activity: "Keynote: The Future of Technology" },
-        { time: "12:00 PM", activity: "Networking Lunch" }
-      ]
-    },
-    {
-      id: 2,
-      title: "Design Thinking Workshop",
-      date: "Apr 5, 2025",
-      location: "Creative Hub, Floor 3",
-      category: "Design",
-      description: "A comprehensive workshop exploring principles of thoughtful and functional design with practical exercises and expert guidance.",
-      image: "/team/cat.jpg", // Updated path
-      speakers: [
-        { name: "Alex Rivera", role: "UX Director" },
-        { name: "Priya Patel", role: "Product Designer" }
-      ],
-      schedule: [
-        { time: "10:00 AM", activity: "Introduction to Design Thinking" },
-        { time: "11:30 AM", activity: "Problem Definition Exercise" },
-        { time: "02:00 PM", activity: "Prototyping Workshop" }
-      ]
-    },
-    {
-      id: 3,
-      title: "Communication Masterclass",
-      date: "Apr 18, 2025",
-      location: "Grand Hall, Main Campus",
-      category: "Communication",
-      description: "Develop advanced communication strategies with expert speakers through interactive sessions.",
-      image: "/team/dog.jpg", // Updated path
-      speakers: [
-        { name: "Dr. James Wilson", role: "Communications Professor" },
-        { name: "Natalie Lopez", role: "Public Speaking Coach" }
-      ],
-      schedule: [
-        { time: "09:30 AM", activity: "Effective Communication Principles" },
-        { time: "11:00 AM", activity: "Public Speaking Practice" },
-        { time: "01:30 PM", activity: "Advanced Techniques" }
-      ]
-    }
-  ];
-  
+  // Simulating data fetching - replace this with your actual data fetching logic
   useEffect(() => {
-    setVisibleEvents(events);
+    const fetchEvents = async () => {
+      try {
+        setIsLoading(true);
+        // Replace this with your actual API call
+        const events: Event[] = []; // Currently empty for testing
+        setVisibleEvents(events);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchEvents();
   }, []);
   
   const handleEventSelect = (id: number | null): void => {
     setSelectedEventId(id === selectedEventId ? null : id);
   };
   
-  // Update the main component's grid container
   return (
     <div className="p-8 bg-transparent" id="upcoming-events">
       <div className="text-center mb-16">
@@ -233,22 +190,36 @@ const UpcomingEventsSection: React.FC = () => {
         </h2>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {visibleEvents.map((event) => (
-          <div 
-            key={event.id} 
-            className={`transition-all duration-300 ${
-              selectedEventId && selectedEventId !== event.id ? 'scale-95 opacity-40' : ''
-            }`}
-          >
-            <EventCard 
-              event={event}
-              isSelected={event.id === selectedEventId}
-              onSelect={handleEventSelect}
-            />
-          </div>
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="flex justify-center items-center min-h-[300px]">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+      ) : visibleEvents.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {visibleEvents.map((event) => (
+            <div 
+              key={event.id} 
+              className={`transition-all duration-300 ${
+                selectedEventId && selectedEventId !== event.id ? 'scale-95 opacity-40' : ''
+              }`}
+            >
+              <EventCard 
+                event={event}
+                isSelected={event.id === selectedEventId}
+                onSelect={handleEventSelect}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center min-h-[300px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-8">
+          <div className="text-4xl mb-4">🎉</div>
+          <h3 className="text-2xl font-semibold text-white mb-2">More Events Coming Soon!</h3>
+          <p className="text-gray-400 text-center max-w-md">
+            We're planning exciting events for you. Stay tuned for updates!
+          </p>
+        </div>
+      )}
     </div>
   );
 };

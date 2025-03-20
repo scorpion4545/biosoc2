@@ -52,22 +52,24 @@ export function FacultySection() {
           </h2>
         </motion.div>
 
-        <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-64">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-32">
           {facultyMembers.map((faculty, index) => (
             <motion.div
               key={faculty.name}
               {...motionProps}
               transition={{ ...motionProps.transition, delay: 0.2 * (index + 1) }}
-              className="relative group"
+              className="relative group w-full max-w-[300px]"
             >
-              <div className="relative">
-                <div className="p-0.5 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 shadow-[0_0_15px] shadow-purple-500/50">
-                  <div className="bg-black rounded-full p-0.5">
-                    <img
-                      src={faculty.image}
-                      alt={faculty.name}
-                      className="w-56 h-56 md:w-64 md:h-64 rounded-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-                    />
+              <div className="relative flex flex-col items-center">
+                <div className="w-48 h-48 md:w-56 md:h-56 p-0.5 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 shadow-[0_0_15px] shadow-purple-500/50">
+                  <div className="w-full h-full bg-black rounded-full p-0.5">
+                    <div className="w-full h-full rounded-full overflow-hidden">
+                      <img
+                        src={faculty.image}
+                        alt={faculty.name}
+                        className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="mt-8 text-center">
