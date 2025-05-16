@@ -17,7 +17,6 @@ interface Event {
 
 const PastEvents: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [showAllEvents, setShowAllEvents] = useState<boolean>(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
   // Add useEffect to handle body scroll
@@ -176,9 +175,8 @@ const PastEvents: React.FC = () => {
     }
   ];
 
-  const displayedEvents: Event[] = showAllEvents ? pastEvents : pastEvents.slice(0, 3);
+  const displayedEvents = pastEvents.slice(0, 3);
 
-  // Update the event card button to open gallery
   return (
     <div className="py-16 bg-transparent text-gray-100" id="past-events">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -226,24 +224,8 @@ const PastEvents: React.FC = () => {
             </div>
           ))}
         </div>
-
-        <div className="mt-16 text-center">
-          <button 
-            onClick={() => setShowAllEvents(!showAllEvents)}
-            className="group relative inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-gray-800 border border-purple-500 rounded-full overflow-hidden transition-all duration-300 hover:bg-gray-700"
-          >
-            <span className="relative z-10">
-              {showAllEvents ? 'Show Less Events' : 'Explore All Past Events'}
-            </span>
-            <span className="absolute inset-0 w-full bg-purple-600 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></span>
-            <svg className="ml-2 w-5 h-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
-          </button>
-        </div>
       </div>
       
-      {/* Add this at the end, right before the closing div */}
       {selectedEvent && (
         <EventGallery 
           event={selectedEvent} 
