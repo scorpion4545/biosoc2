@@ -20,10 +20,10 @@ const facultyMembers: FacultyMember[] = [
     image: "./team/Yasha.jpg"
   },
   {
-    name: "Dr. Navneeta Bharadwaj",
+    name: "Dr. Navneeta Bharadvaja",
     title: "Associate Professor",
     department: "Biotechnology",
-    expertise: "Ph.D.",
+    expertise: "Plant Biotech",
     image: "./team/Navneeta.jpg"
   }
 ];

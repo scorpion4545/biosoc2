@@ -51,8 +51,8 @@ const CouncilMembers = () => {
     {
       name: "Aman Yadav",
       role: "President",
-      expertise: "Molecular Biology",
-      description: "Leading researcher in genetic engineering with over 15 years of experience in biotechnology.",
+      expertise: "",
+      description: "",
       image: "./team/Aman.jpg",
       social: {
         linkedin: "#",
@@ -63,8 +63,8 @@ const CouncilMembers = () => {
     {
       name: "Bhavya Choudhary",
       role: "Vice President",
-      expertise: "Bioethics",
-      description: "Distinguished professor specializing in bioethical implications of emerging technologies.",
+      expertise: "",
+      description: "",
       image: "./team/Bhavya.jpg",
       social: {
         linkedin: "#",
@@ -75,8 +75,8 @@ const CouncilMembers = () => {
     {
       name: "Mohit Daber",
       role: "General Secretary",
-      expertise: "Clinical Research",
-      description: "Pioneer in translational medicine and clinical trial design methodology.",
+      expertise: "",
+      description: "",
       image: "./team/Mohit.JPG",
       social: {
         linkedin: "#",
@@ -87,8 +87,8 @@ const CouncilMembers = () => {
     {
       name: "Unnati Nath",
       role: "Treasurer",
-      expertise: "Bioinformatics",
-      description: "Expert in computational biology and AI applications in healthcare.",
+      expertise: "",
+      description: "",
       image: "./team/Uno.jpg",
       social: {
         linkedin: "#",
@@ -99,8 +99,8 @@ const CouncilMembers = () => {
     {
       name: "Hutashan Solanki",
       role: "Operations head",
-      expertise: "Immunology",
-      description: "Renowned immunologist with breakthrough research in autoimmune diseases.",
+      expertise: "",
+      description: "",
       image: "./team/Hutansh.png",
       social: {
         linkedin: "#",
@@ -110,9 +110,9 @@ const CouncilMembers = () => {
     },
     {
         name: "Shivam Raju",
-        role: "Student Advisor",
-        expertise: "Immunology",
-        description: "Renowned immunologist with breakthrough research in autoimmune diseases.",
+        role: "Student Advisor",
+        expertise: "",
+        description: "",
         image: "./team/Shivam.jpg",
         social: {
           linkedin: "#",
@@ -122,9 +122,9 @@ const CouncilMembers = () => {
       },
       {
         name: "Katyayani Agarwal",
-        role: "Student Advisor",
-        expertise: "Immunology",
-        description: "Renowned immunologist with breakthrough research in autoimmune diseases.",
+        role: "Student Advisor",
+        expertise: "",
+        description: "",
         image: "./team/KA.jpg",
         social: {
           linkedin: "#",
@@ -132,7 +132,6 @@ const CouncilMembers = () => {
           email: "amanda.foster@example.com"
         }
   }
-    
   ];
 
   return (

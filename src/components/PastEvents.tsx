@@ -116,13 +116,13 @@ const PastEvents: React.FC = () => {
       date: "January 25, 2025",
       description: "Intensive workshop on advanced biotechnology techniques and laboratory practices.",
       longDescription: "An intensive one-day workshop covering advanced biotechnology techniques and modern laboratory practices. Experts shared insights on cutting-edge methodologies and emerging trends.",
-      image: "./team/BS.jpeg",
+      image: "/team/BS.jpeg",
       attendees: 150,
       images: [
-        { url: "./team/BS.jpeg", caption: "Workshop introduction" },
-        { url: "./team/BT.jpg", caption: "Practical session" },
-        { url: "./team/LR.jpg", caption: "Equipment training" },
-        { url: "./team/BS.jpeg", caption: "Closing ceremony" }
+        { url: "/team/BS.jpeg", caption: "Workshop introduction" },
+        { url: "/team/BT.jpg", caption: "Practical session" },
+        { url: "/team/LR.jpg", caption: "Equipment training" },
+        { url: "/team/BS.jpeg", caption: "Closing ceremony" }
       ],
       highlights: [
         "Advanced biotechnology techniques",
@@ -137,13 +137,13 @@ const PastEvents: React.FC = () => {
       date: "January 10, 2025",
       description: "Student research presentations and networking with industry professionals.",
       longDescription: "The Research Symposium brought together students and industry professionals for a day of knowledge sharing and networking. Students presented their research findings to industry experts.",
-      image: "./team/BT.jpg",
+      image: "/team/BT.jpg",
       attendees: 200,
       images: [
-        { url: "./team/BT.jpg", caption: "Opening ceremony" },
-        { url: "./team/BS.jpeg", caption: "Student presentations" },
-        { url: "./team/LR.jpg", caption: "Poster session" },
-        { url: "./team/BT.jpg", caption: "Networking event" }
+        { url: "/team/BT.jpg", caption: "Opening ceremony" },
+        { url: "/team/BS.jpeg", caption: "Student presentations" },
+        { url: "/team/LR.jpg", caption: "Poster session" },
+        { url: "/team/BT.jpg", caption: "Networking event" }
       ],
       highlights: [
         "Student research presentations",
@@ -158,13 +158,13 @@ const PastEvents: React.FC = () => {
       date: "December 15, 2024",
       description: "Showcasing breakthrough research and innovations in biotechnology.",
       longDescription: "The Innovation Summit showcased the latest breakthroughs in biotechnology research and development. Industry leaders shared insights on future trends and opportunities.",
-      image: "./team/LR.jpg",
+      image: "/team/LR.jpg",
       attendees: 280,
       images: [
-        { url: "./team/LR.jpg", caption: "Summit inauguration" },
-        { url: "./team/BS.jpeg", caption: "Innovation showcase" },
-        { url: "./team/BT.jpg", caption: "Panel discussion" },
-        { url: "./team/LR.jpg", caption: "Closing ceremony" }
+        { url: "/team/LR.jpg", caption: "Summit inauguration" },
+        { url: "/team/BS.jpeg", caption: "Innovation showcase" },
+        { url: "/team/BT.jpg", caption: "Panel discussion" },
+        { url: "/team/LR.jpg", caption: "Closing ceremony" }
       ],
       highlights: [
         "Breakthrough research presentations",
