@@ -34,7 +34,7 @@ const juniorMembers: JuniorMember[] = [
   { name: "Mayank Silani", position: "Design Co-Head", image: "./team/Mayank Silani.jpg", linkedin: "https://www.linkedin.com/in/mayank-silani-524043216?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" }, 
   { name: "Saksham", position: "Design Co-Head", image: "./team/saksham.jpg", linkedin: "https://www.linkedin.com/in/saksham-gupta-a6405b272?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
   { name: "Samihan", position: "Research Co-Head", image: "./team/Samihan.jpg", linkedin: "http://www.linkedin.com/in/samihan-sharma-a0a02a286" },
-  { name: "Vansh", position: "PR Co-Head", image: "./team/Vansh.JPG", linkedin: "https://www.linkedin.com/in/vannshjain/" },
+  { name: "Vannsh", position: "PR Co-Head", image: "./team/Vansh.JPG", linkedin: "https://www.linkedin.com/in/vannshjain/" },
   { name: "Rudraksh", position: "PR Co-Head", image: "./team/Rudraksh.jpg", linkedin: "https://www.linkedin.com/in/rudraksh-agarwal-70397b250?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" },
   { name: "Ridham", position: "Corporate Co-Head", image: "./team/abc.jpg", linkedin: "https://www.linkedin.com/in/ridham-garg-575563289/" },
   { name: "Ashutoush", position: "PR Co-Head", image: "./team/Ashu.jpg", linkedin: "https://www.linkedin.com/in/ashutoshyadavvv?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
