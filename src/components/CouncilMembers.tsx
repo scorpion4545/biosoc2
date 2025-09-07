@@ -27,7 +27,7 @@ const juniorMembers: JuniorMember[] = [
   { name: "Anushka Sharma", position: "Events Co-Head", image: "./team/Anu.jpg", linkedin: "https://www.linkedin.com/in/anushka-sharma-177680332" },
   { name: "Apeksha Singh", position: "Design Co-Head", image: "./team/Ape.jpg", linkedin: "https://www.linkedin.com/in/apeksha-singh-a1864531a" },
   { name: "Bharti Yadav", position: "Design Co-Head", image: "./team/Bha.jpg", linkedin: "https://www.linkedin.com/in/bharti-yadav-10970a331" },
-  { name: "Katyayani Yadav", position: "Events Co-Head", image: "./team/Kat.JPG", linkedin: "https://www.linkedin.com/in/katyayani-yadav-a8a831335" },
+  { name: "Katyayani Yadav", position: "Events Co-Head", image: "./team/kat.jpg", linkedin: "https://www.linkedin.com/in/katyayani-yadav-a8a831335" },
   { name: "Saba Naaz", position: "Corporate Co-Head", image: "./team/saba.jpg", linkedin: "https://www.linkedin.com/in/saba-naaz-a61369335" },
   { name: "Ragya Ranjan", position: "Design Co-Head", image: "./team/ragya.jpg", linkedin: "https://www.linkedin.com/in/ragya-ranjan-215a04322" }, 
   { name: "Shreya Yadav", position: "Content Co-Head", image: "./team/Shreya.jpg", linkedin: "https://www.linkedin.com/in/shreya-yadav-bba96530b/" },
