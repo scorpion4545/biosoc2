@@ -114,7 +114,7 @@ const CouncilMembers = () => {
         }
       },
       {
-        name: "Swayam Deewan",
+        name: "Swayam Dewan",
         role: "Treasurer",
         expertise: "",
         description: "",
@@ -126,7 +126,7 @@ const CouncilMembers = () => {
       },      
     {
       name: "Vannsh Jain",
-      role: "Joint Secretary", 
+      role: "Joint Treasurer", 
       expertise: "",
       description: "",
       image: "./team/Vansh.JPG",

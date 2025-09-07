@@ -21,7 +21,7 @@ const facultyMembers: FacultyMember[] = [
   },
   {
     name: "Dr. Navneeta Bharadvaja",
-    title: "Associate Professor",
+    title: "Faculty Advisor, BioSoc-DTU",
     department: "Biotechnology",
     expertise: "Plant Biotech",
     image: "./team/Navneeta.jpg"
