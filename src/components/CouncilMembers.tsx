@@ -52,7 +52,7 @@ const CouncilMembers = () => {
       role: "President",
       expertise: "",
       description: "",
-      image: "./team/Rishabh.jpg",
+      image: "./team/Rish.jpg",
       social: {
         linkedin: "https://in.linkedin.com/in/rishabh-mohan-sinha",
         email: "⁠rishabhsinha_23bt105@dtu.ac.in "
