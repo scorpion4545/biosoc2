@@ -1,9 +1,8 @@
-import { Users, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Users, Linkedin, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface SocialLinks {
   linkedin: string;
-  twitter: string;
   email: string;
 }
 
@@ -24,114 +23,118 @@ interface JuniorMember {
 }
 
 const juniorMembers: JuniorMember[] = [
-  { name: "Azhar", position: "Web Master", image: "./team/Azhar.jpg", linkedin: "https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BRKX1zrP5SrOMGZktkeD%2FCw%3D%3D" },
   // Add linkedin URLs for other members similarly
-  { name: "Rishabh", position: "PR Co-Head", image: "./team/Rishabh.jpg", linkedin: "https://in.linkedin.com/in/rishabh-mohan-sinha" },
-  { name: "Akash Rana", position: "Content Co-Head", image: "./team/Akash.jpg", linkedin: "https://www.linkedin.com/in/akakash-rana-995666290" },
-  { name: "Apurva", position: "Content Co-Head", image: "./team/Apurva.jpg", linkedin: "https://www.linkedin.com/in/apurva-lakra-696388220?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-  { name: "Mahim", position: "Corporate Co-Head", image: "./team/Mahim.jpg", linkedin: "https://www.linkedin.com/in/mahim-kamble-497706252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-  { name: "Mayank", position: "Design Co-Head", image: "./team/Mayank.jpg", linkedin: "https://www.linkedin.com/in/mayankgupta05?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-  { name: "Mayank Silani", position: "Design Co-Head", image: "./team/Mayank Silani.jpg", linkedin: "https://www.linkedin.com/in/mayank-silani-524043216?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" }, 
-  { name: "Saksham", position: "Design Co-Head", image: "./team/saksham.jpg", linkedin: "https://www.linkedin.com/in/saksham-gupta-a6405b272?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-  { name: "Samihan", position: "Research Co-Head", image: "./team/Samihan.jpg", linkedin: "http://www.linkedin.com/in/samihan-sharma-a0a02a286" },
-  { name: "Vannsh", position: "PR Co-Head", image: "./team/Vansh.JPG", linkedin: "https://www.linkedin.com/in/vannshjain/" },
-  { name: "Rudraksh", position: "PR Co-Head", image: "./team/Rudraksh.jpg", linkedin: "https://www.linkedin.com/in/rudraksh-agarwal-70397b250?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" },
-  { name: "Ridham", position: "Corporate Co-Head", image: "./team/abc.jpg", linkedin: "https://www.linkedin.com/in/ridham-garg-575563289/" },
-  { name: "Ashutoush", position: "PR Co-Head", image: "./team/Ashu.jpg", linkedin: "https://www.linkedin.com/in/ashutoshyadavvv?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-  { name: "Hunar", position: "Content Co-Head", image: "./team/Hunar.jpg", linkedin: "https://www.linkedin.com/in/hunar-aggarwal-ab820427a/" },
-  { name: "Krishna", position: "PR Co-Head", image: "./team/Krishna.jpg", linkedin: "https://www.linkedin.com/in/azhar-khan-97b612250" },
-  { name: "Aaron", position: "Corporate Co-Head", image: "./team/aaron.jpg", linkedin: "https://www.linkedin.com/in/aaron-philip-b97880286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" },
-  { name: "Swayam Deewan", position: "Corporate Co-Head", image: "./team/swayam.jpg", linkedin: "http://linkedin.com/in/swayam-dewan-30878a29a" },
-  { name: "Krisha", position: "Design Co-Head", image: "./team/Kri.jpg", linkedin: "https://www.linkedin.com/in/krisha-singhal-39739a287" },
+  { name: "Anushka Sharma", position: "Events Co-Head", image: "./team/Anu.jpg", linkedin: "https://www.linkedin.com/in/anushka-sharma-177680332" },
+  { name: "Apeksha Singh", position: "Design Co-Head", image: "./team/Ape.jpg", linkedin: "https://www.linkedin.com/in/apeksha-singh-a1864531a" },
+  { name: "Bharti Yadav", position: "Design Co-Head", image: "./team/Bha.jpg", linkedin: "https://www.linkedin.com/in/bharti-yadav-10970a331" },
+  { name: "Katyayani Yadav", position: "Events Co-Head", image: "./team/Kat.JPG", linkedin: "https://www.linkedin.com/in/katyayani-yadav-a8a831335" },
+  { name: "Saba Naaz", position: "Corporate Co-Head", image: "./team/saba.jpg", linkedin: "https://www.linkedin.com/in/saba-naaz-a61369335" },
+  { name: "Ragya Ranjan", position: "Design Co-Head", image: "./team/ragya.jpg", linkedin: "https://www.linkedin.com/in/ragya-ranjan-215a04322" }, 
+  { name: "Shreya Yadav", position: "Content Co-Head", image: "./team/Shreya.jpg", linkedin: "https://www.linkedin.com/in/shreya-yadav-bba96530b/" },
+  { name: "Parth Jeph", position: "Events Co-Head", image: "./team/parth.jpg", linkedin: "https://www.linkedin.com/in/parth-jeph" },
+  { name: "Vanshika", position: "Events Co-Head", image: "./team/van.jpg", linkedin: "https://www.linkedin.com/in/vanshika-dhaka-3b07692b7" },
+  { name: "Mukund gupta", position: "Content Co-Head", image: "./team/Muk.jpg", linkedin: "https://www.linkedin.com/in/mukundgupta7" },
+  { name: "Hrishit gupta", position: "Corporate Co-Head", image: "./team/Hris.jpg", linkedin: "https://www.linkedin.com/in/hrishit-gupta-8b801b338" },
+  { name: "Konica Jindal", position: "Corporate Co-Head", image: "./team/Kon.jpg", linkedin: "https://www.linkedin.com/in/konicajindal" },
+  { name: "Ojas bhutani", position: "Corporate Co-Head", image: "./team/bhut.jpg", linkedin: "https://www.linkedin.com/in/ojas-bhutani-4b8372305" },
+  { name: "Aryaman", position: "Events Co-Head", image: "./team/Ary.JPG", linkedin: "https://www.linkedin.com/in/aryaman-b-b51585317" },
+  { name: "Praleen Kaur", position: "Corporate Co-Head", image: "./team/kaur.jpg", linkedin: "https://www.linkedin.com/in/praleen-kaur-a50a71349" },
+  { name: "Shivam Chaube", position: "Content Co-Head", image: "./team/Shiv.jpg", linkedin: "https://www.linkedin.com/in/shivam-chaube0608" },
+  { name: "Nandini", position: "Events Co-Head", image: "./team/Nan.jpg", linkedin: "https://www.linkedin.com/in/nandinidtu05" },
+  { name: "Ayushi Pandey", position: "Content Co-Head", image: "./team/Ayu.jpeg", linkedin: "https://www.linkedin.com/in/ayushi-pandey-9bab26316/" },
 ];
 
 // Add proper type for members array
 const CouncilMembers = () => {
   const members: Member[] = [
     {
-      name: "Aman Yadav",
+      name: "Rishabh M. Sinha",
       role: "President",
       expertise: "",
       description: "",
-      image: "./team/Aman.jpg",
+      image: "./team/Rishabh.jpg",
       social: {
-        linkedin: "#",
-        twitter: "#",
-        email: "sarah.chen@example.com"
+        linkedin: "https://in.linkedin.com/in/rishabh-mohan-sinha",
+        email: "⁠rishabhsinha_23bt105@dtu.ac.in "
       }
     },
     {
-      name: "Bhavya Choudhary",
+      name: "Krisha Singhal",
       role: "Vice President",
       expertise: "",
       description: "",
-      image: "./team/Bhavya.jpg",
+      image: "./team/Kri.jpg",
       social: {
-        linkedin: "#",
-        twitter: "#",
-        email: "james.miller@example.com"
+        linkedin: "https://www.linkedin.com/in/krisha-singhal-39739a287",
+        email: "krishas.0905@gmail.com"
       }
     },
     {
-      name: "Mohit Daber",
-      role: "General Secretary",
+      name: "Hunar Agarwal",
+      role: "Vice President",
       expertise: "",
       description: "",
-      image: "./team/Mohit.JPG",
+      image: "./team/Hunar.jpg",
       social: {
-        linkedin: "#",
-        twitter: "#",
-        email: "elena.rodriguez@example.com"
+        linkedin: "https://www.linkedin.com/in/hunar-aggarwal-ab820427a/",
+        email: "hunar1502@gmail.com"
       }
     },
     {
-      name: "Unnati Nath",
-      role: "Treasurer",
+      name: "Samihan Sharma",
+      role: "Genral Secretary",
       expertise: "",
       description: "",
-      image: "./team/Uno.jpg",
+      image: "./team/Samihan.jpg",
       social: {
-        linkedin: "#",
-        twitter: "#",
-        email: "michael.patel@example.com"
+        linkedin: "http://www.linkedin.com/in/samihan-sharma-a0a02a286",
+        email: "samihansharma.2005@gmail.com"
       }
     },
     {
-      name: "Hutashan Solanki",
-      role: "Operations head",
+      name: "Saksham Gupta",
+      role: "Joint Secretary",
       expertise: "",
       description: "",
-      image: "./team/Hutansh.png",
+      image: "./team/saksham.jpg",
       social: {
-        linkedin: "#",
-        twitter: "#",
-        email: "amanda.foster@example.com"
+        linkedin: "https://www.linkedin.com/in/saksham-gupta-a6405b272?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        email: "Sakshamgupta_23bt062@dtu.ac.in"
       }
     },
     {
-        name: "Shivam Raju",
-        role: "Student Advisor",
+        name: "Mahim Kamble",
+        role: "Treasurer",
         expertise: "",
         description: "",
-        image: "./team/Shivam.jpg",
+        image: "./team/Mahim.jpg",
         social: {
-          linkedin: "#",
-          twitter: "#",
-          email: "amanda.foster@example.com"
+          linkedin: "https://www.linkedin.com/in/mahim-kamble-497706252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+          email: "kamblemahim76@gmail.com"
         }
       },
       {
-        name: "Katyayani Agarwal",
-        role: "Student Advisor",
+        name: "Swayam Deewan",
+        role: "Treasurer",
         expertise: "",
         description: "",
-        image: "./team/KA.jpg",
+        image: "./team/swayam.jpg",
         social: {
-          linkedin: "#",
-          twitter: "#",
-          email: "amanda.foster@example.com"
-        }
-  }
+          linkedin: "http://linkedin.com/in/swayam-dewan-30878a29a",
+          email: "swayamdewan20@gmail.com"
+        },
+      },      
+    {
+      name: "Vannsh Jain",
+      role: "Joint Secretary", 
+      expertise: "",
+      description: "",
+      image: "./team/Vansh.JPG",
+      social: {
+        linkedin: "https://www.linkedin.com/in/vannshjain/",
+        email: "vannshjain_23bt110@dtu.ac.in"
+      }
+    }
   ];
 
   return (
@@ -196,9 +199,6 @@ const CouncilMembers = () => {
                       <div className="flex justify-center space-x-4">
                         <a href={member.social.linkedin} className="text-gray-400 hover:text-blue-500 transition-colors duration-300">
                           <Linkedin className="h-5 w-5" />
-                        </a>
-                        <a href={member.social.twitter} className="text-gray-400 hover:text-blue-500 transition-colors duration-300">
-                          <Twitter className="h-5 w-5" />
                         </a>
                         <a href={`mailto:${member.social.email}`} className="text-gray-400 hover:text-blue-500 transition-colors duration-300">
                           <Mail className="h-5 w-5" />

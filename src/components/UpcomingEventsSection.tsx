@@ -213,11 +213,19 @@ const UpcomingEventsSection: React.FC = () => {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center min-h-[300px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-8">
-          <div className="text-4xl mb-4">🎉</div>
-          <h3 className="text-2xl font-semibold text-white mb-2">More Events Coming Soon!</h3>
-          <p className="text-gray-400 text-center max-w-md">
-            We're planning exciting events for you. Stay tuned for updates!
+          <div className="text-4xl mb-4">🚀</div>
+          <h3 className="text-2xl font-semibold text-white mb-2">Recruitment Now Live!</h3>
+          <p className="text-gray-400 text-center max-w-md mb-6">
+            Join our team and be part of the innovation! Apply now through our official recruitment form.
           </p>
+          <a 
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe9x4ZHtyQhsN88RHake3Qpr_J0emOWKpGuvBUSdwlQtrK_7Q/viewform?usp=sf_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium py-2 px-6 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
+          >
+            Apply Now
+          </a>
         </div>
       )}
     </div>
