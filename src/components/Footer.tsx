@@ -155,6 +155,22 @@ const Footer: React.FC = () => {
         <div className="mt-6 text-xs text-gray-500 text-center">
           © {new Date().getFullYear()} BioSoc DTU. All rights reserved.
         </div>
+        
+        {/* Add this new div */}
+        <div className="mt-4 text-sm text-gray-400 text-center">
+          <p>
+            Made with ❤️ by{" "}
+            <a 
+              href="https://www.linkedin.com/in/md-azhar-ansari-abb39228a/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white hover:text-blue-400 transition-colors duration-300 hover:underline"
+            >
+              Azhar Ansari
+            </a>
+          </p>
+        </div>
+
       </div>
     </footer>
   );
