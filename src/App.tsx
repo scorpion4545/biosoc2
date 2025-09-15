@@ -33,29 +33,8 @@ function App() {
     return <DNALoader />;
   }
 
-  // Add this at the top of your main App component
-  const [isMaintenance, setIsMaintenance] = useState(true);
-  
-  if (isMaintenance) {
-    return (
-      <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center text-center p-8">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 mb-6">
-            Site Under Maintenance
-          </h1>
-          <p className="text-gray-300 text-xl mb-8">
-            We're working hard to improve your experience. Check back soon!
-          </p>
-          <button 
-            onClick={() => setIsMaintenance(false)}
-            className="bg-gradient-to-r from-purple-500 to-blue-600 text-white px-8 py-3 rounded-lg hover:opacity-90 transition-opacity"
-          >
-            Revert to Live Site
-          </button>
-        </div>
-      </div>
-    );
-  }
+  //from here Add this at the top of your main App component
+
  // Remove till this to make the site running back 
   return (
     <div>
