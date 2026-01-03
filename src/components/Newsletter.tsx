@@ -14,6 +14,12 @@ export const Newsletter: React.FC = () => {
 
   const pdfs: PdfItem[] = [
     {
+      id: 4,
+      title: "The Petridish Edition:4",
+      file: "./team/Ed4.pdf",
+      thumbnail: "./team/Edition4.jpg"
+    },
+    {
       id: 1,
       title: "The Petridish Edition:3",
       file: "./team/Ed3.pdf",
