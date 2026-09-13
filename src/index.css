@@ -1,1 +1,66 @@
 @import "tailwindcss";
+/* Remove duplicate import and fix Tailwind directives order */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "San Francisco", system-ui, sans-serif;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+body {
+  background-color: #0B1121;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "San Francisco", system-ui, sans-serif;
+  font-size: 1.05rem;
+}
+
+.bento-grid {
+  background-color: #0B1121;
+}
+
+.bento-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+}
+
+/* Scrollbar Styles */
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0B1121;
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #06b6d4;
+    border-radius: 8px;
+    border: 2px solid #0B1121;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0891b2;
+  }
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #06b6d4 #0B1121;
+}
