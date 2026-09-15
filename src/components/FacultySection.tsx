@@ -17,14 +17,14 @@ const facultyMembers: FacultyMember[] = [
     title: "Head of Department",
     department: "Biotechnology",
     expertise: "Biotechnology, Bioinformatics",
-    image: "./team/Yasha.jpg"
+    image: "/team/Yasha.jpg"
   },
   {
     name: "Dr. Navneeta Bharadvaja",
     title: "Faculty Advisor, BioSoc-DTU",
     department: "Biotechnology",
     expertise: "Plant Biotech",
-    image: "./team/Navneeta.jpg"
+    image: "/team/Navneeta.jpg"
   }
 ];
 

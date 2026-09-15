@@ -35,7 +35,7 @@ const SkeletonTwo = () => {
       </p>
       <p className="font-normal text-base text-white"></p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-      The content department is responsible for managing the content, such as posts, articles, etc. that Biosoc puts across its various social media platforms like Instagram, LinkedIn, to an ever-growing audience of biotech enthusiasts. The content department handles the ideation of all content.
+      The content department is responsible for managing the content, such as posts, articles, etc. that BioSoc-DTU puts across its various social media platforms like Instagram, LinkedIn, to an ever-growing audience of biotech enthusiasts. The content department handles the ideation of all content.
       </p>
     </div>
   );
@@ -117,7 +117,7 @@ export const LayoutGridDemo: React.FC = () => {
   return (
     <div className="h-screen py-20 w-full">
       <h1 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-2">
-        Our Department
+        Our Departments
       </h1>
       <p className="text-center text-xl text-gray-300 mb-8">
         Click to Know More

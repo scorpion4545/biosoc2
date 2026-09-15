@@ -29,7 +29,7 @@ interface MotionAnimationProps {
 
 interface TransitionProps {
   duration: number;
-  ease: string;
+  ease: "easeInOut";
 }
 
 export const LayoutGrid: React.FC<LayoutGridProps> = ({ cards }) => {

@@ -117,20 +117,12 @@ return (
                     ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
                     <div className="space-y-6 md:space-y-8">
                         <div className="space-y-2 md:space-y-3">
-                            <h2 className="text-2xl md:text-4xl font-bold text-white">
+                            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                                 {speakers[currentIndex].name}
                             </h2>
-                            <p className="text-lg md:text-xl font-medium text-blue-600">
+                            <p className="text-xl md:text-2xl font-medium text-slate-400">
                                 {speakers[currentIndex].title}
                             </p>
-                        </div>
-                        <div className="relative">
-                            <svg className="hidden md:block absolute -top-4 -left-4 h-8 w-8 text-white transform -translate-x-2" fill="currentColor" viewBox="0 0 32 32">
-                                <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4z" />
-                            </svg>
-                            <blockquote className="relative text-lg md:text-2xl font-medium text-white leading-relaxed md:pl-4">
-                                {speakers[currentIndex].quote}
-                            </blockquote>
                         </div>
                     </div>
                 </div>

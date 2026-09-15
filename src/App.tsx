@@ -1,30 +1,25 @@
 import './App.css'
-import { LayoutGridDemo } from './components/LayoutGridDemo'
-import { ImageGallery } from './components/ImageGallery'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { useState, useEffect } from 'react';
 import { DNALoader } from './components/ui/dna-loader';
-import { Navbar } from './components/navbar';
-import LandingPage from './components/LandingPage'
-import { WhyBioSoc } from './components/WhyBioSoc';
-import Footer from './components/Footer'
-import { InfiniteMovingSponsors } from './components/InfiniteMovingSponsors'
-import CouncilMembers from './components/CouncilMembers'
-import SpeakerCarousel from './components/SpeakerCarousel'
-import UpcomingEventsSection from './components/UpcomingEventsSection'
-import PastEvents from './components/PastEvents'
-import { FacultySection } from './components/FacultySection';
-import { Newsletter } from './components/Newsletter';
-import { Analytics } from '@vercel/analytics/react';
-
+import {
+  AboutPage,
+  EventsPage,
+  HomePage,
+  PageFrame,
+  ResourcesPage,
+  TeamPage,
+} from './app/routes';
 
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time
+    // Simulate initial load time
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000); // 3 seconds loading time
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -33,28 +28,19 @@ function App() {
     return <DNALoader />;
   }
 
-  //from here Add this at the top of your main App component
-
- // Remove till this to make the site running back 
   return (
-    <div>
-      <LandingPage />
-      <Navbar />
-      <div className="pt-24"> {/* Increased padding for floating navbar */}
-        <ImageGallery />
-        <WhyBioSoc />    
-        <Newsletter />
-        <UpcomingEventsSection />
-        <PastEvents />
-        <LayoutGridDemo />
-        <FacultySection />
-        <SpeakerCarousel />
-        <CouncilMembers />
-        <InfiniteMovingSponsors />
-        <Footer />
-        <Analytics />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<PageFrame />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/resources" element={<ResourcesPage />} />
+        </Route>
+      </Routes>
+      <Analytics />
+    </BrowserRouter>
   );
 }
 
