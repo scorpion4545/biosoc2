@@ -16,32 +16,32 @@ export const Newsletter: React.FC = () => {
     {
       id: 4,
       title: "The Petridish Edition:5",
-      file: "./team/Ed5.pdf",
-      thumbnail: "./team/Ed5_CP.jpg"
+      file: "/team/Ed5.pdf",
+      thumbnail: "/team/Ed5_CP.jpg"
     },
     {
       id: 5,
       title: "The Petridish Edition:4",
-      file: "./team/Ed4.pdf",
-      thumbnail: "./team/Edition4.jpg"
+      file: "/team/Ed4.pdf",
+      thumbnail: "/team/Edition4.jpg"
     },
     {
       id: 1,
       title: "The Petridish Edition:3",
-      file: "./team/Ed3.pdf",
-      thumbnail: "./team/Edition3.jpg"
+      file: "/team/Ed3.pdf",
+      thumbnail: "/team/Edition3.jpg"
     },
     {
       id: 2,
       title: "The Petridish Edition:2",
-      file: "./team/Ed2.pdf",
-      thumbnail: "./team/Edition1.jpg"
+      file: "/team/Ed2.pdf",
+      thumbnail: "/team/Edition1.jpg"
     },
     {
       id: 3,
       title: "The Petridish Edition:1",
-      file: "./team/Edi1.pdf",
-      thumbnail: "./team/Edition2.jpg"
+      file: "/team/Edi1.pdf",
+      thumbnail: "/team/Edition2.jpg"
     }
   ];
 

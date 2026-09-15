@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { Instagram, Linkedin } from 'lucide-react';
+import { ArrowUpRight, Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
 import { IconBrandGmail } from '@tabler/icons-react';
 import emailjs from '@emailjs/browser';
+import { Link } from 'react-router-dom';
 
 interface SocialLink {
   icon: React.ReactNode;
@@ -56,121 +57,158 @@ const Footer: React.FC = () => {
       
       setStatus('Message sent successfully!');
       setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
+    } catch {
       setStatus('Failed to send message. Please try again.');
     } finally {
       setSending(false);
     }
   };
 
+  const navigation = [
+    { label: 'Home', to: '/' },
+    { label: 'About us', to: '/about' },
+    { label: 'Our team', to: '/team' },
+    { label: 'Events', to: '/events' },
+    { label: 'Resources', to: '/resources' },
+  ];
+
   return (
-    <footer className="bg-gray-900 text-white border-t border-gray-800">
-      <div className="container mx-auto px-6 py-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Left Side */}
-          <div className="flex flex-col justify-center h-full items-center md:items-start">
-            <div className="mb-6">
-              <h2 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-                BioSoc DTU
-              </h2>
-            </div>
-
-            <div className="flex space-x-6 mb-6">
-              {socialLinks.map((social, index) => (
-                <a 
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transform transition-all duration-300 hover:scale-125 hover:-translate-y-2"
-                >
-                  <div className={`p-3 rounded-full bg-gradient-to-br ${social.bgClass} hover:shadow-lg ${social.shadowClass}`}>
-                    {social.icon}
-                  </div>
-                </a>
-              ))}
-            </div>
-
-            <div className="text-center md:text-left text-gray-400 text-sm">
-              <p className="mb-2">Contact us at: biosoc@dtu.ac.in</p>
-              <p>Delhi Technological University, Delhi - 110042</p>
-            </div>
-          </div>
-
-          {/* Right Side */}
-          <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-lg font-semibold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-              Having a Query?
-            </h3>
-            <form ref={form} onSubmit={handleSubmit} className="w-full max-w-md space-y-3">
+    <footer className="border-t border-white/10 bg-[#0b1121] text-white">
+      <div className="mx-auto max-w-7xl px-6 py-14 sm:px-10 lg:px-12 lg:py-20">
+        <div className="grid gap-12 lg:grid-cols-[1fr_0.7fr_1.25fr] lg:gap-16">
+          <section>
+            <div className="mb-6 flex items-center gap-3">
+              <img src="/team/Logo.svg" alt="BioSoc-DTU" className="h-12 w-12" />
               <div>
-                <input
-                  type="text"
-                  name="user_name"
-                  placeholder="Your Name"
-                  className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-500"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                />
+                <h2 className="text-xl font-bold">BioSoc-DTU</h2>
+                <p className="mt-1 text-xs uppercase tracking-[0.22em] text-slate-500">Official society of the department of biotechnology</p>
               </div>
-              <div>
-                <input
-                  type="email"
-                  name="user_email"
-                  placeholder="Your Email"
-                  className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-500"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                />
+            </div>
+            <p className="max-w-xs text-sm leading-7 text-slate-400">A student community for curious minds exploring biotechnology, research, and everything in between.</p>
+            <div className="mt-7 space-y-3 text-sm text-slate-400">
+              <div className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" /><span>Delhi Technological University<br />Delhi - 110042</span></div>
+              <a href="mailto:biosoc@dtu.ac.in" className="flex items-center gap-3 transition-colors hover:text-cyan-300"><Mail className="h-4 w-4 text-cyan-400" />biosoc@dtu.ac.in</a>
+            </div>
+          </section>
+
+          <nav aria-label="Footer navigation">
+            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Explore</p>
+            <div className="grid gap-3">
+              {navigation.map((item) => <Link key={item.to} to={item.to} className="group flex w-fit items-center gap-2 text-sm text-slate-300 transition-colors hover:text-white"><span>{item.label}</span><ArrowUpRight className="h-3.5 w-3.5 text-cyan-400 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" /></Link>)}
+            </div>
+            <p className="mb-4 mt-10 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Follow us</p>
+            <div className="flex gap-2">
+              {socialLinks.map((social, index) => <a key={index} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={`BioSoc-DTU ${index === 0 ? 'Instagram' : index === 1 ? 'LinkedIn' : 'Email'}`} className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition-all hover:-translate-y-1 hover:border-cyan-400/60 hover:bg-cyan-400/10 hover:text-cyan-300">{social.icon}</a>)}
+            </div>
+          </nav>
+
+          <section className="relative rounded-2xl border border-slate-800/80 bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-slate-800/90 p-8 backdrop-blur-sm lg:p-10">
+            {/* Decorative gradient line */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent" />
+            
+            {/* Header */}
+            <div className="mb-8">
+              <div className="mb-3 flex items-center gap-2.5">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
+                </span>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400">Get in touch</p>
               </div>
-              <div>
+              <h3 className="text-3xl font-bold tracking-tight text-white">Have a question?</h3>
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                Send us a note and we'll get back to you within 24-48 hours.
+              </p>
+            </div>
+
+            {/* Form */}
+            <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <label htmlFor="user_name" className="block text-sm font-medium text-slate-300">
+                    Name
+                  </label>
+                  <input
+                    id="user_name"
+                    type="text"
+                    name="user_name"
+                    placeholder="John Doe"
+                    aria-label="Name"
+                    className="w-full rounded-xl border border-slate-700/60 bg-slate-800/50 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all duration-200 focus:border-cyan-400/60 focus:bg-slate-800/80 focus:ring-4 focus:ring-cyan-400/10"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="user_email" className="block text-sm font-medium text-slate-300">
+                    Email
+                  </label>
+                  <input
+                    id="user_email"
+                    type="email"
+                    name="user_email"
+                    placeholder="john@example.com"
+                    aria-label="Email"
+                    className="w-full rounded-xl border border-slate-700/60 bg-slate-800/50 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all duration-200 focus:border-cyan-400/60 focus:bg-slate-800/80 focus:ring-4 focus:ring-cyan-400/10"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="message" className="block text-sm font-medium text-slate-300">
+                  Message
+                </label>
                 <textarea
+                  id="message"
                   name="message"
-                  placeholder="Your Message"
+                  placeholder="Tell us about your inquiry..."
+                  aria-label="Your message"
                   rows={4}
-                  className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-500"
+                  className="w-full resize-none rounded-xl border border-slate-700/60 bg-slate-800/50 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all duration-200 focus:border-cyan-400/60 focus:bg-slate-800/80 focus:ring-4 focus:ring-cyan-400/10"
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
                 />
               </div>
-              <button
-                type="submit"
-                disabled={sending}
-                className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
-              >
-                {sending ? 'Sending...' : 'Send Message'}
-              </button>
+
+              <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-2 text-xs text-slate-500">
+                  <Mail className="h-4 w-4 text-cyan-400" />
+                  <span>We respect your privacy and never share your information.</span>
+                </div>
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-cyan-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/25 transition-all duration-200 hover:shadow-xl hover:shadow-cyan-500/40 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:shadow-lg sm:w-auto"
+                >
+                  <span>{sending ? 'Sending...' : 'Send Message'}</span>
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </button>
+              </div>
+
               {status && (
-                <p className={`text-sm text-center ${status.includes('success') ? 'text-green-400' : 'text-red-400'}`}>
+                <div
+                  className={`rounded-xl border px-4 py-3.5 text-sm font-medium ${
+                    status.includes('success')
+                      ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
+                      : 'border-rose-500/30 bg-rose-500/10 text-rose-300'
+                  }`}
+                >
                   {status}
-                </p>
+                </div>
               )}
             </form>
-          </div>
+          </section>
         </div>
 
-        <div className="mt-6 text-xs text-gray-500 text-center">
-          © {new Date().getFullYear()} BioSoc DTU. All rights reserved.
+        <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} BioSoc-DTU. All rights reserved.</p>
+          <p>Made with <span className="text-cyan-400">♥</span> by <a href="https://www.linkedin.com/in/md-azhar-ansari-abb39228a/" target="_blank" rel="noopener noreferrer" className="text-slate-300 transition-colors hover:text-white">Azhar Ansari</a></p>
         </div>
-        
-        {/* Add this new div */}
-        <div className="mt-4 text-sm text-gray-400 text-center">
-          <p>
-            Made with ❤️ by{" "}
-            <a 
-              href="https://www.linkedin.com/in/md-azhar-ansari-abb39228a/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-white hover:text-blue-400 transition-colors duration-300 hover:underline"
-            >
-              Azhar Ansari
-            </a>
-          </p>
-        </div>
-
       </div>
     </footer>
   );
