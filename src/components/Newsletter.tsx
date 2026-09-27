@@ -14,19 +14,19 @@ export const Newsletter: React.FC = () => {
 
   const pdfs: PdfItem[] = [
     {
-      id: 4,
+      id: 5,
       title: "The Petridish Edition:5",
       file: "/team/Ed5.pdf",
       thumbnail: "/team/Ed5_CP.jpg"
     },
     {
-      id: 5,
+      id: 4,
       title: "The Petridish Edition:4",
       file: "/team/Ed4.pdf",
       thumbnail: "/team/Edition4.jpg"
     },
     {
-      id: 1,
+      id: 3,
       title: "The Petridish Edition:3",
       file: "/team/Ed3.pdf",
       thumbnail: "/team/Edition3.jpg"
@@ -38,9 +38,9 @@ export const Newsletter: React.FC = () => {
       thumbnail: "/team/Edition1.jpg"
     },
     {
-      id: 3,
+      id: 1,
       title: "The Petridish Edition:1",
-      file: "/team/Edi1.pdf",
+      file: "/team/Ed1.pdf",
       thumbnail: "/team/Edition2.jpg"
     }
   ];
