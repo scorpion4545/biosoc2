@@ -10,6 +10,7 @@ import {
   PageFrame,
   ResourcesPage,
   TeamPage,
+  AdminPage,
 } from './app/routes';
 
 function App() {
@@ -38,6 +39,8 @@ function App() {
           <Route path="/events" element={<EventsPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
         </Route>
+        {/* Admin route without navbar/footer */}
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
       <Analytics />
     </BrowserRouter>
