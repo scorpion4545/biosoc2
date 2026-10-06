@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { DEFAULT_RECRUITMENT_URL, normalizeRecruitmentUrl } from '../lib/recruitment';
+
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3001').replace(/\/+$/, '');
 
 interface Speaker {
   name: string;
@@ -159,6 +163,26 @@ const UpcomingEventsSection: React.FC = () => {
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
   const [visibleEvents, setVisibleEvents] = useState<Event[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [recruitmentUrl, setRecruitmentUrl] = useState(DEFAULT_RECRUITMENT_URL);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchRecruitmentUrl = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/api/settings/recruitment-link`);
+        const savedUrl = normalizeRecruitmentUrl(String(response.data?.data?.value || ''));
+        if (isMounted && savedUrl) setRecruitmentUrl(savedUrl);
+      } catch (error) {
+        console.error('Error fetching recruitment link:', error);
+      }
+    };
+
+    void fetchRecruitmentUrl();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   
   // Simulating data fetching - replace this with your actual data fetching logic
   useEffect(() => {
@@ -219,7 +243,7 @@ const UpcomingEventsSection: React.FC = () => {
             Join our team and be part of the innovation! Apply now through our official recruitment form.
           </p>
           <a 
-            href="https://docs.google.com/forms/d/e/1FAIpQLSe9x4ZHtyQhsN88RHake3Qpr_J0emOWKpGuvBUSdwlQtrK_7Q/viewform?usp=sf_link"
+            href={recruitmentUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium py-2 px-6 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300"

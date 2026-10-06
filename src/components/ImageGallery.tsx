@@ -79,10 +79,10 @@ export const ImageGallery = () => {
             ABOUT US
           </h1>
           <p className="text-base leading-relaxed text-gray-300 md:text-xl md:leading-loose">
-            BioSoc-DTU, is the official society of the department of biotechnology of Delhi Technological University.
-            BioSoc-DTU is not just another society but an agile collective run by a team of passionate members, dedicated to nurturing a supportive environment for researchers, students and professionals, and bridging the gap between industry and academia.
-            Leveraging its members' expertise within the various domains covered within biotechnology and natural sciences, BioSoc-DTU also aims to inform the general public about the latest and greatest in biotechnology, strongly aligning with its altruistic ideals.
-            Emphasizing the integration of biology and promoting a research-oriented outlook, BioSoc-DTU enhances students' scientific aptitude through discussions, sessions, and competitions, contributing to a dynamic learning experience.
+            BioSoc-DTU is the official society of the Department of Biotechnology at Delhi Technological University. 
+            As an agile collective driven by passionate members, we foster a supportive environment for researchers, students, and professionals while bridging the gap between industry and academia. 
+            Leveraging our members' expertise across various domains of biotechnology and natural sciences, BioSoc-DTU endeavors to inform the broader community about cutting-edge developments in biotechnology, aligning with our mission of knowledge dissemination and social impact. 
+            By emphasizing the integration of biological sciences and promoting a research-oriented outlook, BioSoc-DTU enhances students' scientific aptitude through discussions, workshops, and competitions, thereby contributing to a dynamic and enriching learning experience.
           </p>
         </motion.div>
       </section>

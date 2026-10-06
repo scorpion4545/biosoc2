@@ -11,7 +11,9 @@ import { FacultySection } from "../components/FacultySection";
 import CouncilMembers from "../components/CouncilMembers";
 import { Newsletter } from "../components/Newsletter";
 import { InfiniteMovingSponsors } from "../components/InfiniteMovingSponsors";
+import { OurDepartments } from "../components/OurDepartments";
 import Footer from "../components/Footer";
+import AdminPanelV2 from "../components/AdminPanelV2";
 
 export function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -58,6 +60,7 @@ export function HomePage() {
       <LandingPage />
       <ImageGallery />
       <WhyBioSoc />
+      <OurDepartments />
       <InfiniteMovingSponsors />
       <UpcomingEventsSection />
       <PastEvents />
@@ -128,4 +131,8 @@ export function ResourcesPage() {
       <Footer />
     </>
   );
+}
+
+export function AdminPage() {
+  return <AdminPanelV2 />;
 }

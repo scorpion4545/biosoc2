@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { ArrowUpRight, Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
 import { IconBrandGmail } from '@tabler/icons-react';
-import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:3001/api';
 
 interface SocialLink {
   icon: React.ReactNode;
@@ -48,16 +50,17 @@ const Footer: React.FC = () => {
     setStatus('');
 
     try {
-      await emailjs.sendForm(
-        'service_hugy1ch',
-        'template_hubmrbi',
-        form.current!,
-        'PaOONK9S4J-eBuXYs'
-      );
+      // Send to backend API
+      await axios.post(`${API_URL}/enquiries`, {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+      });
       
-      setStatus('Message sent successfully!');
+      setStatus('Message sent successfully! We\'ll get back to you soon.');
       setFormData({ name: '', email: '', message: '' });
-    } catch {
+    } catch (error) {
+      console.error('Error submitting enquiry:', error);
       setStatus('Failed to send message. Please try again.');
     } finally {
       setSending(false);
