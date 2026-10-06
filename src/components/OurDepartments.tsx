@@ -309,50 +309,6 @@ const DepartmentPanel: React.FC<DepartmentPanelProps> = ({ department, shouldRed
   );
 };
 
-interface ConnectingLineProps {
-  activeIndex: number;
-  shouldReduceMotion: boolean;
-}
-
-const ConnectingLine: React.FC<ConnectingLineProps> = ({ activeIndex, shouldReduceMotion }) => {
-  const pathVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: {
-      pathLength: 1,
-      opacity: 1,
-      transition: {
-        pathLength: { duration: shouldReduceMotion ? 0 : 0.6, ease: 'easeInOut' },
-        opacity: { duration: 0.2 },
-      },
-    },
-  };
-
-  // Different path for each hexagon position
-  const paths = [
-    'M 200 60 L 280 60', // Top left
-    'M 200 140 L 280 100', // Bottom left  
-    'M 200 60 L 280 100', // Top right
-    'M 200 140 L 280 140', // Bottom right
-  ];
-
-  return (
-    <svg className="absolute left-0 top-0 w-full h-full pointer-events-none hidden lg:block" style={{ zIndex: 1 }}>
-      <motion.path
-        d={paths[activeIndex]}
-        stroke="#C7822B"
-        strokeWidth="2"
-        fill="none"
-        strokeLinecap="round"
-        strokeDasharray="4 4"
-        variants={pathVariants}
-        initial="hidden"
-        animate="visible"
-        key={activeIndex}
-      />
-    </svg>
-  );
-};
-
 export const OurDepartments: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -361,8 +317,8 @@ export const OurDepartments: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const progressRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Auto-cycle logic
   useEffect(() => {
