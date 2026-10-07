@@ -1,39 +1,141 @@
 @import "tailwindcss";
-/* Remove duplicate import and fix Tailwind directives order */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "San Francisco", system-ui, sans-serif;
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
     font-size: 17px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    color-scheme: dark;
   }
 }
 
 body {
-  background-color: #0B1121;
+  background-color: #030712;
+  color: #f3f4f6;
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "San Francisco", system-ui, sans-serif;
-  font-size: 1.05rem;
+    radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 100% 50%, rgba(6, 182, 212, 0.10) 0%, transparent 40%),
+    radial-gradient(circle at 0% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  overflow-x: hidden;
 }
 
-.bento-grid {
-  background-color: #0B1121;
+/* 3D Perspective & Transform Utilities */
+.perspective-1000 {
+  perspective: 1000px;
 }
 
-.bento-card {
-  background-color: rgba(255, 255, 255, 0.05);
-  background-image: linear-gradient(
-    to bottom right,
-    rgba(255, 255, 255, 0.08),
-    rgba(255, 255, 255, 0.03)
-  );
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.translate-z-0 {
+  transform: translateZ(0px);
+}
+
+.translate-z-10 {
+  transform: translateZ(10px);
+}
+
+.translate-z-20 {
+  transform: translateZ(20px);
+}
+
+.translate-z-30 {
+  transform: translateZ(30px);
+}
+
+.translate-z-50 {
+  transform: translateZ(50px);
+}
+
+/* Glassmorphism & 3D Glowing Styles */
+.glass-panel-3d {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 20px 40px -15px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
+    0 0 20px -5px rgba(16, 185, 129, 0.15);
+}
+
+.glass-panel-3d:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
+    0 0 30px 2px rgba(6, 182, 212, 0.25);
+}
+
+.bio-card-glow {
+  position: relative;
+}
+
+.bio-card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(6, 182, 212, 0.4), rgba(139, 92, 246, 0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.bio-card-glow:hover::before {
+  opacity: 1;
+}
+
+/* Animations */
+@keyframes float3d {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotateX(2deg) rotateY(-2deg);
+  }
+}
+
+.animate-float-3d {
+  animation: float3d 6s ease-in-out infinite;
+}
+
+@keyframes bioPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-bio-pulse {
+  animation: bioPulse 4s ease-in-out infinite;
 }
 
 /* Scrollbar Styles */
@@ -44,23 +146,21 @@ body {
   }
 
   ::-webkit-scrollbar-track {
-    background: #0B1121;
-    border-radius: 8px;
+    background: #030712;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #06b6d4;
+    background: linear-gradient(180deg, #10b981, #06b6d4);
     border-radius: 8px;
-    border: 2px solid #0B1121;
+    border: 2px solid #030712;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #0891b2;
+    background: linear-gradient(180deg, #059669, #0891b2);
   }
 }
 
-/* Firefox Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #06b6d4 #0B1121;
+  scrollbar-color: #06b6d4 #030712;
 }

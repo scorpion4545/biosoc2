@@ -33,77 +33,87 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      setIsScrolled(window.scrollY > 80);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className={`fixed transition-all duration-300 z-50 ${
+    <div className={`fixed transition-all duration-500 z-50 ${
       isScrolled 
       ? 'top-4 left-4 right-4 w-auto flex justify-between items-center' 
       : 'top-6 left-1/2 -translate-x-1/2 w-auto'
     }`}>
-      <nav className={`transition-all duration-300 ${
+      <nav className={`transition-all duration-500 ${
         isScrolled 
         ? 'bg-transparent flex w-full justify-between items-center px-0' 
-        : 'bg-black/20 backdrop-blur-lg border border-white/10 rounded-full px-8'
+        : 'bg-slate-950/70 backdrop-blur-2xl border border-emerald-500/30 rounded-full px-8 py-1.5 shadow-[0_15px_35px_rgba(0,0,0,0.8)] bio-card-glow'
       }`}>
         <div className={`flex items-center justify-between ${isScrolled ? 'w-full' : 'h-16'}`}>
           {/* Logo */}
           <div className={`flex items-center transition-all duration-300`}>
-            <Link to="/" onClick={() => setIsOpen(false)} className="cursor-pointer">
+            <Link to="/" onClick={() => setIsOpen(false)} className="cursor-pointer group">
               <img 
                 src="/team/Logo.svg"
                 alt="BioSoc Logo" 
-                className={`transition-all duration-300 hover:scale-110 ${
-                  isScrolled ? 'h-12 w-12' : 'h-18 w-18'
+                className={`transition-all duration-300 group-hover:scale-110 drop-shadow-[0_0_12px_rgba(16,185,129,0.5)] ${
+                  isScrolled ? 'h-12 w-12' : 'h-16 w-16'
                 } mr-8`}
               />
             </Link>
           </div>
 
           {/* Desktop Menu */}
-          <div className={`hidden md:flex items-center transition-all duration-300 ${
-            isScrolled ? 'md:hidden' : 'space-x-16 ml-8'
+          <div className={`hidden md:flex items-center h-full transition-all duration-300 ${
+            isScrolled ? 'md:hidden' : 'space-x-12 ml-6'
           }`}>
             {menuItems.map((item) => (
-              <div key={item.title} className="relative">
+              <div key={item.title} className="relative h-full flex items-center">
                 {('items' in item) ? (
                   // Dropdown Menu
                   <div 
-                    className="relative"
+                    className="relative h-full flex items-center"
                     onMouseEnter={() => setActiveDropdown(item.title)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
                     <button 
-                      className={`flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-300 text-lg relative`}
+                      className={`flex items-center space-x-1.5 text-slate-300 hover:text-emerald-300 transition-colors duration-300 text-base font-semibold relative cursor-pointer py-2 ${
+                        activeDropdown === item.title ? 'text-emerald-300' : ''
+                      }`}
                     >
                       <span>{item.title}</span>
-                      <ChevronDown size={18} />
+                      <ChevronDown 
+                        size={16} 
+                        className={`text-emerald-400 transition-transform duration-300 ${
+                          activeDropdown === item.title ? 'rotate-180 text-emerald-300' : ''
+                        }`} 
+                      />
                     </button>
                     
                     <AnimatePresence>
                       {activeDropdown === item.title && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 py-2 w-52 bg-black/90 backdrop-blur-lg border border-white/10 rounded-xl shadow-xl"
+                          initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                          transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-56 z-50"
                         >
-                          {item.items?.map((subItem) => (
-                            <NavLink
-                              key={subItem.title}
-                              to={subItem.href}
-                              onClick={() => { setIsOpen(false); setActiveDropdown(null); }}
-                              className={({ isActive }) => `block w-full text-left px-4 py-3 text-base ${
-                                isActive ? 'text-white bg-white/10' : 'text-gray-300 hover:text-white hover:bg-white/10'
-                              } transition-colors duration-300`}
-                            >
-                              {subItem.title}
-                            </NavLink>
-                          ))}
+                          <div className="relative py-2 px-1.5 bg-slate-950/95 backdrop-blur-2xl border border-emerald-500/30 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.9)] bio-card-glow overflow-hidden before:absolute before:-top-4 before:inset-x-0 before:h-4">
+                            {item.items?.map((subItem) => (
+                              <NavLink
+                                key={subItem.title}
+                                to={subItem.href}
+                                onClick={() => { setIsOpen(false); setActiveDropdown(null); }}
+                                className={({ isActive }) => `block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium ${
+                                  isActive ? 'text-emerald-300 bg-emerald-500/20' : 'text-slate-300 hover:text-white hover:bg-emerald-500/15'
+                                } transition-colors duration-200`}
+                              >
+                                {subItem.title}
+                              </NavLink>
+                            ))}
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -112,7 +122,7 @@ export const Navbar = () => {
                   // Regular Menu Item
                   <NavLink
                     to={item.href}
-                    className={({ isActive }) => `${isActive ? 'text-white' : 'text-gray-300'} hover:text-white transition-colors duration-300 text-lg relative`}
+                    className={({ isActive }) => `${isActive ? 'text-emerald-300 font-bold' : 'text-slate-300'} hover:text-emerald-300 transition-colors duration-300 text-base font-semibold relative py-2`}
                   >
                     {item.title}
                   </NavLink>
@@ -125,9 +135,9 @@ export const Navbar = () => {
           <div className={`${isScrolled ? 'block' : 'md:hidden'}`}>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white bg-black/40 backdrop-blur-lg p-3 rounded-full"
+              className="text-slate-300 hover:text-white bg-slate-950/80 border border-emerald-500/40 backdrop-blur-2xl p-3 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.3)]"
             >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+              {isOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
           </div>
         </div>
@@ -136,15 +146,15 @@ export const Navbar = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="absolute top-full right-0 mt-2 w-64 bg-black/90 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden"
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              className="absolute top-full right-0 mt-3 w-64 bg-slate-950/95 backdrop-blur-2xl border border-emerald-500/30 rounded-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] overflow-hidden bio-card-glow"
             >
               {menuItems.map((item) => (
                 'items' in item ? (
                   <div key={item.title}>
-                    <div className="px-4 py-3 text-gray-300 bg-white/5 text-lg">
+                    <div className="px-5 py-3 text-emerald-400 font-mono text-sm uppercase font-semibold bg-emerald-500/10">
                       {item.title}
                     </div>
                     {item.items?.map((subItem) => (
@@ -152,8 +162,8 @@ export const Navbar = () => {
                         key={subItem.title}
                         to={subItem.href}
                         onClick={() => { setIsOpen(false); setActiveDropdown(null); }}
-                        className={({ isActive }) => `block w-full text-left px-6 py-3 text-base ${
-                          isActive ? 'text-white bg-white/10' : 'text-gray-300 hover:text-white hover:bg-white/10'
+                        className={({ isActive }) => `block w-full text-left px-6 py-3 text-sm font-medium ${
+                          isActive ? 'text-emerald-300 bg-emerald-500/20' : 'text-slate-300 hover:text-white hover:bg-emerald-500/10'
                         }`}
                       >
                         {subItem.title}
@@ -165,8 +175,8 @@ export const Navbar = () => {
                     key={item.title}
                     to={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={({ isActive }) => `block w-full text-left px-4 py-3 text-base ${
-                      isActive ? 'text-white bg-white/10' : 'text-gray-300 hover:text-white hover:bg-white/10'
+                    className={({ isActive }) => `block w-full text-left px-5 py-3.5 text-sm font-medium ${
+                      isActive ? 'text-emerald-300 bg-emerald-500/20' : 'text-slate-300 hover:text-white hover:bg-emerald-500/10'
                     }`}
                   >
                     {item.title}
@@ -179,4 +189,4 @@ export const Navbar = () => {
       </nav>
     </div>
   );
-}
+};

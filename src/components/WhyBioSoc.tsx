@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, Variants } from "framer-motion";
+import { TiltCard3D } from "./ui/tilt-card-3d";
 
 interface Card {
   title: string;
@@ -50,18 +51,18 @@ export const WhyBioSoc: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 px-4" id="why-biosoc">
+    <section className="py-24 px-4 relative z-10 perspective-1000" id="why-biosoc">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="max-w-7xl mx-auto"
       >
-        <h2 className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl mb-16">
+        <h2 className="mt-8 bg-gradient-to-r from-emerald-300 via-cyan-200 to-indigo-300 py-4 bg-clip-text text-center text-4xl font-extrabold tracking-tight text-transparent md:text-7xl mb-16 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
           Why BioSoc-DTU?
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 preserve-3d">
           {cards.map((card, index) => (
             <motion.div
               key={card.title}
@@ -70,44 +71,44 @@ export const WhyBioSoc: React.FC = () => {
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group relative overflow-hidden rounded-2xl border border-slate-700/50 bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-slate-900/90 p-8 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/10"
+              className="h-full"
             >
-              {/* Animated gradient border */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/0 via-cyan-500/50 to-purple-500/0 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
-              
-              {/* Top gradient line */}
-              <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
-              
-              {/* Background Logo */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] transition-opacity duration-500 group-hover:opacity-[0.06]">
-                <img 
-                  src="/team/Logo.svg"
-                  alt="BioSoc Logo" 
-                  className="h-4/5 w-4/5 object-contain"
-                />
-              </div>
-
-              {/* Corner accent */}
-              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-cyan-500/10 blur-2xl transition-all duration-500 group-hover:bg-cyan-500/20" />
-              
-              <div className="relative z-10">
-                {/* Icon with background */}
-                <div className="mb-6 inline-flex rounded-xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10 p-4 text-4xl shadow-lg ring-1 ring-cyan-500/20 transition-all duration-300 group-hover:scale-110 group-hover:shadow-cyan-500/30">
-                  {card.icon}
+              <TiltCard3D
+                maxTilt={12}
+                scale={1.03}
+                glareColor="rgba(16, 185, 129, 0.3)"
+                className="h-full group border border-emerald-500/20 bg-slate-950/70 p-8 shadow-[0_20px_40px_rgba(0,0,0,0.7)] backdrop-blur-2xl bio-card-glow transition-all duration-300"
+              >
+                {/* Background Logo */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] transition-opacity duration-500 group-hover:opacity-[0.08] pointer-events-none">
+                  <img 
+                    src="/team/Logo.svg"
+                    alt="BioSoc Logo" 
+                    className="h-4/5 w-4/5 object-contain"
+                  />
                 </div>
-                
-                <h3 className="mb-4 bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-2xl font-bold text-transparent">
-                  {card.title}
-                </h3>
-                
-                <p className="leading-relaxed text-slate-300 transition-colors duration-300 group-hover:text-slate-200">
-                  {card.description}
-                </p>
 
-                {/* Bottom decorative line */}
-                <div className="mt-6 h-1 w-0 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 transition-all duration-500 group-hover:w-full" />
-              </div>
+                {/* Corner bioluminescent glow */}
+                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-emerald-500/10 blur-2xl transition-all duration-500 group-hover:bg-cyan-500/25 pointer-events-none" />
+                
+                <div className="relative z-10 preserve-3d">
+                  {/* Icon with 3D depth floating */}
+                  <div className="mb-6 inline-flex rounded-2xl bg-gradient-to-br from-emerald-500/20 via-cyan-500/20 to-indigo-500/20 p-4 text-4xl shadow-lg ring-1 ring-emerald-500/30 transition-all duration-300 group-hover:translate-z-20 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(16,185,129,0.4)]">
+                    {card.icon}
+                  </div>
+                  
+                  <h3 className="mb-4 bg-gradient-to-r from-emerald-300 via-cyan-300 to-indigo-300 bg-clip-text text-2xl font-bold text-transparent transition-all group-hover:translate-z-10">
+                    {card.title}
+                  </h3>
+                  
+                  <p className="leading-relaxed text-slate-300 transition-colors duration-300 group-hover:text-slate-100 text-base">
+                    {card.description}
+                  </p>
+
+                  {/* Bottom glowing line */}
+                  <div className="mt-8 h-1 w-0 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 transition-all duration-500 group-hover:w-full shadow-[0_0_10px_#10b981]" />
+                </div>
+              </TiltCard3D>
             </motion.div>
           ))}
         </div>

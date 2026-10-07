@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Outlet, useLocation } from "react-router-dom";
 import LandingPage from "../components/LandingPage";
 import { Navbar } from "../components/navbar";
-import { ImageGallery } from "../components/ImageGallery";
+import { ImageGallery, AboutSection } from "../components/ImageGallery";
 import { WhyBioSoc } from "../components/WhyBioSoc";
 import UpcomingEventsSection from "../components/UpcomingEventsSection";
 import PastEvents from "../components/PastEvents";
@@ -22,9 +22,9 @@ export function ScrollToTop() {
     const frame = window.requestAnimationFrame(() => {
       const target = hash ? document.querySelector(hash) : null;
       if (target) {
-        target.scrollIntoView({ behavior: "auto" });
+        target.scrollIntoView({ behavior: "smooth" });
       } else {
-        window.scrollTo({ top: 0, behavior: "auto" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     });
 
@@ -43,10 +43,10 @@ export function PageFrame() {
       <Navbar />
       <motion.main
         key={pathname}
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, ease: "easeOut" }}
-        className="pt-24"
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="pt-20 overflow-x-hidden"
       >
         <Outlet />
       </motion.main>
@@ -58,12 +58,13 @@ export function HomePage() {
   return (
     <>
       <LandingPage />
-      <ImageGallery />
+      <AboutSection />
       <WhyBioSoc />
+      <ImageGallery />
       <OurDepartments />
-      <InfiniteMovingSponsors />
       <UpcomingEventsSection />
       <PastEvents />
+      <InfiniteMovingSponsors />
       <Footer />
     </>
   );
@@ -73,13 +74,14 @@ export function AboutPage() {
   return (
     <>
       <section className="px-4 pt-16 text-center md:pt-24">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-cyan-400">About BioSoc-DTU</p>
-        <h1 className="bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text text-5xl font-medium tracking-tight text-transparent md:text-7xl">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-400 font-mono">About BioSoc-DTU</p>
+        <h1 className="bg-gradient-to-r from-emerald-300 via-cyan-200 to-indigo-300 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent md:text-7xl drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
           Biology, beyond the textbook
         </h1>
       </section>
-      <ImageGallery />
+      <AboutSection />
       <WhyBioSoc />
+      <ImageGallery />
       <Footer />
     </>
   );
@@ -89,8 +91,8 @@ export function TeamPage() {
   return (
     <>
       <section className="px-4 pt-16 text-center md:pt-24">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-cyan-400">The people behind BioSoc-DTU</p>
-        <h1 className="bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text text-5xl font-medium tracking-tight text-transparent md:text-7xl">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-400 font-mono">The people behind BioSoc-DTU</p>
+        <h1 className="bg-gradient-to-r from-emerald-300 via-cyan-200 to-indigo-300 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent md:text-7xl drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
           Meet the team
         </h1>
       </section>
@@ -105,8 +107,8 @@ export function EventsPage() {
   return (
     <>
       <section className="px-4 pt-16 text-center md:pt-24">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-cyan-400">Learn, connect, experiment</p>
-        <h1 className="bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text text-5xl font-medium tracking-tight text-transparent md:text-7xl">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-400 font-mono">Learn, connect, experiment</p>
+        <h1 className="bg-gradient-to-r from-emerald-300 via-cyan-200 to-indigo-300 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent md:text-7xl drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
           Events and experiences
         </h1>
       </section>
@@ -121,8 +123,8 @@ export function ResourcesPage() {
   return (
     <>
       <section className="px-4 pt-16 text-center md:pt-24">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-cyan-400">Stay in the loop</p>
-        <h1 className="bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text text-5xl font-medium tracking-tight text-transparent md:text-7xl">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-400 font-mono">Stay in the loop</p>
+        <h1 className="bg-gradient-to-r from-emerald-300 via-cyan-200 to-indigo-300 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent md:text-7xl drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
           Resources and updates
         </h1>
       </section>

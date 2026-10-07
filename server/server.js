@@ -5,6 +5,7 @@ import connectDB from './config/database.js';
 import councilMembersRoutes from './routes/councilMembers.js';
 import enquiriesRoutes from './routes/enquiries.js';
 import settingsRoutes from './routes/settings.js';
+import eventsRoutes from './routes/events.js';
 
 // Load environment variables
 dotenv.config();
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/council-members', councilMembersRoutes);
 app.use('/api/enquiries', enquiriesRoutes);
 app.use('/api/settings', settingsRoutes);
+app.use('/api/events', eventsRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

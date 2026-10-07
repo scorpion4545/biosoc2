@@ -19,7 +19,7 @@ const departments: Department[] = [
     shortLabel: 'Events & PR',
     description: 'The PR & Events department is the organisational backbone behind many of the society\'s highly-successful events. It also spreads word across colleges and universities about upcoming events and maintains the society\'s presence across various premier institutions.',
     tags: ['Events', 'Publicity', 'Campus Reach'],
-    color: '#C7822B',
+    color: '#10b981',
     icon: Calendar,
   },
   {
@@ -28,7 +28,7 @@ const departments: Department[] = [
     shortLabel: 'Corporate & Outreach',
     description: 'The corporate department maintains and expands the society\'s relations with its corporate partners. It brings in the corporate patronage needed for the society\'s events and helps bridge the gap between academia and industry.',
     tags: ['Partnerships', 'Sponsorship', 'Industry Links'],
-    color: '#1E7FC0',
+    color: '#06b6d4',
     icon: Briefcase,
   },
   {
@@ -37,7 +37,7 @@ const departments: Department[] = [
     shortLabel: 'Design & Technical',
     description: 'The design department is the driving force behind the society\'s technically-demanding endeavors, such as designing social media posts, attractive posters, and executing other technical tasks with precision and speed.',
     tags: ['Posters', 'Social Media', 'Execution'],
-    color: '#2DD4BF',
+    color: '#8b5cf6',
     icon: Palette,
   },
   {
@@ -46,7 +46,7 @@ const departments: Department[] = [
     shortLabel: 'Research & Content',
     description: 'The content department manages the posts and articles BioSoc-DTU shares on Instagram, LinkedIn and other platforms for a growing audience of biotech enthusiasts, and handles the ideation of all content.',
     tags: ['Articles', 'Ideation', 'Social Media'],
-    color: '#3BB04A',
+    color: '#ec4899',
     icon: BookOpen,
   },
 ];
@@ -80,121 +80,132 @@ const Hexagon: React.FC<HexagonProps> = ({
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
-    const deltaX = (mousePosition.x - centerX) / 100;
-    const deltaY = (mousePosition.y - centerY) / 100;
+    const deltaX = (mousePosition.x - centerX) / 80;
+    const deltaY = (mousePosition.y - centerY) / 80;
     
     setTilt({ x: deltaY * -1, y: deltaX });
   }, [mousePosition, shouldReduceMotion]);
 
   const Icon = department.icon;
-  const size = 220; // Increased by ~30%
-  const points = Array.from({ length: 6 }, (_, i) => {
-    const angle = (Math.PI / 3) * i - Math.PI / 6;
-    const x = size / 2 + (size / 2) * Math.cos(angle);
-    const y = size / 2 + (size / 2) * Math.sin(angle);
-    return `${x},${y}`;
-  }).join(' ');
+  // Mathematical Flat-topped Regular Honeycomb Hexagon
+  const width = 195;
+  const height = 168.87; // width * sqrt(3)/2
+
+  const points = `${width * 0.25},0 ${width * 0.75},0 ${width},${height * 0.5} ${width * 0.75},${height} ${width * 0.25},${height} 0,${height * 0.5}`;
 
   return (
     <motion.button
       ref={hexRef}
-      onClick={onClick}
-      className="relative focus:outline-none group"
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+      type="button"
+      className={`relative focus:outline-none group cursor-pointer preserve-3d transition-all duration-300 ${
+        isActive ? 'z-30 scale-105' : 'z-10 hover:z-20'
+      }`}
       style={{
-        width: size,
-        height: size,
+        width: width,
+        height: height,
+        clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
       }}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ 
         opacity: 1, 
-        scale: 1,
+        scale: isActive ? 1.05 : 1,
         rotateX: shouldReduceMotion ? 0 : tilt.x,
         rotateY: shouldReduceMotion ? 0 : tilt.y,
       }}
       transition={{
         delay: index * 0.1,
-        duration: shouldReduceMotion ? 0 : 0.5,
-        rotateX: { duration: 0.3 },
-        rotateY: { duration: 0.3 },
+        duration: shouldReduceMotion ? 0 : 0.4,
       }}
-      whileHover={shouldReduceMotion ? {} : { scale: 1.05, y: -5 }}
+      whileHover={{ scale: 1.08 }}
+      whileTap={{ scale: 0.95 }}
       aria-selected={isActive}
       role="tab"
     >
       <svg
-        width={size}
-        height={size}
-        viewBox={`0 0 ${size} ${size}`}
-        className="absolute inset-0"
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        className="absolute inset-0 pointer-events-none filter drop-shadow-[0_15px_35px_rgba(0,0,0,0.8)]"
       >
         <defs>
           <linearGradient id={`grad-${department.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={department.color} stopOpacity={isActive ? 0.3 : 0.05} />
-            <stop offset="100%" stopColor={department.color} stopOpacity={isActive ? 0.15 : 0.02} />
+            <stop offset="0%" stopColor={department.color} stopOpacity={isActive ? 0.75 : 0.3} />
+            <stop offset="100%" stopColor="#030712" stopOpacity={isActive ? 0.95 : 0.75} />
           </linearGradient>
           <filter id={`glow-${department.id}`}>
-            <feGaussianBlur stdDeviation={isActive ? 4 : 2} result="coloredBlur"/>
+            <feGaussianBlur stdDeviation={isActive ? 8 : 4} result="coloredBlur"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
             </feMerge>
           </filter>
-          {/* Progress ring */}
-          <circle
-            id={`progress-path-${department.id}`}
-            cx={size / 2}
-            cy={size / 2}
-            r={(size / 2) + 8}
-            fill="none"
-            strokeWidth="2"
-          />
         </defs>
-        
-        {/* Progress ring (only for active) */}
-        {isActive && progress > 0 && (
-          <motion.circle
-            cx={size / 2}
-            cy={size / 2}
-            r={(size / 2) + 8}
-            fill="none"
-            stroke={department.color}
-            strokeWidth="2"
-            strokeLinecap="round"
-            style={{
-              pathLength: progress / 100,
-              rotate: -90,
-              transformOrigin: 'center',
-            }}
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: progress / 100 }}
-            transition={{ duration: 0.1, ease: 'linear' }}
-          />
-        )}
 
-        {/* Hexagon */}
+        {/* Flat-topped Regular Hexagon Background */}
         <polygon
           points={points}
           fill={`url(#grad-${department.id})`}
           stroke={department.color}
-          strokeWidth={isActive ? 2 : 1}
+          strokeWidth={isActive ? 3 : 1.5}
+          strokeOpacity={0.6}
           filter={`url(#glow-${department.id})`}
           className="transition-all duration-300"
         />
+
+        {/* Animated Bioluminescent Neon Laser Border Around Comb */}
+        <motion.polygon
+          points={points}
+          fill="none"
+          stroke={department.color}
+          strokeWidth={isActive ? 3.5 : 2}
+          strokeDasharray="130 450"
+          animate={{
+            strokeDashoffset: [0, -580],
+          }}
+          transition={{
+            duration: isActive ? 3.5 : 6,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          style={{
+            filter: `drop-shadow(0 0 ${isActive ? '12px' : '6px'} ${department.color})`,
+          }}
+        />
+
+        {/* Animated progress ring on active */}
+        {isActive && progress > 0 && (
+          <motion.polygon
+            points={points}
+            fill="none"
+            stroke={department.color}
+            strokeWidth="3.5"
+            strokeDasharray="750"
+            strokeDashoffset={750 - (750 * progress) / 100}
+            className="transition-all duration-100"
+            style={{
+              filter: `drop-shadow(0 0 10px ${department.color})`,
+            }}
+          />
+        )}
         
-        {/* Breathing pulse on active */}
+        {/* Breathing glow border */}
         {isActive && !shouldReduceMotion && (
           <motion.polygon
             points={points}
             fill="none"
             stroke={department.color}
-            strokeWidth="1"
-            opacity="0.5"
+            strokeWidth="2.5"
+            opacity="0.6"
             animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.5, 0.2, 0.5],
+              scale: [1, 1.05, 1],
+              opacity: [0.7, 0.2, 0.7],
             }}
             transition={{
-              duration: 2,
+              duration: 2.5,
               repeat: Infinity,
               ease: 'easeInOut',
             }}
@@ -204,17 +215,20 @@ const Hexagon: React.FC<HexagonProps> = ({
       </svg>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
+      <div className="relative z-20 flex flex-col items-center justify-center h-full px-4 preserve-3d pointer-events-none">
         <Icon
-          size={32}
-          style={{ color: department.color }}
-          className={`mb-2 transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-60'}`}
+          size={36}
+          style={{
+            color: department.color,
+            filter: isActive ? `drop-shadow(0 0 14px ${department.color})` : 'none',
+          }}
+          className={`mb-2 transition-all duration-300 ${isActive ? 'scale-125 opacity-100' : 'opacity-85 group-hover:scale-110'}`}
         />
         <span
-          className={`text-xs font-semibold text-center leading-tight transition-all duration-300 ${
-            isActive ? 'text-white' : 'text-slate-400'
+          className={`text-xs md:text-sm font-extrabold text-center leading-tight transition-all duration-300 ${
+            isActive ? 'text-white text-shadow-lg' : 'text-slate-200 group-hover:text-white'
           }`}
-          style={{ maxWidth: '90px' }}
+          style={{ maxWidth: '110px' }}
         >
           {department.shortLabel}
         </span>
@@ -234,62 +248,61 @@ const DepartmentPanel: React.FC<DepartmentPanelProps> = ({ department, shouldRed
   return (
     <motion.div
       key={department.id}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, scale: 0.95, y: 30 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: -30 }}
       transition={{
-        duration: shouldReduceMotion ? 0 : 0.3,
+        duration: shouldReduceMotion ? 0 : 0.4,
         ease: 'easeOut',
       }}
-      className="relative overflow-hidden rounded-2xl backdrop-blur-md bg-slate-900/60 border p-8 min-h-[400px] flex flex-col"
+      className="relative overflow-hidden rounded-3xl backdrop-blur-2xl bg-slate-950/80 border p-8 md:p-10 min-h-[420px] flex flex-col justify-between shadow-[0_25px_60px_rgba(0,0,0,0.9)] bio-card-glow preserve-3d"
       style={{
-        borderColor: `${department.color}40`,
-        boxShadow: `0 0 40px ${department.color}20, 0 20px 40px rgba(0,0,0,0.3)`,
+        borderColor: `${department.color}60`,
+        boxShadow: `0 0 50px ${department.color}25, 0 30px 60px rgba(0,0,0,0.9)`,
       }}
     >
-      {/* Background pattern */}
+      {/* Dynamic Ambient Color Beam */}
       <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, ${department.color} 1px, transparent 0)`,
-          backgroundSize: '40px 40px',
-        }}
+        className="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none opacity-40 animate-pulse"
+        style={{ backgroundColor: department.color }}
       />
 
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 preserve-3d">
         {/* Header */}
         <div className="flex items-center gap-4 mb-6">
           <div
-            className="p-3 rounded-xl backdrop-blur-sm"
+            className="p-4 rounded-2xl backdrop-blur-md shadow-lg"
             style={{
-              backgroundColor: `${department.color}20`,
-              border: `1px solid ${department.color}40`,
+              backgroundColor: `${department.color}30`,
+              border: `1px solid ${department.color}70`,
+              boxShadow: `0 0 20px ${department.color}40`,
             }}
           >
-            <Icon size={28} style={{ color: department.color }} />
+            <Icon size={32} style={{ color: department.color }} />
           </div>
-          <h3 className="text-3xl font-bold text-white">{department.title}</h3>
+          <h3 className="text-3xl md:text-4xl font-extrabold text-white tracking-wide">{department.title}</h3>
         </div>
 
         {/* Description */}
-        <p className="text-slate-300 leading-relaxed mb-6 text-base">
+        <p className="text-slate-200 leading-relaxed mb-8 text-base md:text-lg font-['Inter']">
           {department.description}
         </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-3">
           {department.tags.map((tag, i) => (
             <motion.span
               key={i}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.1, duration: shouldReduceMotion ? 0 : 0.2 }}
-              className="px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm"
+              transition={{ delay: i * 0.1, duration: shouldReduceMotion ? 0 : 0.3 }}
+              className="px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-md transition-all shadow-md"
               style={{
-                backgroundColor: `${department.color}20`,
-                color: department.color,
-                border: `1px solid ${department.color}40`,
+                backgroundColor: `${department.color}25`,
+                color: '#ffffff',
+                border: `1px solid ${department.color}70`,
+                boxShadow: `0 0 15px ${department.color}25`,
               }}
             >
               {tag}
@@ -298,9 +311,9 @@ const DepartmentPanel: React.FC<DepartmentPanelProps> = ({ department, shouldRed
         </div>
       </div>
 
-      {/* Decorative corner accent */}
+      {/* Decorative bioluminescent accent */}
       <div
-        className="absolute bottom-0 right-0 w-32 h-32 opacity-10"
+        className="absolute bottom-0 right-0 w-48 h-48 opacity-20 pointer-events-none rounded-full blur-3xl"
         style={{
           background: `radial-gradient(circle at bottom right, ${department.color}, transparent)`,
         }}
@@ -329,7 +342,7 @@ export const OurDepartments: React.FC = () => {
       let currentProgress = 0;
 
       progressRef.current = setInterval(() => {
-        currentProgress += (100 / 60); // 6 seconds = 60 frames
+        currentProgress += (100 / 60);
         setProgress(currentProgress);
 
         if (currentProgress >= 100) {
@@ -350,7 +363,7 @@ export const OurDepartments: React.FC = () => {
     };
   }, [activeIndex, hasInteracted, isInView, shouldReduceMotion]);
 
-  // Mouse position tracking for tilt effect
+  // Mouse tracking
   useEffect(() => {
     if (shouldReduceMotion) return;
 
@@ -361,24 +374,6 @@ export const OurDepartments: React.FC = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [shouldReduceMotion]);
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
-        handleInteraction((activeIndex - 1 + departments.length) % departments.length);
-      } else if (e.key === 'ArrowRight') {
-        handleInteraction((activeIndex + 1) % departments.length);
-      } else if (e.key === 'ArrowUp') {
-        handleInteraction(activeIndex - 2 >= 0 ? activeIndex - 2 : activeIndex);
-      } else if (e.key === 'ArrowDown') {
-        handleInteraction(activeIndex + 2 < departments.length ? activeIndex + 2 : activeIndex);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeIndex]);
 
   const handleInteraction = (index: number) => {
     setActiveIndex(index);
@@ -391,41 +386,54 @@ export const OurDepartments: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen py-20 px-4 overflow-hidden bg-slate-950"
+      className="relative min-h-screen py-24 px-4 overflow-hidden perspective-1000"
+      id="departments"
     >
-      {/* Background Grid */}
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px)',
-          backgroundSize: '50px 50px',
-        }}
-      />
-
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
         >
-          <h2 className="text-4xl md:text-7xl font-bold bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text text-transparent mb-4">
+          <h2 className="text-4xl md:text-7xl font-extrabold bg-gradient-to-r from-emerald-300 via-cyan-200 to-indigo-300 bg-clip-text text-transparent mb-4 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
             Our Departments
           </h2>
-          <p className="text-xl text-gray-400">Click to Know More</p>
+          <p className="text-lg md:text-xl text-cyan-400/90 tracking-widest font-mono uppercase">Click to Know More</p>
+
+          {/* Quick Select Tab Bar for instant 1-click navigation */}
+          <div className="flex flex-wrap justify-center gap-3 mt-8 max-w-3xl mx-auto">
+            {departments.map((dept, index) => (
+              <button
+                key={dept.id}
+                onClick={() => handleInteraction(index)}
+                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer backdrop-blur-md border ${
+                  activeIndex === index
+                    ? 'bg-slate-900 text-white border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-105'
+                    : 'bg-slate-950/60 text-slate-300 border-slate-800 hover:border-slate-600 hover:text-white'
+                }`}
+                style={{
+                  borderColor: activeIndex === index ? dept.color : undefined,
+                  boxShadow: activeIndex === index ? `0 0 20px ${dept.color}60` : undefined,
+                }}
+              >
+                <span className="inline-block w-2.5 h-2.5 rounded-full mr-2" style={{ backgroundColor: dept.color }} />
+                {dept.title}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
-          {/* Left: Honeycomb Hexagons */}
-          <div className="relative flex items-center justify-center lg:justify-end" role="tablist" aria-label="Department selector">
-            {/* Desktop: Honeycomb Layout */}
-            <div className="hidden lg:grid grid-cols-2 gap-2 w-fit relative" style={{ perspective: 1000 }}>
-              {/* Top row - offset */}
-              <div style={{ marginLeft: '110px', marginBottom: '-30px' }}>
+        <div className="grid lg:grid-cols-12 gap-10 items-center preserve-3d">
+          {/* Left: Non-Colliding Staggered Honeycomb Cluster */}
+          <div className="lg:col-span-5 flex items-center justify-center py-6" role="tablist" aria-label="Department selector">
+            {/* Desktop: Staggered Honeycomb Cluster with Zero Collisions */}
+            <div className="hidden lg:block relative w-[440px] h-[310px] preserve-3d">
+              {/* Comb 0: Events & PR (Top-Left) */}
+              <div className="absolute top-0 left-0 transition-all duration-300">
                 <Hexagon
                   department={departments[0]}
                   isActive={activeIndex === 0}
@@ -436,7 +444,9 @@ export const OurDepartments: React.FC = () => {
                   mousePosition={mousePosition}
                 />
               </div>
-              <div style={{ marginBottom: '-30px' }}>
+
+              {/* Comb 2: Design & Technical (Top-Right) */}
+              <div className="absolute top-0 left-[165px] transition-all duration-300">
                 <Hexagon
                   department={departments[2]}
                   isActive={activeIndex === 2}
@@ -447,8 +457,9 @@ export const OurDepartments: React.FC = () => {
                   mousePosition={mousePosition}
                 />
               </div>
-              {/* Bottom row */}
-              <div>
+
+              {/* Comb 1: Corporate & Outreach (Bottom-Left Staggered) */}
+              <div className="absolute top-[138px] left-[82px] transition-all duration-300">
                 <Hexagon
                   department={departments[1]}
                   isActive={activeIndex === 1}
@@ -459,7 +470,9 @@ export const OurDepartments: React.FC = () => {
                   mousePosition={mousePosition}
                 />
               </div>
-              <div style={{ marginLeft: '-110px' }}>
+
+              {/* Comb 3: Research & Content (Bottom-Right Staggered) */}
+              <div className="absolute top-[138px] left-[247px] transition-all duration-300">
                 <Hexagon
                   department={departments[3]}
                   isActive={activeIndex === 3}
@@ -472,7 +485,7 @@ export const OurDepartments: React.FC = () => {
               </div>
             </div>
 
-            {/* Mobile/Tablet: 2x2 Grid */}
+            {/* Mobile/Tablet: 2x2 Grid with Clean Gaps */}
             <div className="grid lg:hidden grid-cols-2 gap-6 max-w-md mx-auto">
               {departments.map((dept, index) => (
                 <div key={dept.id} className="flex justify-center">
@@ -491,7 +504,7 @@ export const OurDepartments: React.FC = () => {
           </div>
 
           {/* Right: Detail Panel */}
-          <div className="relative">
+          <div className="lg:col-span-7 relative preserve-3d">
             <AnimatePresence mode="wait">
               <DepartmentPanel
                 key={departments[activeIndex].id}

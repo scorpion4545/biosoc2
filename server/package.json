@@ -9,7 +9,8 @@
     "dev": "nodemon server.js",
     "start:mongo": "node server.js",
     "import:mongo": "node import-members.js --mongo",
-    "migrate:images": "node migrate-council-images.js"
+    "migrate:images": "node migrate-council-images.js",
+    "seed:events": "node seed-events.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
