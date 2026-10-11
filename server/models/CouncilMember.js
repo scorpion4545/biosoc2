@@ -14,7 +14,7 @@ const councilMemberSchema = new mongoose.Schema({
   councilType: {
     type: String,
     required: [true, 'Council type is required'],
-    enum: ['Senior', 'Junior'],
+    enum: ['Senior', 'Junior', 'Advisory'],
     default: 'Senior'
   },
   department: {

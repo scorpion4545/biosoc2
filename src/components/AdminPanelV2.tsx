@@ -25,7 +25,7 @@ interface CouncilMember {
   name: string;
   position: string;
   imageUrl: string;
-  councilType: 'Senior' | 'Junior';
+  councilType: 'Senior' | 'Junior' | 'Advisory';
   department: string;
   email?: string;
   linkedin?: string;
@@ -94,7 +94,7 @@ const AdminPanelV2: React.FC = () => {
   const [newMember, setNewMember] = useState({
     name: '',
     position: '',
-    councilType: 'Senior' as 'Senior' | 'Junior',
+    councilType: 'Senior' as 'Senior' | 'Junior' | 'Advisory',
     department: 'Core',
     email: '',
     linkedin: '',
@@ -710,11 +710,12 @@ const AdminPanelV2: React.FC = () => {
                   />
                   <select
                     value={newMember.councilType}
-                    onChange={(e) => setNewMember({ ...newMember, councilType: e.target.value as 'Senior' | 'Junior' })}
+                    onChange={(e) => setNewMember({ ...newMember, councilType: e.target.value as 'Senior' | 'Junior' | 'Advisory' })}
                     className="rounded-lg border border-slate-600 bg-slate-700 px-4 py-2 text-white outline-none focus:border-cyan-500"
                   >
                     <option value="Senior">Senior Council</option>
                     <option value="Junior">Junior Council</option>
+                    <option value="Advisory">Advisory Council</option>
                   </select>
                   <select
                     value={newMember.department}
@@ -816,11 +817,12 @@ const AdminPanelV2: React.FC = () => {
                       />
                       <select
                         value={editingMember.councilType}
-                        onChange={(e) => setEditingMember({ ...editingMember, councilType: e.target.value as 'Senior' | 'Junior' })}
+                        onChange={(e) => setEditingMember({ ...editingMember, councilType: e.target.value as 'Senior' | 'Junior' | 'Advisory' })}
                         className="rounded-lg border border-slate-600 bg-slate-700 px-4 py-2 text-white outline-none focus:border-cyan-500"
                       >
                         <option value="Senior">Senior Council</option>
                         <option value="Junior">Junior Council</option>
+                        <option value="Advisory">Advisory Council</option>
                       </select>
                       <select
                         value={editingMember.department}

@@ -218,6 +218,17 @@ const Footer: React.FC = () => {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-slate-800 pt-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} BioSoc-DTU. All rights reserved.</p>
+          <p className="text-slate-400 transition-colors">
+            Made by{' '}
+            <a
+              href="https://www.linkedin.com/in/krishna-joshi-dtu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-emerald-400 hover:text-cyan-300 hover:underline transition-colors"
+            >
+              Krishna Joshi
+            </a>
+          </p>
         </div>
       </div>
     </footer>

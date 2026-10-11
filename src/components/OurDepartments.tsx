@@ -70,13 +70,13 @@ const Hexagon: React.FC<HexagonProps> = ({
   progress,
   mousePosition,
 }) => {
-  const hexRef = useRef<HTMLButtonElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    if (shouldReduceMotion || !hexRef.current) return;
+    if (shouldReduceMotion || !wrapperRef.current) return;
     
-    const rect = hexRef.current.getBoundingClientRect();
+    const rect = wrapperRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
@@ -94,37 +94,41 @@ const Hexagon: React.FC<HexagonProps> = ({
   const points = `${width * 0.25},0 ${width * 0.75},0 ${width},${height * 0.5} ${width * 0.75},${height} ${width * 0.25},${height} 0,${height * 0.5}`;
 
   return (
-    <motion.button
-      ref={hexRef}
-      onClick={(e) => {
-        e.stopPropagation();
-        onClick();
-      }}
-      type="button"
-      className={`relative focus:outline-none group cursor-pointer preserve-3d transition-all duration-300 ${
-        isActive ? 'z-30 scale-105' : 'z-10 hover:z-20'
-      }`}
-      style={{
-        width: width,
-        height: height,
-        clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
-      }}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ 
-        opacity: 1, 
-        scale: isActive ? 1.05 : 1,
-        rotateX: shouldReduceMotion ? 0 : tilt.x,
-        rotateY: shouldReduceMotion ? 0 : tilt.y,
-      }}
-      transition={{
-        delay: index * 0.1,
-        duration: shouldReduceMotion ? 0 : 0.4,
-      }}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.95 }}
-      aria-selected={isActive}
-      role="tab"
+    <div
+      ref={wrapperRef}
+      style={{ width, height }}
+      className="relative flex items-center justify-center select-none"
     >
+      <motion.button
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick();
+        }}
+        type="button"
+        className={`relative focus:outline-none group cursor-pointer preserve-3d transition-all duration-300 ${
+          isActive ? 'z-30' : 'z-10 hover:z-20'
+        }`}
+        style={{
+          width: width,
+          height: height,
+          clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
+        }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ 
+          opacity: 1, 
+          scale: isActive ? 1.05 : 1,
+          rotateX: shouldReduceMotion ? 0 : tilt.x,
+          rotateY: shouldReduceMotion ? 0 : tilt.y,
+        }}
+        transition={{
+          delay: index * 0.1,
+          duration: shouldReduceMotion ? 0 : 0.4,
+        }}
+        whileHover={{ scale: 1.06 }}
+        whileTap={{ scale: 0.95 }}
+        aria-selected={isActive}
+        role="tab"
+      >
       <svg
         width={width}
         height={height}
@@ -233,7 +237,8 @@ const Hexagon: React.FC<HexagonProps> = ({
           {department.shortLabel}
         </span>
       </div>
-    </motion.button>
+      </motion.button>
+    </div>
   );
 };
 

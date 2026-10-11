@@ -11,7 +11,7 @@ interface ApiMember {
   _id: string;
   name: string;
   position: string;
-  councilType?: 'Senior' | 'Junior';
+  councilType?: 'Senior' | 'Junior' | 'Advisory';
   department?: string;
   imageUrl: string;
   email?: string;
@@ -21,6 +21,7 @@ interface ApiMember {
 }
 
 const CouncilMembers = () => {
+  const [advisoryMembers, setAdvisoryMembers] = useState<ApiMember[]>([]);
   const [seniorMembers, setSeniorMembers] = useState<ApiMember[]>([]);
   const [juniorMembers, setJuniorMembers] = useState<ApiMember[]>([]);
   const [loading, setLoading] = useState(true);
@@ -35,10 +36,12 @@ const CouncilMembers = () => {
           .filter(m => m.isActive !== false)
           .sort((a, b) => a.order - b.order);
 
-        const senior = activeMembers.filter(m => m.councilType === 'Senior' || !m.councilType);
+        const advisory = activeMembers.filter(m => m.councilType === 'Advisory');
+        const senior = activeMembers.filter(m => m.councilType === 'Senior' || (!m.councilType && m.councilType !== 'Junior' && m.councilType !== 'Advisory'));
         const junior = activeMembers.filter(m => m.councilType === 'Junior');
 
-        setSeniorMembers(senior.length ? senior : (activeMembers as ApiMember[]));
+        setAdvisoryMembers(advisory);
+        setSeniorMembers(senior.length ? senior : (activeMembers.filter(m => m.councilType !== 'Advisory') as ApiMember[]));
         setJuniorMembers(junior);
       } catch (error) {
         console.error('Error fetching council members, using fallback data:', error);
@@ -47,9 +50,11 @@ const CouncilMembers = () => {
           .filter(m => m.isActive !== false)
           .sort((a, b) => a.order - b.order);
 
-        const senior = activeMembers.filter(m => m.councilType === 'Senior' || !m.councilType);
+        const advisory = activeMembers.filter(m => m.councilType === 'Advisory');
+        const senior = activeMembers.filter(m => m.councilType === 'Senior' || (!m.councilType && m.councilType !== 'Junior' && m.councilType !== 'Advisory'));
         const junior = activeMembers.filter(m => m.councilType === 'Junior');
 
+        setAdvisoryMembers(advisory);
         setSeniorMembers(senior.length ? senior : activeMembers);
         setJuniorMembers(junior);
       } finally {
@@ -92,6 +97,73 @@ const CouncilMembers = () => {
               Our distinguished council brings together leading experts in various fields of biotechnology and healthcare.
             </p>
           </div>
+
+          {/* Advisory Council Section */}
+          {advisoryMembers.length > 0 && (
+            <div className="mb-20">
+              <motion.h3
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-3xl md:text-5xl font-extrabold text-center bg-gradient-to-r from-emerald-300 via-cyan-200 to-indigo-300 bg-clip-text text-transparent mb-16"
+              >
+                Advisory Council
+              </motion.h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 preserve-3d">
+                {advisoryMembers.map((member) => (
+                  <TiltCard3D
+                    key={member._id}
+                    maxTilt={14}
+                    scale={1.04}
+                    glareColor="rgba(6, 182, 212, 0.4)"
+                    className="group border border-cyan-500/40 bg-slate-950/70 p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl bio-card-glow"
+                  >
+                    <div className="flex flex-col items-center preserve-3d">
+                      <div className="relative mb-6">
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-indigo-400 rounded-full animate-spin-slow opacity-60 blur-md group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="relative h-48 w-48 rounded-full overflow-hidden border-4 border-slate-900 group-hover:border-cyan-400 transition-colors duration-300 shadow-2xl">
+                          <img 
+                            src={member.imageUrl} 
+                            alt={member.name}
+                            className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="text-center preserve-3d">
+                        <h3 className="text-2xl font-extrabold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300 group-hover:translate-z-10">
+                          {member.name}
+                        </h3>
+                        <div className="text-cyan-400 font-semibold mb-4 text-base tracking-wide">{member.position}</div>
+
+                        <div className="flex justify-center space-x-4 mt-4">
+                          {member.linkedin && (
+                            <a 
+                              href={member.linkedin} 
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="p-2 rounded-full bg-slate-900/80 border border-slate-700 text-slate-300 hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300"
+                            >
+                              <Linkedin className="h-5 w-5" />
+                            </a>
+                          )}
+                          {member.email && (
+                            <a 
+                              href={`mailto:${member.email}`} 
+                              className="p-2 rounded-full bg-slate-900/80 border border-slate-700 text-slate-300 hover:text-emerald-400 hover:border-emerald-400/50 transition-all duration-300"
+                            >
+                              <Mail className="h-5 w-5" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </TiltCard3D>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Senior Council Section */}
           {seniorMembers.length > 0 && (
